@@ -30,7 +30,7 @@ class FairytaleFragment : Fragment() {
     public var imageSize:Int = 0
     public var screenWidth:Int= 0
     public var offsetPx:Int=0
-    override fun onCreate(savedInstanceState: Bundle?) {
+/*    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
@@ -104,5 +104,5 @@ resources
     private fun getEase(position:Float):Float {
         val sqt = position * position
         return sqt / (2.0f * (sqt - position) + 1.0f)
-    }
+    }*/
 }
