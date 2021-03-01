@@ -1,12 +1,38 @@
 package com.didimstory.mangulmangul
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.didimstory.mangulmangul.fragment.*
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
-
     val PREFERENCE = "template.android.hyogeuns"
+
+
+    private val FairytaleFragment by lazy { FairytaleFragment() }
+    private val BoastFragment by lazy { BoastFragment() }
+    private val HomeFragment by lazy { HomeFragment() }
+    private val MypageFragment by lazy { MypageFragment() }
+
+    private val ServiceFragment by lazy { ServiceFragment() }
+
+
+    private val fragments: List<Fragment> =
+        listOf(FairytaleFragment, BoastFragment, HomeFragment, MypageFragment, ServiceFragment)
+    private val pagerAdapter: MainViewPagerAdapter by lazy { MainViewPagerAdapter(this, fragments) }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,5 +43,92 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+        initViewPager()
+        initNavigationBar()
+
+
     }
+    fun replaceFragment(num:Int) {
+
+        when(num){
+
+0->{
+    Log.d("fairyButton","fairyButton")
+    viewPager.currentItem=0
 }
+
+        }
+
+
+    }
+
+
+
+    /*
+        private inner class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
+            override fun getItemCount(): Int=5
+            override fun createFragment(position: Int): Fragment {
+                return when (position) {
+                    0 -> FairytaleFragment()
+                    1 -> BoastFragment()
+                    2 -> HomeFragment()
+                    3 -> MypageFragment()
+                    4 -> ServiceFragment()
+                    else -> error("No Fragment")
+                }
+            }
+        }
+    */
+
+    private fun initNavigationBar() {
+        bottomNavigationView.run {
+            setOnNavigationItemSelectedListener {
+                val page = when (it.itemId) {
+                    R.id.tab_fairy -> 0
+                    R.id.tab_boast
+                    -> 1
+                    R.id.tab_home
+                    -> 2
+                    R.id.tab_mypage->3
+                    R.id.tab_service->4
+                    else -> 0
+                }
+                if (page != viewPager.currentItem) {
+                    viewPager.currentItem = page
+            }
+                true
+            }
+            selectedItemId = R.id.tab_home
+        }
+    }
+
+    private fun initViewPager() {
+        viewPager.run {
+            adapter = pagerAdapter
+            registerOnPageChangeCallback (object :
+                ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    val navigation = when (position) {
+                     0-> R.id.tab_fairy
+                         1-> R.id.tab_boast
+
+                        2->  R.id.tab_home
+
+                        3-> R.id.tab_mypage
+                        4->R.id.tab_service
+                     else->R.id.tab_fairy
+                    }
+                    if (bottomNavigationView.selectedItemId != navigation) {
+                        bottomNavigationView.selectedItemId = navigation
+                    }
+                }
+            })
+        }
+    }}
+
+
+
+
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/tab_fairy"
+        android:icon="@drawable/bt_tab_home"
+        android:enabled="true"
+        android:title="" />
+
+    <item
+        android:id="@+id/tab_boast"
+        android:title=""
+        android:icon="@drawable/bt_tab_home"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/tab_home"
+        android:title=""
+        android:icon="@drawable/bt_tab_home"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/tab_mypage"
+        android:title=""
+        android:icon="@drawable/bt_tab_home"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/tab_service"
+        android:title=""
+        android:icon="@drawable/bt_tab_home"
+        android:enabled="true"
+        />
+
+</menu>
