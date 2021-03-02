@@ -2,17 +2,10 @@ package com.didimstory.mangulmangul
 
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.didimstory.mangulmangul.fragment.*
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -20,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     val PREFERENCE = "template.android.hyogeuns"
 
 
-    private val FairytaleFragment by lazy { FairytaleFragment() }
+    private val FairytaleFragment by lazy { com.didimstory.mangulmangul.fairy.FairytaleFragment() }
     private val BoastFragment by lazy { BoastFragment() }
     private val HomeFragment by lazy { HomeFragment() }
     private val MypageFragment by lazy { MypageFragment() }
@@ -40,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         var users = pref.getString("username", "")
 
 
-
+        viewPager.setUserInputEnabled(false)
 
 
 

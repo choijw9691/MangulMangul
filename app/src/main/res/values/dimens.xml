@@ -120,6 +120,7 @@
     <dimen name="dp_435">435dp</dimen>
     <dimen name="image_size">200dp</dimen>
     <dimen name="image_margin">36dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 
 </resources>
