@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.didimstory.mangulmangul.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,11 +34,7 @@ class MainActivity : AppCompatActivity() {
         var pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         var users = pref.getString("username", "")
 
-
         viewPager.setUserInputEnabled(false)
-
-
-
 
         initViewPager()
         initNavigationBar()
@@ -46,18 +44,21 @@ class MainActivity : AppCompatActivity() {
     fun replaceFragment(num:Int) {
 
         when(num){
-
 0->{
     Log.d("fairyButton","fairyButton")
     viewPager.currentItem=0
 }
-
         }
 
 
     }
 
+/*    fun replaceFragment(fragment: Fragment) {
 
+var fragmentManager:FragmentManager=supportFragmentManager
+        var fragmentTransaction:FragmentTransaction=fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.viewPager)
+    }*/
 
     /*
         private inner class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {

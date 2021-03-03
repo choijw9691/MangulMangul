@@ -3,25 +3,21 @@ package com.didimstory.mangulmangul.fairy
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 import com.didimstory.mangulmangul.youtube.youtubeTest
 
-
-class fairyRecycleAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
-  {
+class fairyDetailAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+{
 
     val mContext=context
-var dataurl:String?=null
+    var dataurl:String?=null
     var dataList = listOf<YoutubeItem>()
         set(value) {
             field = value
@@ -56,32 +52,29 @@ var dataurl:String?=null
 
         fun bind(data: YoutubeItem) {
 
-           mContext?.let {
-               dataurl=data.url
+            mContext?.let {
+                dataurl=data.url
                 Glide.with(it)
                     .load( "https://img.youtube.com/vi/$dataurl/maxresdefault.jpg" )
                     .centerInside()
                     .override(1000,1000)
                     .into(binding.thumbnail)
 
-              binding.fairyText.setText(data.fairyText)
-               binding.thumbnail.setOnClickListener(View.OnClickListener {
+                binding.fairyText.setText(data.fairyText)
+                binding.thumbnail.setOnClickListener(View.OnClickListener {
 
-             val intent=Intent(mContext,youtubeTest::class.java)
-                   intent.putExtra("data.url",data.url)
-                   mContext.startActivity(intent)
-
-
+                    val intent= Intent(mContext, youtubeTest::class.java)
+                    intent.putExtra("data.url",data.url)
+                    mContext.startActivity(intent)
 
 
+                    (mContext as Activity).finish()
 
-
-
+                    Log.d("binding.thumbnail.setOnClickListener",data.fairyText)
 
 
 
-
-               })
+                })
 
             }
 

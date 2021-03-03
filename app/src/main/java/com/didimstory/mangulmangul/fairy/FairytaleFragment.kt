@@ -61,16 +61,29 @@ class FairytaleFragment : Fragment(){
 
 
 
-        val url =
-            "https://img.youtube.com/vi/$videoId/default.jpg" //유튜브 썸네일 불러오는 방법
+        val url = videoId//유튜브 썸네일 불러오는 방법
 
 
         dataList.add(
             YoutubeItem(
-                url
+                url, "고래와 상어1"
             )
         )
 
+        dataList.add(
+            YoutubeItem(
+                url, "고래와 상어2"
+            )
+        )
+        dataList.add(
+            YoutubeItem(
+                url, "고래와 상어3"            )
+        )
+        dataList.add(
+            YoutubeItem(
+                url, "고래와 상어4"
+            )
+        )
         mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         fairyAdapter = fairyRecycleAdapter(context)
 
@@ -108,7 +121,7 @@ class FairytaleFragment : Fragment(){
         }
 
         fairyAdapter.dataList = dataList
-/*        binding!!.titleText.text = fairyAdapter.dataList[0].title
+/*      binding!!.titleText.text = fairyAdapter.dataList[0].title
         binding!!.descriptionText.text = String.format("%s ", fairyAdapter.dataList[0].description)*/
 
         return view

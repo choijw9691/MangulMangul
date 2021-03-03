@@ -4,14 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+   android:layout_weight="4"
+
+    >
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtubeView"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_200"
+        android:layout_centerInParent="true"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/youtubeView"
+        android:layout_centerInParent="true"
+        android:id="@+id/buyrecycler"
+        ></androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>
 
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+android:layout_weight="1"
+    android:orientation="vertical"
+    >
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView1"
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+</LinearLayout>
 
 </LinearLayout>
 
