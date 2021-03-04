@@ -38,6 +38,8 @@ class fairyDetailAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerV
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads:List<Any>) {
+
+
         when(holder) {
             is MainMusicHolder -> {
                 holder.bind(dataList[position])
@@ -51,6 +53,8 @@ class fairyDetailAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerV
     inner class MainMusicHolder(val binding : ActivityYoutubThumbNaiLBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: YoutubeItem) {
+
+
 
             mContext?.let {
                 dataurl=data.url

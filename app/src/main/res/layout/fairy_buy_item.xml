@@ -23,14 +23,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:gravity="center"
+
         android:id="@+id/textview"
         ></TextView>
     <CheckedTextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:gravity="center"
+
 android:id="@+id/checkbox"
+
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
         ></CheckedTextView>
 </LinearLayout>

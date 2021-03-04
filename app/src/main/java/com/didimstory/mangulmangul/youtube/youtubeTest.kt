@@ -95,25 +95,69 @@ class youtubeTest : YouTubeBaseActivity() {
 
         buydataList.add(
             fairybuyItem(
+                url, "키트","100원"
+            )
+        )
+
+        buydataList.add(
+            fairybuyItem(
+                url, "서적","200원"
+            )
+        )
+
+        buydataList.add(
+            fairybuyItem(
                 url, "키트","300원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "서적","300원"
+                url, "서적","400원"
+            )
+        )
+        buydataList.add(
+            fairybuyItem(
+                url, "키트","500원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "키트","300원"
+                url, "서적","600원"
+            )
+        )
+        buydataList.add(
+            fairybuyItem(
+                url, "키트","700원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "서적","300원"
+                url, "서적","800원"
+            )
+        )
+        buydataList.add(
+            fairybuyItem(
+                url, "키트","900원"
+            )
+        )
+
+        buydataList.add(
+            fairybuyItem(
+                url, "서적","1000원"
+            )
+        )
+        buydataList.add(
+            fairybuyItem(
+                url, "키트","1100원"
+            )
+        )
+
+        buydataList.add(
+            fairybuyItem(
+                url, "서적","1200원"
             )
         )
         mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

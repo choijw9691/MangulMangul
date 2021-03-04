@@ -1,5 +1,5 @@
 package com.didimstory.mangulmangul.fairy
 
-class fairyCheckbox {
-    var selected = false
-}
+class checkboxData(
+    var id: Int,
+    var checked: Boolean)
