@@ -55,7 +55,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="구매하기"
-                    android:textColor="@color/black"></Button>
+                    android:textColor="@color/black"
+
+                    ></Button>
 
             </LinearLayout>
 

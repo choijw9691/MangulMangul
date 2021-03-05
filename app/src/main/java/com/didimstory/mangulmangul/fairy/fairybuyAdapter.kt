@@ -1,36 +1,46 @@
 package com.didimstory.mangulmangul.fairy
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.didimstory.mangulmangul.databinding.ActivityYoutubeTestBinding
-
+import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.databinding.FairyBuyItemBinding
-import com.didimstory.mangulmangul.youtube.YoutubeItem
-import com.didimstory.mangulmangul.youtube.youtubeTest
+import java.text.DecimalFormat
 
 
-class fairybuyAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    var checkboxtext: String? = null
 
+    var max: Int = 0
 
-    val mContext = context
+    var checkboxSelectedList = ArrayList<Buy>()
+    var titleSelectedList = ArrayList<String>()
+    var purchaseSelectedList = ArrayList<String>()
+    var formatter: DecimalFormat = DecimalFormat("###,###")
+    var mContext: Context
+    var mbuyTextListener: buyTextListener?
+
+    constructor(
+        context: Context,
+        mbuyTextListener: buyTextListener?
+
+    ) : super() {
+        this.mbuyTextListener = mbuyTextListener
+        this.mContext = context
+
+    }
+
     var dataurl: String? = null
     var dataList = listOf<fairybuyItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
-    var checkboxList= arrayListOf<checkboxData>()
+    var checkboxList = arrayListOf<checkboxData>()
+    var checkList = arrayListOf<Boolean>()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = FairyBuyItemBinding.inflate(LayoutInflater.from(mContext), parent, false)
@@ -40,10 +50,9 @@ class fairybuyAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-
         when (holder) {
             is MainMusicHolder -> {
-                holder.bind(dataList[position],position)
+                holder.bind(dataList[position], position)
             }
         }
     }
@@ -54,11 +63,11 @@ class fairybuyAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
         payloads: List<Any>
     ) {
 
-       // Log.d("adapterPosition",position.toString())
+        // Log.d("adapterPosition",position.toString())
 
         when (holder) {
             is MainMusicHolder -> {
-                holder.bind(dataList[position],position)
+                holder.bind(dataList[position], position)
             }
         }
     }
@@ -67,15 +76,15 @@ class fairybuyAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
     override fun getItemCount(): Int = dataList.size
 
     inner class MainMusicHolder(val binding: FairyBuyItemBinding) :
-        RecyclerView.ViewHolder(binding.root)  {
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: fairybuyItem,num:Int) {
+        fun bind(data: fairybuyItem, num: Int) {
 
             mContext?.let {
 
-                if (num>=checkboxList.size){
+                if (num >= checkboxList.size) {
 
-                    checkboxList.add(num, checkboxData(num,false))
+                    checkboxList.add(num, checkboxData(num, false))
 
                 }
 
@@ -97,21 +106,26 @@ class fairybuyAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
 
 
 
-                binding.checkbox.isChecked=checkboxList[num].checked
+                binding.checkbox.isChecked = checkboxList[num].checked
 
 
 
-                binding.checkbox.setOnClickListener{
+                binding.checkbox.setOnClickListener {
 
                     if (binding.checkbox.isChecked) {
                         binding.checkbox.isChecked = false
-                        checkboxList[num].checked=false
-
-                    }
-                    else{
+                        checkboxList[num].checked = false
+                        checkboxtext =
+                            binding.checkbox.text.toString().replace(("[^0-9]").toRegex(), "")
+                        max -= Integer.parseInt(checkboxtext)
+                        mbuyTextListener?.buyTotal(formatter.format(max) + "원")
+                    } else {
                         binding.checkbox.isChecked = true
-                        checkboxList[num].checked=true
-
+                        checkboxList[num].checked = true
+                        checkboxtext =
+                            binding.checkbox.text.toString().replace(("[^0-9]").toRegex(), "")
+                        max += Integer.parseInt(checkboxtext)
+                        mbuyTextListener?.buyTotal(formatter.format(max) + "원")
                     }
                 }
 
@@ -126,13 +140,35 @@ class fairybuyAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
 
                             })*/
 
-            }
 
+            }
 
         }
 
 
     }
 
+    interface buyTextListener {
+        fun buyTotal(data: String?)
+        fun buyList(purchase: ArrayList<Buy>)
+    }
+
+
+
+    fun maxplus() {
+        for (i in 0 until checkboxList.size) {
+            if (checkboxList.get(i).checked === true) {
+                var a = dataList[i].imageview
+
+                var purchase = Buy(
+                    a,
+                    dataList[i].title,
+                    dataList[i].check
+                )
+                checkboxSelectedList.add(purchase)
+            }
+        }
+        mbuyTextListener?.buyList(checkboxSelectedList)
+    }
 
 }

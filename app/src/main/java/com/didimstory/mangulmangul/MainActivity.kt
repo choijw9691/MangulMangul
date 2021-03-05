@@ -2,6 +2,7 @@ package com.didimstory.mangulmangul
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -9,6 +10,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.didimstory.mangulmangul.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,6 +43,13 @@ class MainActivity : AppCompatActivity() {
         initNavigationBar()
 
 
+
+
+
+
+
+
+
     }
     fun replaceFragment(num:Int) {
 
@@ -50,8 +60,8 @@ class MainActivity : AppCompatActivity() {
 }
         }
 
-
     }
+
 
 /*    fun replaceFragment(fragment: Fragment) {
 
@@ -120,7 +130,10 @@ var fragmentManager:FragmentManager=supportFragmentManager
                 }
             })
         }
-    }}
+    }
+
+
+}
 
 
 
