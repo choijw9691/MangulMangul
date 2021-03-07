@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.Entity.Buy
+import com.didimstory.mangulmangul.Entity.fairybuyItem
 import com.didimstory.mangulmangul.databinding.FairyBuyItemBinding
 import java.text.DecimalFormat
 
@@ -169,6 +170,7 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         }
         mbuyTextListener?.buyList(checkboxSelectedList)
+        checkboxSelectedList.clear()
     }
 
 }

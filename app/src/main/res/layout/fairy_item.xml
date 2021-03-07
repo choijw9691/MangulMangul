@@ -17,6 +17,7 @@
 
     <com.google.android.youtube.player.YouTubeThumbnailView
         android:id="@+id/item_image"
+
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:layout_gravity="center"

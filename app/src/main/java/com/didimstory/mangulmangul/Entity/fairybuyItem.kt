@@ -1,4 +1,4 @@
-package com.didimstory.mangulmangul.fairy
+package com.didimstory.mangulmangul.Entity
 
 import android.media.Image
 import android.widget.CheckedTextView

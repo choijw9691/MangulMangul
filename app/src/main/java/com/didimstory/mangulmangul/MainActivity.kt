@@ -2,23 +2,18 @@ package com.didimstory.mangulmangul
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.didimstory.mangulmangul.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
     val PREFERENCE = "template.android.hyogeuns"
 
 
-    private val FairytaleFragment by lazy { com.didimstory.mangulmangul.fairy.FairytaleFragment() }
+    private val FairytaleFragment by lazy { FairytaleFragment() }
     private val BoastFragment by lazy { BoastFragment() }
     private val HomeFragment by lazy { HomeFragment() }
     private val MypageFragment by lazy { MypageFragment() }
@@ -41,10 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         initViewPager()
         initNavigationBar()
-
-
-
-
 
 
 

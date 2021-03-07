@@ -1,29 +1,20 @@
 package com.didimstory.mangulmangul.youtube
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.didimstory.mangulmangul.Entity.Buy
-import com.didimstory.mangulmangul.EventBus.CheckBoxEvent
+import com.didimstory.mangulmangul.Entity.fairybuyItem
 import com.didimstory.mangulmangul.Purchase.purchaseActivity
 import com.didimstory.mangulmangul.R
-import com.didimstory.mangulmangul.databinding.ActivityYoutubeTestBinding
-import com.didimstory.mangulmangul.databinding.FragmentFairytaleBinding
 import com.didimstory.mangulmangul.fairy.*
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
 import kotlinx.android.synthetic.main.activity_youtube_test.*
-import kotlinx.android.synthetic.main.activity_youtube_test.view.*
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 
 class youtubeTest : YouTubeBaseActivity(){
@@ -40,12 +31,10 @@ class youtubeTest : YouTubeBaseActivity(){
 
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         videoId = intent.getStringExtra("data.url")
-        val url = com.didimstory.mangulmangul.fairy.videoId//유튜브 썸네일 불러오는 방법
+        val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
         Log.d("youtuberesult", videoId.toString())
         setContentView(R.layout.activity_youtube_test)
         val youtubeView =
@@ -111,69 +100,69 @@ class youtubeTest : YouTubeBaseActivity(){
 
         buydataList.add(
             fairybuyItem(
-                url, "키트","100원"
+                url, "키트", "100원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "서적","200원"
+                url, "서적", "200원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "키트","300원"
+                url, "키트", "300원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "서적","400원"
+                url, "서적", "400원"
             )
         )
         buydataList.add(
             fairybuyItem(
-                url, "키트","500원"
-            )
-        )
-
-        buydataList.add(
-            fairybuyItem(
-                url, "서적","600원"
-            )
-        )
-        buydataList.add(
-            fairybuyItem(
-                url, "키트","700원"
+                url, "키트", "500원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "서적","800원"
+                url, "서적", "600원"
             )
         )
         buydataList.add(
             fairybuyItem(
-                url, "키트","900원"
-            )
-        )
-
-        buydataList.add(
-            fairybuyItem(
-                url, "서적","1000원"
-            )
-        )
-        buydataList.add(
-            fairybuyItem(
-                url, "키트","1100원"
+                url, "키트", "700원"
             )
         )
 
         buydataList.add(
             fairybuyItem(
-                url, "서적","1200원"
+                url, "서적", "800원"
+            )
+        )
+        buydataList.add(
+            fairybuyItem(
+                url, "키트", "900원"
+            )
+        )
+
+        buydataList.add(
+            fairybuyItem(
+                url, "서적", "1000원"
+            )
+        )
+        buydataList.add(
+            fairybuyItem(
+                url, "키트", "1100원"
+            )
+        )
+
+        buydataList.add(
+            fairybuyItem(
+                url, "서적", "1200원"
             )
         )
         mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
