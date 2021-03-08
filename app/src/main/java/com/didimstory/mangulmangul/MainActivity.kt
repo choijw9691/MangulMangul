@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.didimstory.mangulmangul.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,13 +15,14 @@ class MainActivity : AppCompatActivity() {
     val PREFERENCE = "template.android.hyogeuns"
 
 
+
     private val FairytaleFragment by lazy { FairytaleFragment() }
     private val BoastFragment by lazy { BoastFragment() }
     private val HomeFragment by lazy { HomeFragment() }
     private val MypageFragment by lazy { MypageFragment() }
 
     private val ServiceFragment by lazy { ServiceFragment() }
-
+var listener:OnBackPressedListener?=null
 
     private val fragments: List<Fragment> =
         listOf(FairytaleFragment, BoastFragment, HomeFragment, MypageFragment, ServiceFragment)
@@ -53,7 +56,23 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
 
+
+
+        if(listener!=null){
+            listener?.onBackPressed()
+            Log.d("childback","childback1")
+        }
+        else{
+            super.onBackPressed()
+            Log.d("childback","childback2")
+        }
+
+
+
+
+    }
 /*    fun replaceFragment(fragment: Fragment) {
 
 var fragmentManager:FragmentManager=supportFragmentManager
@@ -123,6 +142,15 @@ var fragmentManager:FragmentManager=supportFragmentManager
         }
     }
 
+    fun setOnBackPressedListener(listener: OnBackPressedListener?){
+        this.listener=listener
+
+    }
+
+interface OnBackPressedListener{
+    fun onBackPressed()
+
+}
 
 }
 

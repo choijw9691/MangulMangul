@@ -70,7 +70,7 @@ dependencies {
     //implementation 'kr.co.prnd:youtube-player-view:1.4.0'
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha01"
     implementation 'org.greenrobot:eventbus:3.2.0'
-
+    implementation 'me.relex:circleindicator:2.1.4'
 
 
 }

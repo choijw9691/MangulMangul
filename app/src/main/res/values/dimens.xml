@@ -13,7 +13,10 @@
     -->
     <dimen name="inner_frame_layout_padding">5dp</dimen>
 
-
+    <dimen name="pageMargin">20dp</dimen>
+    <dimen name="offset">20dp</dimen>
+    <dimen name="pageMarginAndOffset">40dp</dimen>
+    <dimen name="frameSize">320dp</dimen>
     <dimen name="dp_m20">-20dp</dimen>
     <dimen name="dp_m10">-10dp</dimen>
     <dimen name="dp_m5">-5dp</dimen>

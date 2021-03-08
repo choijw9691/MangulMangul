@@ -14,14 +14,26 @@
     android:layout_weight="1"
     >
 
-    <ImageView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:id="@+id/boast_detail_image"
+
+
         >
 
-    </ImageView>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/boast_detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            />
+<!--        <me.relex.circleindicator.CircleIndicator3
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"></me.relex.circleindicator.CircleIndicator3>-->
+    </FrameLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_0"

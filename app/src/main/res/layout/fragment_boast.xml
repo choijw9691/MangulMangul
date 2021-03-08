@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.BoastFragment"
 android:orientation="vertical"
-
+android:id="@+id/boastContainer"
 
     >
 
