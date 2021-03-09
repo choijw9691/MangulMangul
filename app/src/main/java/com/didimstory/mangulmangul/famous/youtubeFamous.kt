@@ -1,4 +1,4 @@
-package com.didimstory.mangulmangul.youtube
+package com.didimstory.mangulmangul.famous
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import com.didimstory.mangulmangul.Entity.fairybuyItem
 import com.didimstory.mangulmangul.Purchase.purchaseActivity
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.fairy.*
+import com.didimstory.mangulmangul.youtube.YoutubeItem
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -17,7 +18,7 @@ import com.google.android.youtube.player.YouTubePlayerView
 import kotlinx.android.synthetic.main.activity_youtube_test.*
 
 
-class youtubeTest : YouTubeBaseActivity(){
+class youtubeFamous : YouTubeBaseActivity(){
     var videoId: String? = null
 
 
@@ -85,7 +86,7 @@ class youtubeTest : YouTubeBaseActivity(){
             )
         )
         mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        fairyAdapter = fairyDetailAdapter(this,0)
+        fairyAdapter = fairyDetailAdapter(this,1)
 
         recyclerView1.layoutManager = mLayoutManager
 

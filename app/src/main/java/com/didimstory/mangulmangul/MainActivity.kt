@@ -20,12 +20,12 @@ class MainActivity : AppCompatActivity() {
     private val BoastFragment by lazy { BoastFragment() }
     private val HomeFragment by lazy { HomeFragment() }
     private val MypageFragment by lazy { MypageFragment() }
-
+private val FamousFragment by lazy { FamousFragment() }
     private val ServiceFragment by lazy { ServiceFragment() }
 var listener:OnBackPressedListener?=null
 
     private val fragments: List<Fragment> =
-        listOf(FairytaleFragment, BoastFragment, HomeFragment, MypageFragment, ServiceFragment)
+        listOf(FairytaleFragment, BoastFragment, HomeFragment, MypageFragment, ServiceFragment,FamousFragment)
     private val pagerAdapter: MainViewPagerAdapter by lazy { MainViewPagerAdapter(this, fragments) }
 
 
@@ -52,13 +52,15 @@ var listener:OnBackPressedListener?=null
     Log.d("fairyButton","fairyButton")
     viewPager.currentItem=0
 }
+            5->{
+                viewPager.currentItem=5
+
+            }
         }
 
     }
 
     override fun onBackPressed() {
-
-
 
         if(listener!=null){
             listener?.onBackPressed()
@@ -68,9 +70,6 @@ var listener:OnBackPressedListener?=null
             super.onBackPressed()
             Log.d("childback","childback2")
         }
-
-
-
 
     }
 /*    fun replaceFragment(fragment: Fragment) {
@@ -107,7 +106,7 @@ var fragmentManager:FragmentManager=supportFragmentManager
                     -> 2
                     R.id.tab_mypage->3
                     R.id.tab_service->4
-                    else -> 0
+                    else -> 5
                 }
                 if (page != viewPager.currentItem) {
                     viewPager.currentItem = page
@@ -132,7 +131,8 @@ var fragmentManager:FragmentManager=supportFragmentManager
 
                         3-> R.id.tab_mypage
                         4->R.id.tab_service
-                     else->R.id.tab_fairy
+
+                     else->return
                     }
                     if (bottomNavigationView.selectedItemId != navigation) {
                         bottomNavigationView.selectedItemId = navigation
@@ -144,7 +144,6 @@ var fragmentManager:FragmentManager=supportFragmentManager
 
     fun setOnBackPressedListener(listener: OnBackPressedListener?){
         this.listener=listener
-
     }
 
 interface OnBackPressedListener{

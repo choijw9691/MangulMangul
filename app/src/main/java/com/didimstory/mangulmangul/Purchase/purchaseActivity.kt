@@ -1,12 +1,16 @@
 package com.didimstory.mangulmangul.Purchase
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.didimstory.mangulmangul.Entity.Buy
+import com.didimstory.mangulmangul.Entity.apiResultItem
 import com.didimstory.mangulmangul.R
+import com.didimstory.mangulmangul.webviewAPI
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 
 
@@ -18,7 +22,7 @@ class purchaseActivity : AppCompatActivity() {
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var purchaseAdapter: purchaseAdapter
     private var dataList = arrayListOf<Buy>()
-
+    val apiResult= apiResultItem()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +44,32 @@ class purchaseActivity : AppCompatActivity() {
 
         purchaseRecyclerView.adapter = purchaseAdapter
 
+
+        address.setOnClickListener(View.OnClickListener {
+
+            intent=Intent(this,webviewAPI::class.java)
+            startActivityForResult(intent, 100)
+
+        })
+
+        next.setOnClickListener(View.OnClickListener {
+            purchaseLinear1.visibility=View.GONE
+            purchaseLinear2.visibility=View.VISIBLE
+            purchaseRecyclerView.visibility=View.VISIBLE
+
+
+        })
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode==Activity.RESULT_OK){
+            when(requestCode){
+
+                100-> addressText.setText(apiResult.apiResult)
+            }
+
+        }
+    }
 }

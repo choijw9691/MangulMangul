@@ -29,7 +29,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [BoastFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BoastFragment : Fragment(), View.OnClickListener,MainActivity.OnBackPressedListener{
+class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
 
     val TAG_CHILD = "TAG_CHILD"
     val KEY_NUMBER = "KEY_NUMBER"
@@ -69,7 +69,6 @@ class BoastFragment : Fragment(), View.OnClickListener,MainActivity.OnBackPresse
 
 
 
-binding?.boastButton?.setOnClickListener(this)
 
         val url = videoId//유튜브 썸네일 불러오는 방법
 
@@ -113,6 +112,8 @@ binding?.boastButton?.setOnClickListener(this)
 
 
 
+
+
         return view
     }
 
@@ -138,18 +139,6 @@ binding?.boastButton?.setOnClickListener(this)
         }
     }
 
-    override fun onClick(p0: View?) {
-        when(p0){
-            boastButton ->  {
-
-                val intent=Intent(this.context,boastActivity::class.java)
-                startActivity(intent)
-            }
-
-
-        }
-
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -185,7 +174,8 @@ binding?.boastButton?.setOnClickListener(this)
         var parentFragment: FragmentManager =parentFragmentManager
         parentFragment.beginTransaction()
             .replace(R.id.boastContainer, BoastFragment())
-            .addToBackStack("BoastChildFragment()").commit()}
+           .commit()
+        }
     }
 
     override fun onResume() {

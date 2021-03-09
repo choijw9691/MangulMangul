@@ -10,8 +10,7 @@ import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.Entity.boastRecycleItemData
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
 import com.didimstory.mangulmangul.databinding.BoastItemBinding
-import com.didimstory.mangulmangul.youtube.YoutubeItem
-import com.didimstory.mangulmangul.youtube.youtubeTest
+
 
 class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

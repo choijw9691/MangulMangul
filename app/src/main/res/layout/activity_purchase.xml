@@ -11,10 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:id="@+id/purchaseLinear1"
+        >
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
@@ -35,11 +38,13 @@
         </RelativeLayout>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:hint="이름"
+            ></EditText>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -47,6 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
+                android:hint="주소"
+                android:id="@+id/addressText"
                 ></EditText>
 
       <Button
@@ -61,26 +68,47 @@
         </LinearLayout>
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:hint="상세주소"
+            ></EditText>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
+    <EditText
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:hint="이메일"
+        ></EditText>
+    <Button
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="wrap_content"
+        android:text="다음"
+        android:id="@+id/next"
+        ></Button>
+</LinearLayout>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/purchaseRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
+
         android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
 
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
+        android:id="@+id/purchaseLinear2"
         >
 
         <TextView
@@ -148,6 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
         android:text="결제하기"
+            android:id="@+id/payment"
             ></Button>
     </LinearLayout>
 

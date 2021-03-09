@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.didimstory.mangulmangul.databinding.FragmentFairytaleBinding
+import com.didimstory.mangulmangul.databinding.FragmentFamousBinding
 import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 
@@ -17,17 +18,17 @@ import com.didimstory.mangulmangul.youtube.YoutubeItem
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private var binding: FragmentFairytaleBinding? = null
+private var binding: FragmentFamousBinding? = null
 private lateinit var mLayoutManager: LinearLayoutManager
 private lateinit var fairyAdapter: fairyRecycleAdapter
 private var dataList = arrayListOf<YoutubeItem>()
-val videoId = "F-KjYNmsi0U"
+
 /**
  * A simple [Fragment] subclass.
  * Use the [FairytaleFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FairytaleFragment : Fragment(){
+class FamousFragment : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -53,7 +54,7 @@ class FairytaleFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentFairytaleBinding.inflate(inflater, container, false)
+        binding = FragmentFamousBinding.inflate(inflater, container, false)
         val view = binding?.root
 
 
@@ -64,7 +65,7 @@ class FairytaleFragment : Fragment(){
 
         dataList.add(
             YoutubeItem(
-                url, "고래와 상어1"
+                url, "고래와 상어11111111"
             )
         )
 
@@ -84,7 +85,7 @@ class FairytaleFragment : Fragment(){
         )
         mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         fairyAdapter =
-            fairyRecycleAdapter(context,0)
+            fairyRecycleAdapter(context,1)
 
         binding!!.recyclerView.apply {
             this.layoutManager =
@@ -112,7 +113,7 @@ class FairytaleFragment : Fragment(){
             var fragment: FairytaleFragment =
                 FairytaleFragment()
             Log.d("fairyfragment", fragment.toString())
-            return 0
+            return 5
         }
     }
 

@@ -10,10 +10,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
+import com.didimstory.mangulmangul.famous.youtubeFamous
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 import com.didimstory.mangulmangul.youtube.youtubeTest
 
-class fairyDetailAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
 
     val mContext=context
@@ -66,9 +67,17 @@ class fairyDetailAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerV
 
                 binding.fairyText.setText(data.fairyText)
                 binding.thumbnail.setOnClickListener(View.OnClickListener {
+                    var intent:Intent?=null
+                    if(test==0){
 
-                    val intent= Intent(mContext, youtubeTest::class.java)
-                    intent.putExtra("data.url",data.url)
+                        intent= Intent(mContext, youtubeTest::class.java)
+                    }
+                    else if(test==1){
+
+                        intent=Intent(mContext, youtubeFamous::class.java)
+                    }
+
+                    intent?.putExtra("data.url",data.url)
                     mContext.startActivity(intent)
 
 

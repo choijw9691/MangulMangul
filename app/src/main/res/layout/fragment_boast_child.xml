@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".boast.BoastChildFragment">
+    tools:context=".boast.BoastChildFragment"
+    android:id="@+id/boast_child_layout"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="뒤로가기"
+android:id="@+id/boast_back"
             ></Button>
 <TextView
     android:layout_width="wrap_content"
@@ -50,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="등록하기"
+                android:id="@+id/boast_insert"
                 ></Button>
         </LinearLayout>
 
