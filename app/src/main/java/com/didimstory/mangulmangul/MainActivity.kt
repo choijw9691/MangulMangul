@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val BoastFragment by lazy { BoastFragment() }
     private val HomeFragment by lazy { HomeFragment() }
     private val MypageFragment by lazy { MypageFragment() }
-private val FamousFragment by lazy { FamousFragment() }
+private val FamousFragment by lazy { com.didimstory.mangulmangul.famous.FamousFragment() }
     private val ServiceFragment by lazy { ServiceFragment() }
 var listener:OnBackPressedListener?=null
 

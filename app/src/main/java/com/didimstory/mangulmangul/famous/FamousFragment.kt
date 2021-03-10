@@ -1,4 +1,4 @@
-package com.didimstory.mangulmangul.fragment
+package com.didimstory.mangulmangul.famous
 
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.didimstory.mangulmangul.databinding.FragmentFairytaleBinding
 import com.didimstory.mangulmangul.databinding.FragmentFamousBinding
 import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
+import com.didimstory.mangulmangul.fragment.FairytaleFragment
+import com.didimstory.mangulmangul.fragment.videoId
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 
 

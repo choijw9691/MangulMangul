@@ -164,12 +164,13 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
         super.onDestroyView()
         Log.d("check123","check5")
         (activity as MainActivity).setOnBackPressedListener(null)
+   binding = null
     }
 
     override fun onBackPressed() {
 
         Log.d("onBackPressed","check5")
-        if(childFragmentManager.backStackEntryCount>0){  childFragmentManager.popBackStackImmediate()
+        if(childFragmentManager.backStackEntryCount>0){childFragmentManager.popBackStackImmediate()
 
         var parentFragment: FragmentManager =parentFragmentManager
         parentFragment.beginTransaction()
@@ -182,4 +183,6 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
         super.onResume()
 
     }
+
+
 }
