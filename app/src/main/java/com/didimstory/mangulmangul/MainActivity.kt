@@ -1,5 +1,6 @@
 package com.didimstory.mangulmangul
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -151,6 +152,9 @@ interface OnBackPressedListener{
 
 }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }
 
 

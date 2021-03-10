@@ -41,5 +41,10 @@ class EditMyPw : Fragment() {
         return inflater.inflate(R.layout.fragment_edit_my_pw, container, false)
     }
 
-
+    companion object {
+        fun newInstance(): EditMyPw? {
+            var fragment: EditMyPw = EditMyPw()
+            return fragment
+        }
+    }
 }

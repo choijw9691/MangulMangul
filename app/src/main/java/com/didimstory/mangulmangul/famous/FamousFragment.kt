@@ -24,26 +24,8 @@ private lateinit var mLayoutManager: LinearLayoutManager
 private lateinit var fairyAdapter: fairyRecycleAdapter
 private var dataList = arrayListOf<YoutubeItem>()
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FairytaleFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class FamousFragment : Fragment(){
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-
-
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -117,6 +99,9 @@ class FamousFragment : Fragment(){
             return 5
         }
     }
+
+
+
 
 
 }

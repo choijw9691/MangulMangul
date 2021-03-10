@@ -1,11 +1,21 @@
 package com.didimstory.mangulmangul.fragment
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.didimstory.mangulmangul.MyService.NoticeFragment
+import com.didimstory.mangulmangul.MyService.QuestionFragment
+import com.didimstory.mangulmangul.MyService.ServiceHomeFragment
 import com.didimstory.mangulmangul.R
+import com.didimstory.mangulmangul.boast.BoastDetailFragment
+import com.didimstory.mangulmangul.databinding.FragmentBoastBinding
+import com.didimstory.mangulmangul.databinding.FragmentServiceBinding
+import kotlinx.android.synthetic.main.fragment_service.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +31,7 @@ class ServiceFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private var binding: FragmentServiceBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,8 +45,20 @@ class ServiceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_service, container, false)
+
+      binding = FragmentServiceBinding.inflate(inflater, container, false)
+
+val view =binding?.root
+
+        parentFragmentManager.beginTransaction().add(R.id.Servicecontainer,ServiceHomeFragment()).commit()
+
+
+        return view
     }
+
+
+
+
 
     companion object {
         fun newInstance(): ServiceFragment? {
@@ -44,4 +66,5 @@ class ServiceFragment : Fragment() {
             return fragment
         }
     }
+
 }

@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.R
+import com.didimstory.mangulmangul.boast.BoastDetailFragment
 import com.didimstory.mangulmangul.databinding.FragmentMyPageHomeBinding
 import com.didimstory.mangulmangul.fragment.MypageFragment
+import com.didimstory.mangulmangul.fragment.videoId
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +36,10 @@ private var binding:FragmentMyPageHomeBinding?=null
         val view=binding?.root
 
         binding?.MyInfo?.setOnClickListener(View.OnClickListener {
-Log.d("MyInfoClick","MyInfoClick")
+
+
+
+
             parentFragmentManager.beginTransaction().replace(R.id.MyPageContainer,EditMyInfoFragment()).addToBackStack("1").commit()
 
 
@@ -52,7 +57,7 @@ Log.d("MyInfoClick","MyInfoClick")
         })
         binding?.MyPPT?.setOnClickListener(View.OnClickListener {
 
-            parentFragmentManager.beginTransaction().replace(R.id.MyPageContainer,EdiyMyBuy()).addToBackStack("4").commit()
+            parentFragmentManager.beginTransaction().replace(R.id.MyPageContainer,EditMyPPT()).addToBackStack("4").commit()
 
         })
 
@@ -61,8 +66,8 @@ Log.d("MyInfoClick","MyInfoClick")
     }
 
     companion object {
-        fun newInstance(): MypageFragment? {
-            var fragment: MypageFragment = MypageFragment()
+        fun newInstance(): MyPageHomeFragment? {
+            var fragment: MyPageHomeFragment = MyPageHomeFragment()
             return fragment
         }
     }

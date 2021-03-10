@@ -41,6 +41,11 @@ class EdiyMyBuy : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ediy_my_buy, container, false)
     }
-
+    companion object {
+        fun newInstance(): EdiyMyBuy? {
+            var fragment: EdiyMyBuy = EdiyMyBuy()
+            return fragment
+        }
+    }
 
 }

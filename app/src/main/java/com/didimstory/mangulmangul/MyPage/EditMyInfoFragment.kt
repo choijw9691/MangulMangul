@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.databinding.FragmentEditMyInfoBinding
+import com.didimstory.mangulmangul.fragment.BoastFragment
 import kotlinx.android.synthetic.main.fragment_edit_my_info.*
 
 
@@ -57,6 +58,11 @@ var binding:FragmentEditMyInfoBinding?=null
         return view
     }
 
-
+    companion object {
+        fun newInstance(): EditMyInfoFragment? {
+            var fragment: EditMyInfoFragment = EditMyInfoFragment()
+            return fragment
+        }
+    }
 
 }

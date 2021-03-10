@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.Entity.boastDetailItem
+import com.didimstory.mangulmangul.MyPage.EditMyPPT
 import com.didimstory.mangulmangul.databinding.FragmentBoastBinding
 import com.didimstory.mangulmangul.databinding.FragmentBoastDetailBinding
 import com.didimstory.mangulmangul.fragment.BoastFragment
@@ -20,6 +21,7 @@ class BoastDetailFragment : Fragment() {
     private lateinit var mLayoutManager: LinearLayoutManager
 var imageUrlList: ArrayList<boastDetailItem>? = ArrayList<boastDetailItem>()
     private lateinit var pageradapter:ViewPagerAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +43,6 @@ var imageUrlList: ArrayList<boastDetailItem>? = ArrayList<boastDetailItem>()
                 imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))
                 imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))
                 imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))
-
-
 
 
 
@@ -93,6 +93,10 @@ var imageUrlList: ArrayList<boastDetailItem>? = ArrayList<boastDetailItem>()
             var fragment: BoastDetailFragment = BoastDetailFragment()
             return fragment
         }
+
+
     }
+
+
 
 }

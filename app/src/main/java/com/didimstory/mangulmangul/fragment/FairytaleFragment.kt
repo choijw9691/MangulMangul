@@ -17,10 +17,7 @@ import com.didimstory.mangulmangul.youtube.YoutubeItem
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private var binding: FragmentFairytaleBinding? = null
-private lateinit var mLayoutManager: LinearLayoutManager
-private lateinit var fairyAdapter: fairyRecycleAdapter
-private var dataList = arrayListOf<YoutubeItem>()
+
 val videoId = "F-KjYNmsi0U"
 /**
  * A simple [Fragment] subclass.
@@ -31,7 +28,10 @@ class FairytaleFragment : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private var binding: FragmentFairytaleBinding? = null
+    private lateinit var mLayoutManager: LinearLayoutManager
+    private lateinit var fairyAdapter: fairyRecycleAdapter
+    private var dataList = arrayListOf<YoutubeItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

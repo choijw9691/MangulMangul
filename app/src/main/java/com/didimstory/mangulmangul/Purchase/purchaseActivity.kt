@@ -59,6 +59,13 @@ class purchaseActivity : AppCompatActivity() {
 
 
         })
+        payment.setOnClickListener(View.OnClickListener {
+
+
+
+
+        })
+
     }
 
 
@@ -66,10 +73,9 @@ class purchaseActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode==Activity.RESULT_OK){
             when(requestCode){
-
                 100-> addressText.setText(apiResult.apiResult)
             }
-
         }
     }
+
 }
