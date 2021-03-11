@@ -97,6 +97,7 @@ var fragmentManager:FragmentManager=supportFragmentManager
     */
 
     private fun initNavigationBar() {
+        bottomNavigationView.itemIconTintList=null
         bottomNavigationView.run {
             setOnNavigationItemSelectedListener {
                 val page = when (it.itemId) {

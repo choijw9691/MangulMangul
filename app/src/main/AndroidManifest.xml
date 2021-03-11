@@ -12,7 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MangulMangul"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MyService.QuestionActivity"></activity>
+        <activity android:name=".MyService.QuestionActivity"
+            android:screenOrientation="landscape"
+            ></activity>
+        <activity android:name=".Login.FindActivity"
+            android:screenOrientation="landscape"
+            ></activity>
         <activity
             android:name=".MyService.NoticeDetailActivity"
             android:label="@string/title_activity_notice_detail"
@@ -36,17 +41,12 @@
             android:name=".youtube.youtubeTest"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Login.SignUpActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:screenOrientation="landscape">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
 
         </activity>
@@ -55,6 +55,11 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
     </application>

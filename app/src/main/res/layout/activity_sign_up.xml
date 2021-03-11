@@ -4,124 +4,255 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
+    android:background="@drawable/backgroundimg"
     tools:ignore="ButtonStyle,HardcodedText, ContentDescription, SmallSp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/lin1"
-    android:visibility="visible"
-    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_18"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:background="@drawable/ic_icon_left_gray_8"
+            android:layout_centerVertical="true"
+            android:id="@+id/backbtn"
+            ></Button>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="회원가입"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_18"
+            android:textStyle="bold">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
-    <EditText
-        android:id="@+id/userRoleMno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="아이디" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="중복확인"
-        android:id="@+id/check_id"
-        ></Button>
-</LinearLayout>
+        </TextView>
 
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/lin1"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/dp_10"
+        >
+
+
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="@dimen/dp_50"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            >
+            <EditText
+                android:id="@+id/userRoleMno"
+                android:layout_width="@dimen/dp_400"
+                android:layout_height="match_parent"
+                android:background="@drawable/editradius"
+                android:hint="아이디"
+                android:fontFamily="@font/ham"
+                android:padding="15dp"
+
+                android:layout_marginRight="@dimen/dp_40"
+                />
+
+            <Button
+                android:id="@+id/check_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="중복확인"
+
+                android:background="@drawable/radiusbutton"
+                android:textColor="#ff6b6b"
+                android:textStyle="bold"
+                android:fontFamily="@font/ham"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_40"
+                ></Button>
+        </LinearLayout>
 
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="600dp"
+            android:layout_height="@dimen/dp_50"
+            android:background="@drawable/editradius"
             android:hint="비밀번호"
-
+            android:layout_centerInParent="true"
+            android:padding="15dp"
+            android:fontFamily="@font/ham"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center"
             />
 
 
 
-    <EditText
-        android:id="@+id/pw_check"
+
+
+
+        <EditText
+            android:id="@+id/pw_check"
+            android:layout_width="600dp"
+            android:layout_height="@dimen/dp_50"
+            android:background="@drawable/editradius"
+            android:hint="비밀번호 확인"
+            android:layout_centerInParent="true"
+            android:padding="15dp"
+            android:fontFamily="@font/ham"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center"
+            />
+
+
+        <Button
+            android:layout_width="@dimen/dp_400"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_25"
+            android:elevation="2dp"
+            android:onClick="onclick"
+            android:text="다음"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/redbutton"
+            android:id="@+id/next_btn"
+            android:textStyle="bold"
+            android:fontFamily="@font/ham"
+            >
+
+        </Button>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="비밀번호 확인" />
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:id="@+id/lin2"
+        >
 
 
-<Button
+        <EditText
+            android:id="@+id/nickname"
+            android:layout_width="600dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/editradius"
+            android:hint="닉네임"
+            android:layout_centerInParent="true"
+            android:padding="15dp"
+            android:fontFamily="@font/ham"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10" />
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            >
+
+            <EditText
+                android:id="@+id/address1"
+                android:layout_width="500dp"
+                android:layout_height="match_parent"
+
+                android:background="@drawable/editradius"
+                android:fontFamily="@font/ham"
+                android:hint="주소"
+
+                android:padding="15dp" />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></View>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="주소검색"
+
+                android:background="@drawable/radiusbutton"
+                android:textColor="#ff6b6b"
+                android:textStyle="bold"
+                android:fontFamily="@font/ham"
+
+
+
+                android:id="@+id/check_adr"
+                ></Button>
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/address2"
+            android:layout_width="600dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/editradius"
+            android:hint="상세주소"
+            android:layout_centerInParent="true"
+            android:padding="15dp"
+            android:fontFamily="@font/ham"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center"
+            />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="600dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/editradius"
+            android:hint="이메일"
+            android:layout_centerInParent="true"
+            android:padding="15dp"
+            android:fontFamily="@font/ham"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center"
+            />
+
+
+        <Button
+            android:id="@+id/sign_btn"
+            android:layout_width="@dimen/dp_400"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/dp_25"
+            android:elevation="2dp"
+            android:onClick="onclick"
+            android:text="다음"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/redbutton"
+            android:backgroundTint="#ff6b6b"
+            android:textStyle="bold"
+            android:fontFamily="@font/ham"/>
+<View
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="다음"
-    android:id="@+id/next_btn"
-    >
+    android:layout_height="@dimen/dp_0"
+    android:layout_weight="0.3"
+    ></View>
 
-</Button>
-
+    </LinearLayout>
 
 
-</LinearLayout>
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:visibility="gone"
-    android:orientation="vertical"
-    android:id="@+id/lin2"
-    >
-
-
-    <EditText
-        android:id="@+id/nickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="닉네임" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
-    <EditText
-        android:id="@+id/address1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="주소" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="주소검색"
-        android:id="@+id/check_adr"
-        ></Button>
-</LinearLayout>
-
-
-    <EditText
-        android:id="@+id/address2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="상세주소" />
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="이메일" />
-
-
-    <Button
-        android:id="@+id/sign_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:elevation="2dp"
-        android:text="SIGN UP"
-        android:textColor="@android:color/white" />
-
-</LinearLayout>
 
 
 

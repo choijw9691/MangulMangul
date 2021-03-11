@@ -4,35 +4,35 @@
 
     <item
         android:id="@+id/tab_fairy"
-        android:icon="@drawable/bt_tab_home"
+        android:icon="@drawable/ic_icon_book_color"
         android:enabled="true"
         android:title="" />
 
     <item
         android:id="@+id/tab_boast"
         android:title=""
-        android:icon="@drawable/bt_tab_home"
+        android:icon="@drawable/ic_icon_proud_color"
         android:enabled="true"
         />
 
     <item
         android:id="@+id/tab_home"
         android:title=""
-        android:icon="@drawable/bt_tab_home"
+        android:icon="@drawable/ic_icon_home_color"
         android:enabled="true"
         />
 
     <item
         android:id="@+id/tab_mypage"
         android:title=""
-        android:icon="@drawable/bt_tab_home"
+        android:icon="@drawable/ic_icon_user_color"
         android:enabled="true"
         />
 
     <item
         android:id="@+id/tab_service"
         android:title=""
-        android:icon="@drawable/bt_tab_home"
+        android:icon="@drawable/ic_icon_info_color"
         android:enabled="true"
         />
 

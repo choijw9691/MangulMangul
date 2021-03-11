@@ -2,9 +2,7 @@ package com.didimstory.mangulmangul
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,11 +13,8 @@ import android.webkit.*
 import androidx.appcompat.app.AlertDialog
 
 import androidx.appcompat.app.AppCompatActivity
-import com.didimstory.mangulmangul.Entity.apiResultItem
+import com.didimstory.mangulmangul.Login.SignUpActivity
 import com.didimstory.mangulmangul.Purchase.purchaseActivity
-import com.didimstory.mangulmangul.boast.BoastChildFragment
-import com.didimstory.mangulmangul.databinding.ActivityWebviewAPIBinding
-import kotlinx.android.synthetic.main.activity_webview_a_p_i.*
 
 class webviewAPI : AppCompatActivity() {
 var result: String? =null
@@ -149,7 +144,8 @@ class AndroidBridge() {
                     intent.putExtra("result",String.format("(%s) %s %s", param1, param2, param3))
                     mcontext?.setResult(Activity.RESULT_OK,intent)
 
-                    val intent1=Intent(mcontext,SignUpActivity::class.java)
+                    val intent1=Intent(mcontext,
+                        SignUpActivity::class.java)
                     intent1.putExtra("result",String.format("(%s) %s %s", param1, param2, param3))
                     mcontext?.setResult(Activity.RESULT_OK,intent)
 

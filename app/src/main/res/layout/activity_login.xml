@@ -4,31 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#757575"
-    android:orientation="vertical"
+    android:background="@drawable/backgroundimg"
+android:orientation="vertical"
     tools:ignore="ButtonStyle,HardcodedText, ContentDescription, SmallSp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_50"
-    android:orientation="horizontal"
-    >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="로그인"
-        >
 
-    </TextView>
-    <Button
-        android:id="@+id/signup_go"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:padding="10dp"
-        android:text="회원이 아니신가요?" />
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_18"
+        android:orientation="horizontal">
 
-   <!--     <androidx.cardview.widget.CardView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="로그인"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_18"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/signup_go"
+            android:layout_width="@dimen/dp_90"
+            android:layout_height="@dimen/dp_32"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_50"
+            android:background="@drawable/radiusbutton"
+            android:text="회원가입"
+            android:textColor="#ff6b6b"
+            android:textSize="14sp"
+            android:fontFamily="@font/ham"
+            />
+    </RelativeLayout>
+
+    <!--     <androidx.cardview.widget.CardView
             android:id="@+id/cardview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,75 +52,106 @@
             card_view:cardCornerRadius="13.3dp">-->
 
 
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                   >
-
-                        <EditText
-                            android:id="@+id/id_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="ID" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                     >
-                        <EditText
-                            android:id="@+id/pw_tv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="PW" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <Button
-                        android:id="@+id/login_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp"
-                        android:elevation="2dp"
-                        android:text="LOG IN"
-                        android:textColor="@android:color/white"
-                        android:onClick="onclick"
-                        />
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-
+    android:layout_marginTop="@dimen/dp_30"
     >
-    <TextView
-        android:id="@+id/find_id"
+
+    <EditText
+        android:id="@+id/id_tv"
+        android:layout_width="600dp"
+        android:layout_height="@dimen/dp_50"
+        android:background="@drawable/editradius"
+        android:hint="아이디"
+android:layout_centerInParent="true"
+android:padding="15dp"
+        android:fontFamily="@font/ham"
+        />
+</RelativeLayout>
+
+
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_10"
+    >
+
+    <EditText
+        android:id="@+id/pw_tv"
+        android:layout_width="600dp"
+        android:layout_height="@dimen/dp_50"
+        android:hint="비밀번호"
+       android:inputType="textPassword"
+        android:backgroundTint="@null"
+        android:background="@drawable/editradius"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/dp_15"
+        android:fontFamily="@font/ham"
+        />
+</RelativeLayout>
+
+
+
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_width="@dimen/dp_400"
+        android:layout_height="wrap_content"
+android:layout_marginTop="@dimen/dp_25"
+        android:elevation="2dp"
+        android:onClick="onclick"
+        android:text="로그인"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:background="@drawable/radiusbutton"
+        android:backgroundTint="#ff6b6b"
+android:textStyle="bold"
+        android:fontFamily="@font/ham"
+        />
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:padding="10dp"
-        android:text="아이디 찾기" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_10"
+        >
 
-    <TextView
-        android:id="@+id/find_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:padding="10dp"
-        android:text="비밀번호 찾기기" />
+        <TextView
+            android:id="@+id/find_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top"
+android:textColor="#343a40"
+            android:text="아이디 찾기"
+            android:fontFamily="@font/ham"
+            android:clickable="true"
+            />
+<TextView
+    android:layout_width="1dp"
+    android:layout_height="@dimen/dp_16"
+android:background="#343a40"
+    android:layout_marginLeft="@dimen/dp_8"
+    android:layout_marginRight="@dimen/dp_8"
+    android:fontFamily="@font/ham"
+
+    ></TextView>
+        <TextView
+            android:id="@+id/find_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top"
+android:textColor="#343a40"
+            android:text="비밀번호 찾기"
+            android:fontFamily="@font/ham"
+            android:clickable="true"
+            />
 
 
-
-
-</LinearLayout>
-
-
-
-
-
-
-
+    </LinearLayout>
 
 
 </LinearLayout>
