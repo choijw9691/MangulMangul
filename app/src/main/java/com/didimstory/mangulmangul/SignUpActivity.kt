@@ -1,47 +1,111 @@
 package com.didimstory.mangulmangul
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.EmailCheck
+import com.didimstory.mangulmangul.Entity.apiResultItem
+
+import kotlinx.android.synthetic.main.activity_purchase.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Converter
 import retrofit2.Response
 
 
 class SignUpActivity : AppCompatActivity() {
-
+    val apiResult = apiResultItem()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        var password: TextView =findViewById(R.id.password)
-        var userRoleMno: TextView =findViewById(R.id.userRoleMno)
-        var email: TextView =findViewById(R.id.email)
-        var name: TextView =findViewById(R.id.name)
-        var phone: TextView =findViewById(R.id.phone)
-        var vendorCode : TextView =findViewById(R.id.vendorCode )
-        findViewById<Button>(R.id.sign_btn).setOnClickListener {
-            Client.retrofitService.logUp(password.text.toString(), userRoleMno.text.toString().toInt(), email.text.toString(),name.text.toString(),phone.text.toString(),vendorCode .text.toString()).enqueue(object :
-                Callback<Void> {
-                override fun onResponse(call: Call<Void>?, response: Response<Void>?) {
-                    when (response!!.code()) {
-                        200 -> {
-                            Toast.makeText(this@SignUpActivity, "회원가입 성공", Toast.LENGTH_LONG).show()
-                            finish ()
-                        }
-                        405 -> Toast.makeText(this@SignUpActivity, "회원가입 실패 : 아이디나 비번이 올바르지 않습니다", Toast.LENGTH_LONG).show()
-                        500 -> Toast.makeText(this@SignUpActivity, "회원가입 실패 : 서버 오류", Toast.LENGTH_LONG).show()
-                    }
+        next_btn.isClickable = false
+        next_btn.setBackgroundColor(Color.WHITE)
+
+        pw_check.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (password.text.toString().equals(pw_check.text.toString())) {
+                    next_btn.isClickable = true
+                    next_btn.setBackgroundColor(Color.RED)
+                    next_btn.setOnClickListener(View.OnClickListener {
+                        lin1.visibility = View.GONE
+                        lin2.visibility = View.VISIBLE
+                    })
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+
+        })
+
+        check_adr.setOnClickListener(View.OnClickListener {
+
+            intent = Intent(this, webviewAPI::class.java)
+            startActivityForResult(intent, 100)
+
+        })
+
+
+
+
+        findViewById<Button>(R.id.check_id).setOnClickListener {
+
+            Log.d("signCheck", "버튼클릭")
+            Client.retrofitService.emailCheck(userRoleMno.text.toString()).enqueue(object :
+                Callback<EmailCheck> {
+                override fun onFailure(call: Call<EmailCheck>, t: Throwable) {
+
                 }
 
-                override fun onFailure(call: Call<Void>?, t: Throwable?) {
+                override fun onResponse(
+                    call: Call<EmailCheck>,
+                    response: Response<EmailCheck>
+                ) {
+
+
+                    Toast.makeText(
+                        applicationContext,
+                        response.body()?.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
 
                 }
 
 
             })
         }
+
+
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            Log.d("chchch", apiResult.apiResult)
+            when (requestCode) {
+                100 -> address1.setText(data?.getStringExtra("result"))
+            }
+        }
+    }
+
+
 }

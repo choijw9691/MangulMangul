@@ -2,32 +2,28 @@ package com.didimstory.mangulmangul.MyService
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.didimstory.mangulmangul.Entity.boastDetailItem
-import com.didimstory.mangulmangul.Entity.boastRecycleItemData
 import com.didimstory.mangulmangul.Entity.noticeDetailItem
-import com.didimstory.mangulmangul.R
-import com.didimstory.mangulmangul.boast.ViewHolderPage
-import com.didimstory.mangulmangul.boast.boastActivity
-import com.didimstory.mangulmangul.databinding.BoastItemBinding
-import com.didimstory.mangulmangul.databinding.NoticeItemBinding
+import com.didimstory.mangulmangul.Entity.questionDetailItem
+import com.didimstory.mangulmangul.databinding.QuestionItemBinding
 
-class QuestionAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+class QAdpater (var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     val mContext = context
     var dataurl: String? = null
-    var dataList = listOf<noticeDetailItem>()
+    var dataList = listOf<questionDetailItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding = NoticeItemBinding.inflate(LayoutInflater.from(mContext), parent, false)
+        val binding = QuestionItemBinding.inflate(LayoutInflater.from(mContext), parent, false)
         return MainMusicHolder(binding)
     }
 
@@ -54,27 +50,26 @@ class QuestionAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
 
     override fun getItemCount(): Int = dataList.size
 
-    inner class MainMusicHolder(val binding: NoticeItemBinding) :
+    inner class MainMusicHolder(val binding: QuestionItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: noticeDetailItem) {
+        fun bind(data: questionDetailItem) {
 
             mContext?.let {
 
 
-                binding.noticeId.setText(data.title)
-                binding.noticeDate.setText(data.date)
-                binding.noticeLn.setOnClickListener(View.OnClickListener {
+                binding.questionStatue.setText(data.statue)
+                binding.questionTitle.setText(data.title)
+                binding.questionDate.setText(data.date)
 
-                    val intent = Intent(mContext, NoticeDetailActivity::class.java)
+                binding.noticeLn.setOnClickListener(View.OnClickListener {
+                    Log.d("왔다","왔다")
+                    val intent = Intent(mContext, QuestionDetailActivity::class.java)
                     intent.putExtra("title", data?.title)
                     intent.putExtra("date", data?.date)
-                    intent.putExtra("content", data?.content)
-                    if(data?.image!="null"){
-                        intent.putExtra("image", data?.image)
-                    }else{
-                        intent.putExtra("image", "null")
-                    }
+                    intent.putExtra("statue", data?.statue)
+                    intent.putExtra("question", data?.question)
+                    intent.putExtra("answer", data?.answer)
                     mContext.startActivity(intent)
 
 

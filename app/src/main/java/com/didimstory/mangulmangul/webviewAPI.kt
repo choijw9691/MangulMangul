@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 
 import androidx.appcompat.app.AppCompatActivity
 import com.didimstory.mangulmangul.Entity.apiResultItem
+import com.didimstory.mangulmangul.Purchase.purchaseActivity
 import com.didimstory.mangulmangul.boast.BoastChildFragment
 import com.didimstory.mangulmangul.databinding.ActivityWebviewAPIBinding
 import kotlinx.android.synthetic.main.activity_webview_a_p_i.*
@@ -142,11 +143,14 @@ class AndroidBridge() {
             handler.post(object:Runnable {
                 public override fun run() {
 
-                    Log.d("333","444")
-val apiResult=apiResultItem()
-apiResult.apiResult=String.format("(%s) %s %s", param1, param2, param3)
-                    val intent=Intent()
+                    Log.d("333",String.format("(%s) %s %s", param1, param2, param3))
+
+                    val intent=Intent(mcontext,purchaseActivity::class.java)
                     intent.putExtra("result",String.format("(%s) %s %s", param1, param2, param3))
+                    mcontext?.setResult(Activity.RESULT_OK,intent)
+
+                    val intent1=Intent(mcontext,SignUpActivity::class.java)
+                    intent1.putExtra("result",String.format("(%s) %s %s", param1, param2, param3))
                     mcontext?.setResult(Activity.RESULT_OK,intent)
 
 mcontext?.finish()

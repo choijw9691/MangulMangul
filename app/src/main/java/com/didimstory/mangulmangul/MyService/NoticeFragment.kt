@@ -8,9 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.didimstory.mangulmangul.Entity.noticeDetailItem
 import com.didimstory.mangulmangul.MyPage.MyPageHomeFragment
 import com.didimstory.mangulmangul.R
+import com.didimstory.mangulmangul.boast.BoastDetailFragment
+import com.didimstory.mangulmangul.boast.boastDetailAdapter
+import com.didimstory.mangulmangul.boast.boastDetailRecycleItem
+import com.didimstory.mangulmangul.databinding.FragmentNoticeBinding
 import com.didimstory.mangulmangul.fragment.BoastFragment
+import com.didimstory.mangulmangul.fragment.videoId
+import kotlinx.android.synthetic.main.fragment_notice.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +35,10 @@ class NoticeFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var callback: OnBackPressedCallback
-
+    private lateinit var mLayoutManager: LinearLayoutManager
+    private lateinit var boastRecycleAdapter: QuestionAdapter
+    private var dataList = arrayListOf<noticeDetailItem>()
+    var binding:FragmentNoticeBinding?=null
     override fun onDetach() {
         super.onDetach()
         callback.remove()
@@ -58,7 +69,52 @@ class NoticeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notice, container, false)
+       binding= FragmentNoticeBinding.inflate(inflater, container, false)
+val view=binding?.root
+        val url = videoId//유튜브 썸네일 불러오는 방법
+
+
+        dataList.add(
+            noticeDetailItem(
+               "공지사항제목", "안녕하세요", "2021.00.00","null"
+            )
+        )
+        dataList.add(
+            noticeDetailItem(
+                "공지사항제목11111111111", "안녕하세요", "2021.00.00","null"
+            )
+        )
+        dataList.add(
+            noticeDetailItem(
+                "공지사항제목222222222222", "안녕하세요", "2021.00.00","null"
+            )
+        )
+        dataList.add(
+            noticeDetailItem(
+                "공지사항제목33333333333333333", "안녕하세요", "2021.00.00","null"
+            )
+        )
+        mLayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        boastRecycleAdapter =
+            QuestionAdapter(context)
+
+        binding?.noticeRecycler.apply {
+            this?.layoutManager =
+                mLayoutManager
+            this?.adapter = boastRecycleAdapter
+
+
+        }
+
+        boastRecycleAdapter.dataList = dataList
+
+
+
+
+
+
+        return view
     }
 
     companion object {

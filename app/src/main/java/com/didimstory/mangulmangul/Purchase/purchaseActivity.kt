@@ -71,9 +71,11 @@ class purchaseActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.d("333","11111")
         if(resultCode==Activity.RESULT_OK){
+            Log.d("333",data?.getStringExtra("result").toString())
             when(requestCode){
-                100-> addressText.setText(apiResult.apiResult)
+                100-> addressText.setText(data?.getStringExtra("result").toString())
             }
         }
     }
