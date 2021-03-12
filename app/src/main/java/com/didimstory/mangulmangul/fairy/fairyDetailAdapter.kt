@@ -3,6 +3,7 @@ package com.didimstory.mangulmangul.fairy
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.*
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
+import com.didimstory.mangulmangul.databinding.FaityDetailItemBinding
 import com.didimstory.mangulmangul.famous.youtubeFamous
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 import com.didimstory.mangulmangul.youtube.youtubeTest
@@ -26,7 +28,7 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding = ActivityYoutubThumbNaiLBinding.inflate(LayoutInflater.from(mContext), parent, false)
+        val binding = FaityDetailItemBinding.inflate(LayoutInflater.from(mContext), parent, false)
         return MainMusicHolder(binding)
     }
 
@@ -51,23 +53,25 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
 
     override fun getItemCount(): Int = dataList.size
 
-    inner class MainMusicHolder(val binding : ActivityYoutubThumbNaiLBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MainMusicHolder(val binding : FaityDetailItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: YoutubeItem) {
 
 
 
             mContext?.let {
-                dataurl=data.url
+                dataurl=data.ytUrl
                 Glide.with(it)
                     .load( "https://img.youtube.com/vi/$dataurl/maxresdefault.jpg" )
                     .centerInside()
                     .override(1000,1000)
                     .into(binding.thumbnail)
 
-                binding.fairyText.setText(data.fairyText)
+                binding.fairyText.setText(data.title)
                 binding.thumbnail.setOnClickListener(View.OnClickListener {
                     var intent:Intent?=null
+                    Log.d("data.ytUrl",data.ytUrl)
+
                     if(test==0){
 
                         intent= Intent(mContext, youtubeTest::class.java)
@@ -77,13 +81,19 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
                         intent=Intent(mContext, youtubeFamous::class.java)
                     }
 
-                    intent?.putExtra("data.url",data.url)
+                    intent?.putExtra("data.url",data.ytUrl)
+
+
+                    intent?.addFlags(FLAG_ACTIVITY_NEW_TASK)
                     mContext.startActivity(intent)
 
 
-                    (mContext as Activity).finish()
 
-                    Log.d("binding.thumbnail.setOnClickListener",data.fairyText)
+
+
+
+
+
 
 
 

@@ -1,16 +1,26 @@
 package com.didimstory.mangulmangul.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.fairyHome
+import com.didimstory.mangulmangul.Entity.listfairyHome
+import com.didimstory.mangulmangul.MainActivity
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.databinding.FragmentFairytaleBinding
 import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
 import com.didimstory.mangulmangul.youtube.YoutubeItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -31,6 +41,9 @@ class FairytaleFragment : Fragment(){
     private var binding: FragmentFairytaleBinding? = null
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var fairyAdapter: fairyRecycleAdapter
+
+    var resultList:List<fairyHome>?=null
+
     private var dataList = arrayListOf<YoutubeItem>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +59,7 @@ class FairytaleFragment : Fragment(){
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+        Log.d("ddddss","ddddss")
     }
 
     override fun onCreateView(
@@ -57,50 +71,75 @@ class FairytaleFragment : Fragment(){
         val view = binding?.root
 
 
+        Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
+                .enqueue(object :
+                    Callback<listfairyHome> {
+                    override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onResponse(
+                        call: Call<listfairyHome>,
+                        response: Response<listfairyHome>
+                    ) {
+                        when(response!!.code()){
+
+                            200->
+                            {
+                                var list = response.body()?.list
+                                for(i in 0 until (response.body()?.list!!.size)){
+Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                                    dataList.add(
+                                        YoutubeItem(
+                                            list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
+                                        )
+                                    )
 
 
-        val url = videoId//유튜브 썸네일 불러오는 방법
-
-
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어1"
-            )
-        )
-
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어2"
-            )
-        )
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어3"            )
-        )
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어4"
-            )
-        )
-        mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        fairyAdapter =
-            fairyRecycleAdapter(context,0)
-
-        binding!!.recyclerView.apply {
-            this.layoutManager =
-                mLayoutManager
-            this.adapter = fairyAdapter
-            this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                                }
 
 
 
-            })
+
+                                mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                                fairyAdapter =
+                                    fairyRecycleAdapter(context,0)
+
+                                binding!!.recyclerView.apply {
+                                    this.layoutManager =
+                                        mLayoutManager
+                                    this.adapter = fairyAdapter
+                                    this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
 
-        }
 
-        fairyAdapter.dataList =
-            dataList
+                                    })
+
+
+                                }
+
+                                fairyAdapter.dataList =
+                                    dataList
+
+                            }
+
+                        }
+                    }
+
+
+                })
+
+
+
+
+
+
+
+
+
+
+
+
 /*      binding!!.titleText.text = fairyAdapter.dataList[0].title
         binding!!.descriptionText.text = String.format("%s ", fairyAdapter.dataList[0].description)*/
 

@@ -58,14 +58,14 @@ var dataurl:String?=null
         fun bind(data: YoutubeItem) {
 
            mContext?.let {
-               dataurl=data.url
+               dataurl=data.ytUrl
                 Glide.with(it)
                     .load( "https://img.youtube.com/vi/$dataurl/maxresdefault.jpg" )
                     .centerInside()
                     .override(1000,1000)
                     .into(binding.thumbnail)
 
-              binding.fairyText.setText(data.fairyText)
+              binding.fairyText.setText(data.title)
                binding.thumbnail.setOnClickListener(View.OnClickListener {
 
                    var intent:Intent?=null
@@ -77,7 +77,7 @@ var dataurl:String?=null
                        intent=Intent(mContext,youtubeFamous::class.java)
                    }
 
-                   intent?.putExtra("data.url",data.url)
+                   intent?.putExtra("data.url",data.ytUrl)
                    mContext.startActivity(intent)
 
 

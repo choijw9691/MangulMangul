@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.Entity.fairybuyItem
+import com.didimstory.mangulmangul.Entity.listfairyHome
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.Purchase.purchaseActivity
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.fairy.*
@@ -15,6 +19,9 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerView
 import kotlinx.android.synthetic.main.activity_youtube_test.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class youtubeTest : YouTubeBaseActivity(){
@@ -62,109 +69,79 @@ class youtubeTest : YouTubeBaseActivity(){
 
 
 
+        Client.retrofitService.fairyHome(PreferenceManager.getLong(applicationContext,"PrefIDIndex"))
+            .enqueue(object :
+                Callback<listfairyHome> {
+                override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onResponse(
+                    call: Call<listfairyHome>,
+                    response: Response<listfairyHome>
+                ) {
+                    when(response!!.code()){
+
+                        200->
+                        {
+                            var list = response.body()?.list
+                            for(i in 0 until (response.body()?.list!!.size)){
+                                Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                                dataList.add(
+                                    YoutubeItem(
+                                        list?.get(i)!!.engFairyTaleIdx, list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
+                                    )
+                                )
+
+
+                            }
+
+
+                            mLayoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+                            fairyAdapter = fairyDetailAdapter(applicationContext,0)
+
+                            recyclerView1.layoutManager = mLayoutManager
+
+                            fairyAdapter.dataList = dataList
+
+                            recyclerView1.adapter = fairyAdapter
+
+
+
+                        }
+
+                    }
+                }
+
+
+            })
+
+
+
+
 //임시 하드코딩
-        dataList.add(
+   /*     dataList.add(
             YoutubeItem(
                 url, "고래와 상어1"
             )
-        )
+        )*/
 
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어2"
-            )
-        )
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어3"
-            )
-        )
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어4"
-            )
-        )
-        mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        fairyAdapter = fairyDetailAdapter(this,0)
 
-        recyclerView1.layoutManager = mLayoutManager
-
-        fairyAdapter.dataList = dataList
-
-        recyclerView1.adapter = fairyAdapter
 
 
 
 
         //임시 하드코딩
+/*
 
         buydataList.add(
             fairybuyItem(
                 url, "키트", "100원"
             )
         )
+*/
 
-        buydataList.add(
-            fairybuyItem(
-                url, "서적", "200원"
-            )
-        )
 
-        buydataList.add(
-            fairybuyItem(
-                url, "키트", "300원"
-            )
-        )
-
-        buydataList.add(
-            fairybuyItem(
-                url, "서적", "400원"
-            )
-        )
-        buydataList.add(
-            fairybuyItem(
-                url, "키트", "500원"
-            )
-        )
-
-        buydataList.add(
-            fairybuyItem(
-                url, "서적", "600원"
-            )
-        )
-        buydataList.add(
-            fairybuyItem(
-                url, "키트", "700원"
-            )
-        )
-
-        buydataList.add(
-            fairybuyItem(
-                url, "서적", "800원"
-            )
-        )
-        buydataList.add(
-            fairybuyItem(
-                url, "키트", "900원"
-            )
-        )
-
-        buydataList.add(
-            fairybuyItem(
-                url, "서적", "1000원"
-            )
-        )
-        buydataList.add(
-            fairybuyItem(
-                url, "키트", "1100원"
-            )
-        )
-
-        buydataList.add(
-            fairybuyItem(
-                url, "서적", "1200원"
-            )
-        )
         mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         buyAdapter = fairybuyAdapter(this,object:fairybuyAdapter.buyTextListener{
             override fun buyTotal(data: String?) {

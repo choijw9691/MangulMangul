@@ -34,17 +34,29 @@
 
 
     </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:id="@+id/find_id_lin1"
+    >
+
     <EditText
         android:layout_width="600dp"
         android:layout_height="@dimen/dp_50"
-        android:background="@drawable/editradius"
-        android:hint="이메일"
         android:layout_centerInParent="true"
-        android:padding="15dp"
-        android:layout_marginTop="@dimen/dp_60"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_60"
+        android:background="@drawable/editradius"
         android:fontFamily="@font/ham"
+        android:hint="이메일"
+        android:imeOptions="flagNoExtractUi"
+        android:paddingLeft="@dimen/dp_20"
+        android:id="@+id/find_id_email"
+        android:visibility="visible"
         ></EditText>
+
     <Button
         android:layout_width="@dimen/dp_400"
         android:layout_height="wrap_content"
@@ -57,6 +69,50 @@
         android:backgroundTint="#ff6b6b"
         android:textStyle="bold"
         android:fontFamily="@font/ham"
+        android:id="@+id/find_id_btn"
         ></Button>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/find_id_lin2"
+        >
+
+        <TextView
+            android:layout_width="600dp"
+            android:layout_height="@dimen/dp_50"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_60"
+            android:background="@drawable/editradius"
+            android:fontFamily="@font/ham"
+
+            android:paddingLeft="@dimen/dp_20"
+            android:id="@+id/find_result_text"
+            ></TextView>
+
+        <Button
+            android:layout_width="@dimen/dp_400"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_25"
+            android:elevation="2dp"
+            android:text="로그인 하러가기"
+           android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:background="@drawable/radiusbutton"
+            android:backgroundTint="#ff6b6b"
+            android:textStyle="bold"
+            android:fontFamily="@font/ham"
+            android:id="@+id/find_result_btn"
+            ></Button>
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

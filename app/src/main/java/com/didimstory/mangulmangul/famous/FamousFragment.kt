@@ -46,26 +46,7 @@ class FamousFragment : Fragment(){
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어11111111"
-            )
-        )
-
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어2"
-            )
-        )
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어3"            )
-        )
-        dataList.add(
-            YoutubeItem(
-                url, "고래와 상어4"
-            )
-        )
+      
         mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         fairyAdapter =
             fairyRecycleAdapter(context,1)

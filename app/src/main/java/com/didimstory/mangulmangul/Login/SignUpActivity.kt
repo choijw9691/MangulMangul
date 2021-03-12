@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.EmailCheck
 import com.didimstory.mangulmangul.Entity.apiResultItem
+import com.didimstory.mangulmangul.MainActivity
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.webviewAPI
 
@@ -31,16 +33,77 @@ class SignUpActivity : AppCompatActivity() {
         next_btn.isClickable = false
         next_btn.setBackgroundColor(Color.WHITE)
 
+
+
+
+        backbtn.setOnClickListener(View.OnClickListener {
+
+            onBackPressed()
+        })
+
+        findViewById<Button>(R.id.sign_btn).setOnClickListener {
+
+            Client.retrofitService.logUp(userName.text.toString(),userRoleMno.text.toString(),password.text.toString(),nickname.text.toString(),address1.text.toString(),address2.text.toString(),email.text.toString()).enqueue(object :
+                Callback<Long> {
+                override fun onFailure(call: Call<Long>, t: Throwable) {
+
+                }
+
+                override fun onResponse(call: Call<Long>, response: Response<Long>) {
+
+                    when (response.body()!!.toLong()) {
+
+
+                        0.toLong() -> {
+                            Toast.makeText(
+                                applicationContext,
+                                "회원가입에 실패하였습니다.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            finish()
+
+                        }
+                        else -> {
+                            Toast.makeText(applicationContext, "회원가입에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                            if (PreferenceManager.getString(applicationContext,"PrefID")!=""){
+                                PreferenceManager.removeKey(applicationContext,"PrefID")
+                                PreferenceManager.setString(applicationContext,"PrefID",userRoleMno.text.toString())
+                                PreferenceManager.removeKey(applicationContext,"PrefIDIndex")
+                                PreferenceManager.setLong(applicationContext,"PrefIDIndex",response.body()!!.toLong())
+
+                            }else{
+                                PreferenceManager.setString(applicationContext,"PrefID",userRoleMno.text.toString())
+                                PreferenceManager.removeKey(applicationContext,"PrefIDIndex")
+                                PreferenceManager.setLong(applicationContext,"PrefIDIndex",response.body()!!.toLong()
+                                )
+
+                            }
+                            startActivity(Intent(applicationContext,MainActivity::class.java))
+                            finish()
+                           this@SignUpActivity.setResult(Activity.RESULT_OK,intent)
+                        }
+                    }
+                }
+
+
+            })
+        }
+
+
         pw_check.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (password.text.toString().equals(pw_check.text.toString())) {
-                    next_btn.isClickable = true
-                    next_btn.setBackgroundColor(R.drawable.redbutton)
-                    next_btn.setOnClickListener(View.OnClickListener {
-                        lin1.visibility = View.GONE
-                        lin2.visibility = View.VISIBLE
-                    })
+                if (password.text.toString() != null){
+
+                    if (password.text.toString().equals(pw_check.text.toString())) {
+next_btn.setBackgroundResource(R.drawable.redbutton)
+                        next_btn.visibility=View.VISIBLE
+                        next_btn.setOnClickListener(View.OnClickListener {
+                            lin1.visibility = View.GONE
+                            lin2.visibility = View.VISIBLE
+                        })
+                    }
                 }
+
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -68,22 +131,31 @@ class SignUpActivity : AppCompatActivity() {
 
             Log.d("signCheck", "버튼클릭")
             Client.retrofitService.emailCheck(userRoleMno.text.toString()).enqueue(object :
-                Callback<EmailCheck> {
-                override fun onFailure(call: Call<EmailCheck>, t: Throwable) {
+                Callback<Boolean> {
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
 
                 }
 
-                override fun onResponse(
-                    call: Call<EmailCheck>,
-                    response: Response<EmailCheck>
-                ) {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
 
 
-                    Toast.makeText(
-                        applicationContext,
-                        response.body()?.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    when (response.body()) {
+
+                        true -> {
+                            Toast.makeText(applicationContext, "사용가능한 아이디 입니다.", Toast.LENGTH_SHORT).show()
+                            password.isEnabled=true
+                            pw_check.isEnabled=true
+                        }
+                        false -> {
+                            Toast.makeText(
+                                applicationContext,
+                                "다른 아이디를 사용해주세요.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            userRoleMno.text.clear()
+                        }
+                    }
 
 
                 }

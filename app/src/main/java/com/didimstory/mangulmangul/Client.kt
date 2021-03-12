@@ -22,6 +22,10 @@ object Client {
 
         retrofitService = retrofit.create(API::class.java)
 
+    }
+    fun httpButtonSend(){
+
 
     }
+
 }

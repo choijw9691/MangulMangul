@@ -22,4 +22,5 @@
     <string name="title_activity_boast_regit">BoastRegitActivity</string>
     <string name="title_activity_webview_a_p_i">webviewAPI</string>
     <string name="title_activity_notice_detail">NoticeDetailActivity</string>
+    <string name="title_activity_fairy_popup">fairyPopup</string>
 </resources>
