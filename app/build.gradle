@@ -72,5 +72,6 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'me.relex:circleindicator:2.1.4'
     implementation 'com.google.android.material:material:1.1.0'
-
+    implementation 'com.github.bootpay:client_android_java:3.3.92'
+    implementation "com.airbnb.android:lottie:3.5.0"
 }

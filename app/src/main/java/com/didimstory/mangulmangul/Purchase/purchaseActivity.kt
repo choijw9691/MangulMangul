@@ -1,20 +1,29 @@
 package com.didimstory.mangulmangul.Purchase
 
+
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.Entity.apiResultItem
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.webviewAPI
-import com.didimstory.mangulmangul.youtube.YoutubeItem
-
-
 import kotlinx.android.synthetic.main.activity_purchase.*
+import kr.co.bootpay.Bootpay
+import kr.co.bootpay.BootpayAnalytics
+import kr.co.bootpay.enums.Method
+import kr.co.bootpay.enums.PG
+import kr.co.bootpay.enums.UX
+import kr.co.bootpay.listener.*
+import kr.co.bootpay.model.BootExtra
+import kr.co.bootpay.model.BootUser
 
 
 class purchaseActivity : AppCompatActivity() {
@@ -23,7 +32,7 @@ class purchaseActivity : AppCompatActivity() {
     private lateinit var purchaseAdapter: purchaseAdapter
     private var dataList = arrayListOf<Buy>()
     val apiResult= apiResultItem()
-
+    private val stuck = 10
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_purchase)
@@ -59,10 +68,12 @@ class purchaseActivity : AppCompatActivity() {
 
 
         })
+
+        BootpayAnalytics.init(this, "604b709cd8c1bd002bf4c16e");
         payment.setOnClickListener(View.OnClickListener {
 
 
-
+         startActivity(Intent(this,pgFragment::class.java))
 
         })
 

@@ -71,6 +71,7 @@ class FairytaleFragment : Fragment(){
         val view = binding?.root
 
 
+/*
         Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
                 .enqueue(object :
                     Callback<listfairyHome> {
@@ -129,6 +130,7 @@ Log.d("listresult",list?.get(i)!!.ytUrl.toString())
 
                 })
 
+*/
 
 
 
