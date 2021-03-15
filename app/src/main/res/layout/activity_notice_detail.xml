@@ -30,7 +30,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <TextView
+<!--        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="내용"
@@ -41,8 +41,12 @@
             android:layout_height="@dimen/dp_200"
             android:id="@+id/notice_datail_image"
 
-            ></ImageView>
-
+            ></ImageView>-->
+<WebView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/webview"
+    ></WebView>
     </LinearLayout>
 
 </LinearLayout>

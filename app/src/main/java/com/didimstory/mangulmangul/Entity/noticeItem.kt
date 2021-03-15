@@ -1,5 +1,5 @@
 package com.didimstory.mangulmangul.Entity
 
 
-data class noticeDetailItem(val title:String,val content:String,val date:String,val image:String)
-data class questionDetailItem(val statue:String, val title:String, val date:String,val question:String,val answer:String)
+data class noticeDetailItem(val noticeIdx:Int,val title:String,val createdAt:String)
+data class questionDetailItem(val inquiryIdx:Int, val title:String,val inquiryStatus:String,val createdAt:String)

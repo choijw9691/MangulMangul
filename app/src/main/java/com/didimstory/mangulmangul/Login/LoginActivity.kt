@@ -73,6 +73,8 @@ Log.d("로그인?",PreferenceManager.getLong(applicationContext,"PrefIDIndex").t
                                                 "PrefIDIndex",
                                                 response.body()!!.toLong()
                                             )
+
+
                                         } else {
                                             PreferenceManager.setLong(
                                                 applicationContext,

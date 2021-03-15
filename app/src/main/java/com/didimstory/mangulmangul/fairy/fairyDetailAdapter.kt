@@ -70,17 +70,18 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
                 binding.fairyText.setText(data.title)
                 binding.thumbnail.setOnClickListener(View.OnClickListener {
                     var intent:Intent?=null
-                    Log.d("data.ytUrl",data.ytUrl)
+
 
                     if(test==0){
 
                         intent= Intent(mContext, youtubeTest::class.java)
+                        Log.d("data.ytUrl",data.ytUrl)
                     }
                     else if(test==1){
 
                         intent=Intent(mContext, youtubeFamous::class.java)
                     }
-
+                    intent?.putExtra("engFairyTaleIdx",data.engFairyTaleIdx)
                     intent?.putExtra("data.url",data.ytUrl)
 
 
@@ -104,7 +105,6 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
 
 /*            if(adapterPosition==0 || adapterPosition == dataList.size-1){
                 binding.itemLayout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
-
                 val displayMetrics = mContext!!.resources.displayMetrics
                 val screenWidth = displayMetrics.widthPixels
                 var mLayoutParam : RecyclerView.LayoutParams =  binding.itemLayout.layoutParams as RecyclerView.LayoutParams

@@ -2,7 +2,9 @@ package com.didimstory.mangulmangul.Purchase
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.bumptech.glide.Glide
@@ -16,7 +18,7 @@ class purchaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     var mContext: Context
 
-
+var aa:ArrayList<String>? =null
     constructor(
         context: Context
     ) : super() {
@@ -83,7 +85,41 @@ class purchaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     .into(binding.purchaseImageview)
 
                 binding.purchaseTitle.text = data.title
-                binding.purchaseText.text = data.price
+                binding.purchaseText.text = data.price.toString()
+                binding.purcaseButton.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        TODO("Not yet implemented")
+                    }
+
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+
+if((data.price*position)==0){
+
+
+
+    binding.purchaseText.text = data.price.toString()
+data.count=1
+}else{
+
+
+    binding.purchaseText.text = (data.price*(position+1)).toString()
+    binding.purchaseText.text.toString()
+    data.count=(position+1)
+
+}
+
+
+
+                    }
+
+
+                }
+
 
 
 
@@ -104,5 +140,12 @@ class purchaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>{
         fun buyList(purchase: ArrayList<Buy>)
     }
 
+    fun setpText(aa1:String){
 
+
+    }
+
+    fun getpText(): String {
+        return aa.toString()
+    }
 }

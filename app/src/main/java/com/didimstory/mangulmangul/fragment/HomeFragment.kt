@@ -38,7 +38,7 @@ class HomeFragment : Fragment() ,View.OnClickListener {
         // Inflate the layout for this fragment
 
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
-        view.popfairyButton.playAnimation()
+
 view.boastButton.setOnClickListener(this)
         view.popfairyButton.setOnClickListener(this)
         view.fairyButton.setOnClickListener(this)

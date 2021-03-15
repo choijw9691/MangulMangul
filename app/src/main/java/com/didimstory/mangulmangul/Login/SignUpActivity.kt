@@ -70,12 +70,14 @@ class SignUpActivity : AppCompatActivity() {
                                 PreferenceManager.setString(applicationContext,"PrefID",userRoleMno.text.toString())
                                 PreferenceManager.removeKey(applicationContext,"PrefIDIndex")
                                 PreferenceManager.setLong(applicationContext,"PrefIDIndex",response.body()!!.toLong())
-
+                                PreferenceManager.removeKey(applicationContext,"PrefPW")
+                                PreferenceManager.setString(applicationContext,"PrefPW",password.text.toString())
                             }else{
                                 PreferenceManager.setString(applicationContext,"PrefID",userRoleMno.text.toString())
                                 PreferenceManager.removeKey(applicationContext,"PrefIDIndex")
-                                PreferenceManager.setLong(applicationContext,"PrefIDIndex",response.body()!!.toLong()
-                                )
+                                PreferenceManager.setLong(applicationContext,"PrefIDIndex",response.body()!!.toLong() )
+                                        PreferenceManager.setString(applicationContext,"PrefPW",password.text.toString())
+
 
                             }
                             startActivity(Intent(applicationContext,MainActivity::class.java))

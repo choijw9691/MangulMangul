@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.didimstory.mangulmangul">
 
-
-
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,12 +15,19 @@
         android:usesCleartextTraffic="true">
 
 
-        <activity android:name=".Purchase.pgFragment"></activity>
-        <activity
-            android:name=".fairy.fairyPopup"
-       >
+        <activity android:name=".fairy.PopUpActivity"
+            android:theme="@android:style/Theme.Dialog"
 
-        </activity>
+            ></activity>
+        <activity android:name=".Purchase.pgFragment" />
+        <activity android:name=".fairy.fairyPopup"
+            android:theme="@android:style/Theme.Dialog"
+
+
+            ></activity>
+
+
+
         <activity
             android:name=".MyService.QuestionActivity"
             android:screenOrientation="landscape" />
@@ -46,11 +52,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".Purchase.purchaseActivity"
-            android:screenOrientation="landscape" >
-
-
-
-        </activity>
+            android:screenOrientation="landscape"></activity>
         <activity
             android:name=".youtube.youtubeTest"
             android:screenOrientation="landscape" />
@@ -61,16 +63,15 @@
             android:name=".Login.LoginActivity"
             android:screenOrientation="landscape">
 
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="landscape">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="landscape">
 
         </activity>
     </application>

@@ -1,11 +1,10 @@
 package com.didimstory.mangul
 
-import com.didimstory.mangulmangul.Entity.EmailCheck
-import com.didimstory.mangulmangul.Entity.fairyHome
-import com.didimstory.mangulmangul.Entity.listfairyHome
+import com.didimstory.mangulmangul.Entity.*
 
 import retrofit2.Call
 import retrofit2.http.*
+import java.util.ArrayList
 
 interface API {
     @POST("user/account/login")  //로그인
@@ -17,7 +16,7 @@ interface API {
     fun logUp(
         @Field("userName") userName: String,
         @Field("userId") userId: String,
-        @Field("password") password:String,
+        @Field("password") password: String,
         @Field("nickname") nickname: String,
         @Field("addr1") addr1: String,
         @Field("addr2") addr2: String,
@@ -45,8 +44,120 @@ interface API {
     fun fairyHome(@Field("userIdx") userIdx: Long): Call<listfairyHome>
 
 
-    @POST("user/fairyTale/fairyTaleDetail")//영어동화상세
+    /*@POST("user/fairyTale/fairyTaleDetail")//영어동화상세
     @FormUrlEncoded
-    fun fairyDetail(@Field("userIdx") userIdx: Long,@Field("engFairyTaleIdx") engFairyTaleIdx:Long): Call<listfairyHome>
+    fun fairyDetail(@Field("userIdx") userIdx: Long,@Field("engFairyTaleIdx") engFairyTaleIdx:Long): Call<listfairyDetailHome>*/
 
+    @POST("user/artKit/fairyTaleArtKitList")//상품리스트
+    @FormUrlEncoded
+    fun fairyBuyList(@Field("engFairyTaleIdx") engFairyTaleIdx: Long): Call<listfairyBuy>
+
+    @POST("user/fairyTale/fameFairyTaleList")//인기동화
+    @FormUrlEncoded
+    fun fameHome(@Field("userIdx") userIdx: Long): Call<listfairyHome>
+
+    @POST("user/fairyTale/fameFairyTaleDetail")//인기영어동화상세
+    @FormUrlEncoded
+    fun fameDetail(
+        @Field("userIdx") userIdx: Long,
+        @Field("engFairyTaleIdx") engFairyTaleIdx: Long
+    ): Call<listfameDetailHome>
+
+
+    @POST("/user/boast/boastList")//
+    @FormUrlEncoded
+    fun boastHome(@Field("userIdx") userIdx: Long): Call<listfairyHome>
+
+
+    @POST("user/purchase/purchaseInsert")//구매하기
+    @FormUrlEncoded
+    fun boastBuy(
+        @Field("userIdx") userIdx: Long,
+        @Field("addr1") addr1: String,
+        @Field("addr2") addr2: String,
+        @Field("artKitList") artKitList: ArrayList<Int>?,
+        @Field("countList") countList: ArrayList<Int>?
+    ): Call<Void>
+
+    @POST("user/mypage/updateUserInfo")//개인정보수정
+    @FormUrlEncoded
+    fun myInfoUpdate(
+        @Field("userIdx") userIdx: Long,
+        @Field("nickname") nickname: String,
+        @Field("addr1") addr1: String,
+        @Field("addr2") addr2: String,
+        @Field("phone") phone: String
+
+    ): Call<Boolean>
+
+
+    @POST("user/mypage/withdrawUser")//탈퇴
+    @FormUrlEncoded
+    fun myInfoExit(
+        @Field("userIdx") userIdx: Long
+
+    ): Call<Boolean>
+
+
+    @POST("user/mypage/updatePwd")//비밀번호수정
+    @FormUrlEncoded
+    fun updatePW(
+        @Field("userIdx") userIdx: Long,
+        @Field("password") password: String,
+        @Field("newPassword") newPassword: String
+
+    ): Call<Boolean>
+
+
+    @POST("user/mypage/purchaseList")//구매내역
+    @FormUrlEncoded
+    fun buyList(
+        @Field("userIdx") userIdx: Long
+
+    ): Call<purchaseList>
+
+    @POST("user/mypage/portfolio")//포트폴리오
+    @FormUrlEncoded
+    fun pptGet(
+        @Field("userIdx") userIdx: Long
+
+    ): Call<boastListResult>
+
+
+    @POST("user/cs/noticeList")//공지사항목록
+    @FormUrlEncoded
+    fun noticeList(
+
+        @Field("setData") setData: Boolean
+    ): Call<noticeListResult>
+
+
+    @POST("user/cs/noticeDetail")//공지사항상세
+    @FormUrlEncoded
+    fun noticeDetail(
+
+        @Field("noticeIdx") noticeIdx: Int
+    ): Call<noticeDetail>
+
+
+    @POST("user/cs/inquiryList")//문의하기목록
+    @FormUrlEncoded
+    fun noticeList(
+        @Field("userIdx") userIdx: Long
+    ): Call<inquiryListResult>
+
+
+    @POST("user/cs/inquiryDetail")//문의하기상세
+    @FormUrlEncoded
+    fun inquiryDetail(
+        @Field("inquiryIdx") inquiryIdx: Int
+    ): Call<inquiryDetail>
+
+    @POST("user/cs/insertInquiry")//문의등록
+    @FormUrlEncoded
+    fun insertInquiry(
+        @Field("userIdx") userIdx: Long,
+        @Field("title") title: String,
+        @Field("contents") contents: String
+    ): Call<Boolean>
 }

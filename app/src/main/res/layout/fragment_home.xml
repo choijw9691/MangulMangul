@@ -26,42 +26,63 @@
     </RelativeLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
            >
 
             <ImageButton
                 android:id="@+id/boastButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bt_tab_home"
+                android:background="@drawable/ic_group_4"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_30"
               ></ImageButton>
-        </LinearLayout>
 
-        <LinearLayout
+            <ImageButton
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_group_5_copy"
+
+                android:adjustViewBounds="true"
+
+                android:layout_marginTop="@dimen/dp_30"
+       android:layout_alignParentRight="true"
+
+                ></ImageButton>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
           >
 
             <ImageButton
                 android:id="@+id/popfairyButton"
                 android:layout_width="98dp"
                 android:layout_height="142dp"
-                android:background="@drawable/ic_anyconv_com__group_2"
+                android:background="@drawable/ic_group_3"
                 android:adjustViewBounds="true"
+      android:layout_centerInParent="true"
               >
 
             </ImageButton>
-        </LinearLayout>
+        </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
 
             >
 
@@ -69,9 +90,12 @@
                 android:id="@+id/fairyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bt_tab_home"
+                android:background="@drawable/ic_group_3"
+                android:layout_centerHorizontal="true"
+         android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/dp_100"
               ></ImageButton>
-        </LinearLayout>
+        </RelativeLayout>
 
 
     </LinearLayout>

@@ -50,7 +50,7 @@
 
             android:background="@drawable/ic_icon_heart_color"
 android:adjustViewBounds="true"
-
+android:id="@+id/heart"
             ></ImageButton>
     </LinearLayout>
 

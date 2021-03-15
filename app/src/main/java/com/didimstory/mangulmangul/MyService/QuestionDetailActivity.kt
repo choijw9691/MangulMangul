@@ -8,9 +8,17 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.inquiryDetail
+import com.didimstory.mangulmangul.Entity.inquiryListResult
+import com.didimstory.mangulmangul.Entity.noticeDetailItem
 import com.didimstory.mangulmangul.MainActivity
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import kotlinx.android.synthetic.main.activity_question_detail.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class QuestionDetailActivity: AppCompatActivity() {
 
@@ -22,8 +30,6 @@ class QuestionDetailActivity: AppCompatActivity() {
       statue.setText(intent.getStringExtra("statue"))
         title1.setText(intent.getStringExtra("title"))
         date.setText(intent.getStringExtra("date"))
-        question.setText(intent.getStringExtra("question"))
-        answer.setText(intent.getStringExtra("answer"))
 
 
 
@@ -34,11 +40,38 @@ removeBtn.setOnClickListener(View.OnClickListener {
     it.showContextMenu(it.x+it.getWidth()/2,it.y+it.getHeight()/2)
 })
 
+
+
+
         backbtn.setOnClickListener(View.OnClickListener {
 onBackPressed()
 
-
         })
+
+
+
+        Client.retrofitService.inquiryDetail(
+            intent.getIntExtra("inquiryIdx",0)
+        )
+            .enqueue(object :
+                Callback<inquiryDetail>{
+                override fun onFailure(call: Call<inquiryDetail>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<inquiryDetail>,
+                    response: Response<inquiryDetail>
+                ) {
+           question.text=response.body()?.contents
+                    answer.text=response.body()?.answerContents
+                }
+
+
+            })
+
+
+
 
     }
 

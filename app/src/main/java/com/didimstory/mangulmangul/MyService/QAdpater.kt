@@ -58,18 +58,17 @@ class QAdpater (var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewH
             mContext?.let {
 
 
-                binding.questionStatue.setText(data.statue)
+                binding.questionStatue.setText(data.inquiryStatus)
                 binding.questionTitle.setText(data.title)
-                binding.questionDate.setText(data.date)
+                binding.questionDate.setText(data.createdAt)
 
                 binding.noticeLn.setOnClickListener(View.OnClickListener {
                     Log.d("왔다","왔다")
                     val intent = Intent(mContext, QuestionDetailActivity::class.java)
                     intent.putExtra("title", data?.title)
-                    intent.putExtra("date", data?.date)
-                    intent.putExtra("statue", data?.statue)
-                    intent.putExtra("question", data?.question)
-                    intent.putExtra("answer", data?.answer)
+                    intent.putExtra("date", data?.createdAt)
+                    intent.putExtra("statue", data?.inquiryStatus)
+                    intent.putExtra("inquiryIdx", data?.inquiryIdx)
                     mContext.startActivity(intent)
 
 

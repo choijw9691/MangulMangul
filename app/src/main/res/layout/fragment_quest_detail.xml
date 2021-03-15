@@ -16,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="공지사항 제목"
+        android:id="@+id/title"
         ></TextView>
     <TextView
         android:layout_width="wrap_content"
@@ -25,21 +26,29 @@
 </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="내용"
+        android:id="@+id/content"
         ></TextView>
-    <ImageView
-        android:layout_width="@dimen/dp_200"
-        android:layout_height="@dimen/dp_200"
-
-
-        ></ImageView>
 
 </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insert"
+            ></Button>
+
+    </LinearLayout>
 </LinearLayout>

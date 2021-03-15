@@ -38,20 +38,9 @@
             android:gravity="center"
             android:singleLine="false"
             ></TextView>
-        <LinearLayout
-            android:layout_width="7dp"
-            android:layout_height="wrap_content"
 
-            ></LinearLayout>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:background="@drawable/ic_icon_heart_color"
-            android:adjustViewBounds="true"
-
-            ></ImageButton>
     </LinearLayout>
 
 </LinearLayout>

@@ -3,14 +3,19 @@ package com.didimstory.mangulmangul.MyService
 import android.app.Service
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.boastListResult
 import com.didimstory.mangulmangul.Entity.noticeDetailItem
+import com.didimstory.mangulmangul.Entity.noticeListResult
 import com.didimstory.mangulmangul.MyPage.MyPageHomeFragment
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.boast.BoastDetailFragment
 import com.didimstory.mangulmangul.boast.boastDetailAdapter
@@ -18,7 +23,11 @@ import com.didimstory.mangulmangul.boast.boastDetailRecycleItem
 import com.didimstory.mangulmangul.databinding.FragmentNoticeBinding
 import com.didimstory.mangulmangul.fragment.BoastFragment
 import com.didimstory.mangulmangul.fragment.videoId
+import com.didimstory.mangulmangul.youtube.YoutubeItem
 import kotlinx.android.synthetic.main.fragment_notice.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,17 +47,19 @@ class NoticeFragment : Fragment() {
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var boastRecycleAdapter: QuestionAdapter
     private var dataList = arrayListOf<noticeDetailItem>()
-    var binding:FragmentNoticeBinding?=null
+    var binding: FragmentNoticeBinding? = null
     override fun onDetach() {
         super.onDetach()
         callback.remove()
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                parentFragmentManager.beginTransaction().replace(R.id.Servicecontainer,ServiceHomeFragment()).commit()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.Servicecontainer, ServiceHomeFragment()).commit()
 
             }
         }
@@ -69,45 +80,67 @@ class NoticeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-       binding= FragmentNoticeBinding.inflate(inflater, container, false)
-val view=binding?.root
+        binding = FragmentNoticeBinding.inflate(inflater, container, false)
+        val view = binding?.root
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
-        dataList.add(
+
+        Client.retrofitService.noticeList(
+true
+        )
+            .enqueue(object :
+                Callback<noticeListResult> {
+                override fun onFailure(call: Call<noticeListResult>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<noticeListResult>,
+                    response: Response<noticeListResult>
+                ) {
+                    var list = response.body()?.list
+                    for (i in 0 until (response.body()?.list!!.size)) {
+
+                        dataList.add(
+                            noticeDetailItem(
+                                list?.get(i)!!.noticeIdx,
+                                list?.get(i)!!.title,
+                                list?.get(i)!!.createdAt
+
+                            )
+                        )
+
+                    }
+
+                    mLayoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    boastRecycleAdapter =
+                        QuestionAdapter(context)
+
+                    binding?.noticeRecycler.apply {
+                        this?.layoutManager =
+                            mLayoutManager
+                        this?.adapter = boastRecycleAdapter
+
+
+                    }
+
+                    boastRecycleAdapter.dataList = dataList
+
+
+                }
+
+            })
+
+
+/*      dataList.add(
             noticeDetailItem(
                "공지사항제목", "안녕하세요", "2021.00.00","null"
             )
-        )
-        dataList.add(
-            noticeDetailItem(
-                "공지사항제목11111111111", "안녕하세요", "2021.00.00","null"
-            )
-        )
-        dataList.add(
-            noticeDetailItem(
-                "공지사항제목222222222222", "안녕하세요", "2021.00.00","null"
-            )
-        )
-        dataList.add(
-            noticeDetailItem(
-                "공지사항제목33333333333333333", "안녕하세요", "2021.00.00","null"
-            )
-        )
-        mLayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        boastRecycleAdapter =
-            QuestionAdapter(context)
-
-        binding?.noticeRecycler.apply {
-            this?.layoutManager =
-                mLayoutManager
-            this?.adapter = boastRecycleAdapter
+        )*/
 
 
-        }
-
-        boastRecycleAdapter.dataList = dataList
 
 
 
@@ -127,11 +160,10 @@ val view=binding?.root
                 }
             }*/
 
-        fun newInstance():NoticeFragment?{
-            var fragment= NoticeFragment()
+        fun newInstance(): NoticeFragment? {
+            var fragment = NoticeFragment()
             return fragment
         }
-
 
 
     }

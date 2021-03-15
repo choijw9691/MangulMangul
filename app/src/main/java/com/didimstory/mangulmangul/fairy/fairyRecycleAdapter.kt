@@ -18,11 +18,11 @@ import com.didimstory.mangulmangul.youtube.YoutubeItem
 import com.didimstory.mangulmangul.youtube.youtubeTest
 
 
-class fairyRecycleAdapter(var context: Context?,var test:Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
-  {
+class fairyRecycleAdapter(var context: Context?, var test: Int) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val mContext=context
-var dataurl:String?=null
+    val mContext = context
+    var dataurl: String? = null
     var dataList = listOf<YoutubeItem>()
         set(value) {
             field = value
@@ -30,20 +30,25 @@ var dataurl:String?=null
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val binding = ActivityYoutubThumbNaiLBinding.inflate(LayoutInflater.from(mContext), parent, false)
+        val binding =
+            ActivityYoutubThumbNaiLBinding.inflate(LayoutInflater.from(mContext), parent, false)
         return MainMusicHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder) {
+        when (holder) {
             is MainMusicHolder -> {
                 holder.bind(dataList[position])
             }
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads:List<Any>) {
-        when(holder) {
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        position: Int,
+        payloads: List<Any>
+    ) {
+        when (holder) {
             is MainMusicHolder -> {
                 holder.bind(dataList[position])
             }
@@ -53,48 +58,61 @@ var dataurl:String?=null
 
     override fun getItemCount(): Int = dataList.size
 
-    inner class MainMusicHolder(val binding : ActivityYoutubThumbNaiLBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MainMusicHolder(val binding: ActivityYoutubThumbNaiLBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: YoutubeItem) {
+            if (test != 3) {
+                mContext?.let {
+                    dataurl = data.ytUrl
+                    Glide.with(it)
+                        .load("https://img.youtube.com/vi/$dataurl/maxresdefault.jpg")
+                        .centerInside()
+                        .override(1000, 1000)
+                        .into(binding.thumbnail)
 
-           mContext?.let {
-               dataurl=data.ytUrl
-                Glide.with(it)
-                    .load( "https://img.youtube.com/vi/$dataurl/maxresdefault.jpg" )
-                    .centerInside()
-                    .override(1000,1000)
-                    .into(binding.thumbnail)
+                    binding.fairyText.setText(data.title)
+                    binding.thumbnail.setOnClickListener(View.OnClickListener {
 
-              binding.fairyText.setText(data.title)
-               binding.thumbnail.setOnClickListener(View.OnClickListener {
-
-                   var intent:Intent?=null
-                   if (test==0){
-                    intent=Intent(mContext,youtubeTest::class.java)
-
-                   }else if(test==1){
-
-                       intent=Intent(mContext,youtubeFamous::class.java)
-                   }
-
-                   intent?.putExtra("data.url",data.ytUrl)
-                   mContext.startActivity(intent)
+                        var intent: Intent? = null
 
 
+                            if (test == 0) {
+                                intent = Intent(mContext, youtubeTest::class.java)
+                                intent?.putExtra("engFairyTaleIdx", data.engFairyTaleIdx)
+                            } else if (test == 1) {
 
+                                intent = Intent(mContext, youtubeFamous::class.java)
+                            }
 
-
+                            intent?.putExtra("data.url", data.ytUrl)
+                            intent?.putExtra("engFairyTaleIdx", data.engFairyTaleIdx)
+                            mContext.startActivity(intent)
 
 
 
 
+                    })
 
-
-               })
+                }
 
             }
 
+else{
+binding.heart.visibility=View.GONE
+                mContext?.let {
+                    dataurl = data.ytUrl
+                    Glide.with(it)
+                        .load(dataurl)
+                        .centerInside()
+                        .override(1000, 1000)
+                        .into(binding.thumbnail)
 
+                    binding.fairyText.setText(data.title)
+
+
+                }
+            }
 /*            if(adapterPosition==0 || adapterPosition == dataList.size-1){
                 binding.itemLayout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
 
@@ -109,7 +127,6 @@ var dataurl:String?=null
         }
 
     }
-
 
 
 }

@@ -85,12 +85,12 @@ android:id="@+id/backbtn"
             android:hint="문의내용"
 
             ></TextView>
+
         <TextView
+            android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="문의내용"
-            android:id="@+id/question"
-            ></TextView>
+            android:hint="문의내용"></TextView>
 
     </LinearLayout>
 

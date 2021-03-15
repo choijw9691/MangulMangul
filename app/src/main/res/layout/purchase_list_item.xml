@@ -23,32 +23,31 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="55dp"
-
+android:hint="교육용 키트"
             android:id="@+id/purchaseTitle"
             ></TextView>
         <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:orientation="horizontal"
-        >
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal"
+            >
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-android:spinnerMode="dropdown"
-   android:id="@+id/purcaseButton"
-            android:entries="@array/개"
-            ></Spinner>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:text="3333"
-                android:layout_alignParentRight="true"
-                android:id="@+id/purchaseText"
+android:layout_alignParentLeft="true"
+        android:hint="1개"
+                android:id="@+id/count"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+      android:layout_alignParentRight="true"
+                android:hint="3만원"
+                android:id="@+id/money"
                 ></TextView>
 
-    </RelativeLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 </RelativeLayout>

@@ -9,14 +9,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.boastRecycleItemData
+import com.didimstory.mangulmangul.Entity.listfairyHome
 import com.didimstory.mangulmangul.MainActivity
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.boast.BoastChildFragment
 import com.didimstory.mangulmangul.boast.boastActivity
 import com.didimstory.mangulmangul.boast.boastRecycleAdapter
 import com.didimstory.mangulmangul.databinding.FragmentBoastBinding
+import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
+import com.didimstory.mangulmangul.youtube.YoutubeItem
 import kotlinx.android.synthetic.main.fragment_boast.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -73,43 +82,70 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
-        dataList.add(
+   /*     dataList.add(
             boastRecycleItemData(
                 url, "고래와 상어1","1"
             )
-        )
+        )*/
 
-        dataList.add(
-            boastRecycleItemData(
-                "Hq2yWd5wG_M", "고래와 상어2","2"
-            )
-        )
-        dataList.add(
-            boastRecycleItemData(
-                url, "고래와 상어3"    ,"3"        )
-        )
-        dataList.add(
-            boastRecycleItemData(
-                url, "고래와 상어4","4"
-            )
-        )
-        mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        boastAdapter =
-            boastRecycleAdapter(context)
+/*
+        Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
+            .enqueue(object :
+                Callback<listfairyHome> {
+                override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
 
-        binding!!.recyclerView.apply {
-            this.layoutManager =
-                mLayoutManager
-            this.adapter = boastAdapter
+                }
 
+                override fun onResponse(
+                    call: Call<listfairyHome>,
+                    response: Response<listfairyHome>
+                ) {
+                    when(response!!.code()){
 
-
-        }
-
-        boastAdapter.dataList =
-            dataList
+                        200->
+                        {
+                            var list = response.body()?.list
+                            for(i in 0 until (response.body()?.list!!.size)){
+                                Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                                dataList.add(
+                                    YoutubeItem(
+                                        list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
+                                    )
+                                )
 
 
+                            }
+
+
+                            mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            boastAdapter =
+                                boastRecycleAdapter(context)
+
+                            binding!!.recyclerView.apply {
+                                this.layoutManager =
+                                    mLayoutManager
+                                this.adapter = boastAdapter
+
+
+
+                            }
+
+                            boastAdapter.dataList =
+                                dataList
+
+
+
+
+
+                        }
+
+                    }
+                }
+
+
+            })
+
+*/
 
 
 

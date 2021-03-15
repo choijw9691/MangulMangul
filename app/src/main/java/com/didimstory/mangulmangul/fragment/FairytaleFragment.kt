@@ -1,5 +1,6 @@
 package com.didimstory.mangulmangul.fragment
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,9 +16,14 @@ import com.didimstory.mangulmangul.Entity.fairyHome
 import com.didimstory.mangulmangul.Entity.listfairyHome
 import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.PreferenceManager
+import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.databinding.FragmentFairytaleBinding
+import com.didimstory.mangulmangul.fairy.PopUpActivity
+import com.didimstory.mangulmangul.fairy.SerchFragment
 import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
+import com.didimstory.mangulmangul.famous.FamousFragment
 import com.didimstory.mangulmangul.youtube.YoutubeItem
+import kotlinx.android.synthetic.main.activity_main.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -71,12 +77,11 @@ class FairytaleFragment : Fragment(){
         val view = binding?.root
 
 
-/*
         Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
                 .enqueue(object :
                     Callback<listfairyHome> {
                     override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
-                        TODO("Not yet implemented")
+
                     }
 
                     override fun onResponse(
@@ -130,11 +135,19 @@ Log.d("listresult",list?.get(i)!!.ytUrl.toString())
 
                 })
 
-*/
 
 
 
 
+binding?.serchBtn?.setOnClickListener(View.OnClickListener {
+
+    var intent=Intent(context,PopUpActivity::class.java)
+
+//ActivityOptions.makeSceneTransitionAnimation(PopUpActivity()).toBundle()
+    intent.putExtra("data","fairypop")
+    startActivityForResult(intent,1)
+
+})
 
 
 
@@ -157,5 +170,20 @@ Log.d("listresult",list?.get(i)!!.ytUrl.toString())
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+     if(requestCode==1){
+         if(resultCode==-1){
+             var result=data?.getStringExtra("result")
+var aa=ServiceFragment()
+             var bundle=Bundle()
+             bundle.putString("change","fairypop")
+             bundle.putString("result",result)
+             aa.arguments=bundle
+             parentFragmentManager.beginTransaction().replace(R.id.viewPager,aa)
+             SerchFragment.newInstance()?.let { (activity as MainActivity).replaceFragment(it) }
 
+         }
+
+     }
+    }
 }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
+import com.didimstory.mangulmangul.fairy.SerchFragment
 import com.didimstory.mangulmangul.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private val FairytaleFragment by lazy { FairytaleFragment() }
+    private val SerchFragment by lazy { SerchFragment() }
     private val BoastFragment by lazy { BoastFragment() }
     private val HomeFragment by lazy { HomeFragment() }
     private val MypageFragment by lazy { MypageFragment() }
@@ -26,7 +28,7 @@ private val FamousFragment by lazy { com.didimstory.mangulmangul.famous.FamousFr
 var listener:OnBackPressedListener?=null
 
     private val fragments: List<Fragment> =
-        listOf(FairytaleFragment, BoastFragment, HomeFragment, MypageFragment, ServiceFragment,FamousFragment)
+        listOf(FairytaleFragment, BoastFragment, HomeFragment, MypageFragment, ServiceFragment,FamousFragment,SerchFragment)
     private val pagerAdapter: MainViewPagerAdapter by lazy { MainViewPagerAdapter(this, fragments) }
 
 
@@ -55,6 +57,11 @@ var listener:OnBackPressedListener?=null
 }
             5->{
                 viewPager.currentItem=5
+
+            }
+
+            6->{
+                viewPager.currentItem=6
 
             }
         }

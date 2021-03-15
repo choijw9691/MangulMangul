@@ -3,6 +3,7 @@ package com.didimstory.mangulmangul.youtube
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,13 +27,12 @@ import retrofit2.Response
 
 class youtubeTest : YouTubeBaseActivity(){
     var videoId: String? = null
-
+    var engFairyTaleIdx: Long? = null
 
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var fairyAdapter: fairyDetailAdapter
-    private lateinit var buyAdapter: fairybuyAdapter
+
     private var dataList = arrayListOf<YoutubeItem>()
-    private var buydataList = arrayListOf<fairybuyItem>()
 
 
 
@@ -41,9 +41,24 @@ class youtubeTest : YouTubeBaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         videoId = intent.getStringExtra("data.url")
+        engFairyTaleIdx = intent.getLongExtra("engFairyTaleIdx",0)
         val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
         Log.d("youtuberesult", videoId.toString())
         setContentView(R.layout.activity_youtube_test)
+
+
+        gotoBtn.setOnClickListener(View.OnClickListener {
+
+            var intent=Intent(applicationContext,fairyPopup::class.java)
+
+//ActivityOptions.makeSceneTransitionAnimation(PopUpActivity()).toBundle()
+            intent.putExtra("videoId",videoId)
+            intent.putExtra("engFairyTaleIdx",engFairyTaleIdx!!)
+            startActivity(intent)
+
+        })
+
+
         val youtubeView =
             findViewById<YouTubePlayerView>(R.id.youtubeView)
         youtubeView.initialize("develop", object : YouTubePlayer.OnInitializedListener {
@@ -120,11 +135,11 @@ class youtubeTest : YouTubeBaseActivity(){
 
 
 //임시 하드코딩
-   /*     dataList.add(
-            YoutubeItem(
-                url, "고래와 상어1"
-            )
-        )*/
+        /*     dataList.add(
+                 YoutubeItem(
+                     url, "고래와 상어1"
+                 )
+             )*/
 
 
 
@@ -133,43 +148,12 @@ class youtubeTest : YouTubeBaseActivity(){
 
         //임시 하드코딩
 /*
-
         buydataList.add(
-            fairybuyItem(
+            fairybuyItem
                 url, "키트", "100원"
             )
         )
 */
-
-
-        mLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        buyAdapter = fairybuyAdapter(this,object:fairybuyAdapter.buyTextListener{
-            override fun buyTotal(data: String?) {
-                buyText.setText(data)
-            }
-
-            override fun buyList(purchase: ArrayList<Buy>) {
-
-                val intent= Intent(applicationContext,purchaseActivity::class.java)
-intent.putExtra("purchaseList",purchase)
-startActivity(intent)
-
-            }
-
-
-        })
-
-        buyrecycler.layoutManager = mLayoutManager
-
-        buyAdapter.dataList = buydataList
-
-        buyrecycler.adapter = buyAdapter
-
-        buyBtn.setOnClickListener(View.OnClickListener {
-
-            buyAdapter.maxplus()
-
-        })
 
     }
 

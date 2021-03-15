@@ -11,11 +11,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.Entity.apiResultItem
+import com.didimstory.mangulmangul.Entity.listfairyBuy
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
+import com.didimstory.mangulmangul.databinding.PurchaseItemBinding
 import com.didimstory.mangulmangul.webviewAPI
 import kotlinx.android.synthetic.main.activity_purchase.*
+import kotlinx.android.synthetic.main.purchase_item.*
 import kr.co.bootpay.Bootpay
 import kr.co.bootpay.BootpayAnalytics
 import kr.co.bootpay.enums.Method
@@ -24,6 +29,9 @@ import kr.co.bootpay.enums.UX
 import kr.co.bootpay.listener.*
 import kr.co.bootpay.model.BootExtra
 import kr.co.bootpay.model.BootUser
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class purchaseActivity : AppCompatActivity() {
@@ -33,13 +41,14 @@ class purchaseActivity : AppCompatActivity() {
     private var dataList = arrayListOf<Buy>()
     val apiResult= apiResultItem()
     private val stuck = 10
+    var binding:PurchaseItemBinding?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_purchase)
-
         var purchaseList= intent.getSerializableExtra("purchaseList") as ArrayList<Buy>?
 
- Log.d("purchaseList", purchaseList?.get(0)?.url.toString())
+
 
         if (purchaseList != null) {
             dataList=purchaseList
@@ -73,7 +82,41 @@ class purchaseActivity : AppCompatActivity() {
         payment.setOnClickListener(View.OnClickListener {
 
 
-         startActivity(Intent(this,pgFragment::class.java))
+            var artKitList: ArrayList<Int>?=ArrayList<Int>()
+            var countList: ArrayList<Int>?=ArrayList<Int>()
+
+var priceresult=0
+            var titleresult="상품명이없음"
+            var check:Int=0
+            for(i in 0 until dataList.size){
+                priceresult+= ((dataList[i].price)*(dataList[i].count))
+                check++
+                artKitList?.add(dataList[i].artKitIdx)
+                countList?.add(dataList[i].count)
+
+            }
+            if (check>1){
+
+                titleresult=dataList[0].title+" 외"+" "+(check-1).toString()+"개"
+            }
+            else{
+
+                titleresult=dataList[0].title
+            }
+
+
+         var intent= Intent(this,pgFragment::class.java)
+            intent.putExtra("titleresult",titleresult.toString())
+intent.putExtra("priceresult",priceresult)
+            intent.putExtra("name",name.text.toString())
+            intent.putExtra("addressText",addressText.text.toString())
+            intent.putExtra("addr2",addr2.text.toString())
+            intent.putExtra("email",email.text.toString())
+            intent.putIntegerArrayListExtra("artKitList",artKitList)
+            intent.putIntegerArrayListExtra("countList",countList)
+
+
+         startActivity(intent)
 
         })
 
@@ -86,8 +129,13 @@ class purchaseActivity : AppCompatActivity() {
         if(resultCode==Activity.RESULT_OK){
             Log.d("333",data?.getStringExtra("result").toString())
             when(requestCode){
-                100-> addressText.setText(data?.getStringExtra("result").toString())
-            }
+                100-> {
+                    addressText.setText(data?.getStringExtra("result").toString())
+
+
+
+                }
+                }
         }
     }
 

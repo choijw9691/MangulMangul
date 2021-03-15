@@ -63,7 +63,7 @@ class QuestionAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
 
 
                 binding.noticeId.setText(data.title)
-                binding.noticeDate.setText(data.date)
+           /*     binding.noticeDate.setText(data.date)
                 binding.noticeLn.setOnClickListener(View.OnClickListener {
 
                     val intent = Intent(mContext, NoticeDetailActivity::class.java)
@@ -75,9 +75,16 @@ class QuestionAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView
                     }else{
                         intent.putExtra("image", "null")
                     }
+                    mContext.startActivity(intent)*/
+
+                binding.noticeDate.setText(data.createdAt)
+                binding.noticeLn.setOnClickListener(View.OnClickListener {
+
+                    val intent = Intent(mContext, NoticeDetailActivity::class.java)
+                    intent.putExtra("title", data?.title)
+                    intent.putExtra("date", data?.createdAt)
+                    intent.putExtra("noticeIdx", data?.noticeIdx)
                     mContext.startActivity(intent)
-
-
                 })
 
             }

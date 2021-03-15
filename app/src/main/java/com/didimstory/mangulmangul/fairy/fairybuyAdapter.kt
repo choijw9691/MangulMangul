@@ -1,6 +1,7 @@
 package com.didimstory.mangulmangul.fairy
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -89,17 +90,17 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 }
 
-                dataurl = data.imageview
+                dataurl = data.fileRealName
                 Glide.with(it)
-                    .load("https://img.youtube.com/vi/$dataurl/maxresdefault.jpg")
+                    .load(dataurl)
                     .centerInside()
                     .override(1000, 1000)
                     .into(binding.imageview)
 
 
 
-                binding.textview.setText(data.title)
-                binding.checkbox.setText(data.check)
+                binding.textview.setText(data.name)
+                binding.checkbox.setText(data.price.toString())
 
 
 
@@ -159,13 +160,16 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     fun maxplus() {
         for (i in 0 until checkboxList.size) {
             if (checkboxList.get(i).checked === true) {
-                var a = dataList[i].imageview
+                var a = dataList[i].fileRealName
 
                 var purchase = Buy(
+
+                    dataList[i].artKitIdx,
                     a,
-                    dataList[i].title,
-                    dataList[i].check
+                    dataList[i].name,
+                    dataList[i].price,1
                 )
+
                 checkboxSelectedList.add(purchase)
             }
         }

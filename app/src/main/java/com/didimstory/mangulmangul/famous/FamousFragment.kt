@@ -8,11 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.listfairyHome
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.databinding.FragmentFamousBinding
 import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
 import com.didimstory.mangulmangul.fragment.FairytaleFragment
 import com.didimstory.mangulmangul.fragment.videoId
 import com.didimstory.mangulmangul.youtube.YoutubeItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,26 +52,70 @@ class FamousFragment : Fragment(){
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
-      
-        mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        fairyAdapter =
-            fairyRecycleAdapter(context,1)
 
-        binding!!.recyclerView.apply {
-            this.layoutManager =
-                mLayoutManager
-            this.adapter = fairyAdapter
-            this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        Client.retrofitService.fameHome(PreferenceManager.getLong(context,"PrefIDIndex"))
+            .enqueue(object :
+                Callback<listfairyHome> {
+                override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
 
+                }
+
+                override fun onResponse(
+                    call: Call<listfairyHome>,
+                    response: Response<listfairyHome>
+                ) {
+                    when(response!!.code()){
+
+                        200->
+                        {
+                            var list = response.body()?.list
+                            for(i in 0 until (response.body()?.list!!.size)){
+                                Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                                dataList.add(
+                                    YoutubeItem(
+                                        list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
+                                    )
+                                )
+
+
+                            }
+
+
+
+
+                            mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            fairyAdapter =
+                                fairyRecycleAdapter(context,1)
+
+                            binding!!.recyclerView.apply {
+                                this.layoutManager =
+                                    mLayoutManager
+                                this.adapter = fairyAdapter
+                                this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+
+
+                                })
+
+
+                            }
+
+                            fairyAdapter.dataList =
+                                dataList
+
+
+                        }
+
+                    }
+                }
 
 
             })
 
 
-        }
 
-        fairyAdapter.dataList =
-            dataList
+
+
 /*      binding!!.titleText.text = fairyAdapter.dataList[0].title
         binding!!.descriptionText.text = String.format("%s ", fairyAdapter.dataList[0].description)*/
 

@@ -3,19 +3,28 @@ package com.didimstory.mangulmangul.MyService
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.inquiryListResult
 import com.didimstory.mangulmangul.Entity.noticeDetailItem
+import com.didimstory.mangulmangul.Entity.noticeListResult
 import com.didimstory.mangulmangul.Entity.questionDetailItem
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.databinding.FragmentNoticeBinding
 import com.didimstory.mangulmangul.databinding.FragmentQuestionBinding
 import com.didimstory.mangulmangul.fragment.videoId
+import com.didimstory.mangulmangul.youtube.YoutubeItem
 import kotlinx.android.synthetic.main.fragment_question.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +45,7 @@ class QuestionFragment : Fragment() {
     private lateinit var boastRecycleAdapter: QAdpater
     private var dataList = arrayListOf<questionDetailItem>()
     var binding:FragmentQuestionBinding?=null
+
     override fun onDetach() {
         super.onDetach()
         callback.remove()
@@ -68,47 +78,92 @@ class QuestionFragment : Fragment() {
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
-        dataList.add(
+
+
+        Client.retrofitService.noticeList(
+            PreferenceManager.getLong(context,"PrefIDIndex")
+        )
+            .enqueue(object :
+                Callback<inquiryListResult> {
+                override fun onFailure(call: Call<inquiryListResult>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<inquiryListResult>,
+                    response: Response<inquiryListResult>
+                ) {
+
+
+                    var list = response.body()?.list
+                    Log.d("listresult",list.toString())
+                    for(i in 0 until (response.body()?.list!!.size)){
+
+                        dataList.add(
+                            questionDetailItem(
+                                list?.get(i)!!.inquiryIdx, list?.get(i)!!.title, list?.get(i)!!.inquiryStatus, list?.get(i)!!.createdAt
+                            )
+                        )
+
+
+                    }
+
+
+
+                    mLayoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                    boastRecycleAdapter =
+                        QAdpater(context)
+
+                    binding?.noticeRecycler.apply {
+                        this?.layoutManager =
+                            mLayoutManager
+                        this?.adapter = boastRecycleAdapter
+
+
+                    }
+
+                    boastRecycleAdapter.dataList = dataList
+
+
+
+                }
+
+
+
+            })
+
+
+
+
+
+
+
+
+
+
+
+  /*      dataList.add(
             questionDetailItem(
                 "답변대기", "제목", "2021.00.00","안녕?","네네"
             )
-        )
-        dataList.add(
-            questionDetailItem(
-                "답변대기", "제목", "2021.00.00","안녕?","네네"            )
-        )
-        dataList.add(
-            questionDetailItem(
-                "답변대기", "제목", "2021.00.00","안녕?","네네"            )
-        )
-        dataList.add(
-            questionDetailItem(
-                "답변대기", "제목", "2021.00.00","안녕?","네네"            )
-        )
-        mLayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        boastRecycleAdapter =
-            QAdpater(context)
-
-        binding?.noticeRecycler.apply {
-            this?.layoutManager =
-                mLayoutManager
-            this?.adapter = boastRecycleAdapter
-
-
-        }
-
-        boastRecycleAdapter.dataList = dataList
+        )*/
 
 
 
-        question_btn.setOnClickListener(View.OnClickListener {
+
+       binding?.questionBtn?.setOnClickListener(View.OnClickListener {
 
 
             var intent=Intent(context,QuestionActivity::class.java)
+
+
             startActivity(intent)
 
         })
+
+
+
 
 
         return view

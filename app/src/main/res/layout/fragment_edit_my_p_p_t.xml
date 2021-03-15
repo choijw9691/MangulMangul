@@ -1,32 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".boast.boastActivity"
+    tools:context=".fragment.BoastFragment"
     android:orientation="vertical"
+    android:id="@+id/boastContainer"
+
     >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0"
-        android:layout_weight="1"
-        ></View>
-    <FrameLayout
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:id="@+id/boastContainer"
+        android:layout_weight="0.3"
         >
 
-    </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:text="포트폴리오"
+            android:textColor="@color/black"
+            >
+
+        </TextView>
+
+
+    </RelativeLayout>
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0"
-        android:layout_weight="2"
-        android:id="@+id/boastRecycler"
-        ></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="0dp"
+        android:id="@+id/recyclerView"
+        android:layout_weight="3"
+
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+
+        >
+
+
+    </LinearLayout>
+
 
 </LinearLayout>

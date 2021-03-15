@@ -10,13 +10,21 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.transaction
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.boastListResult
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.boast.BoastDetailFragment
 import com.didimstory.mangulmangul.boast.boastDetailAdapter
 import com.didimstory.mangulmangul.boast.boastDetailRecycleItem
 import com.didimstory.mangulmangul.databinding.ActivityBoastBinding
 import com.didimstory.mangulmangul.databinding.FragmentEditMyPPTBinding
+import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
 import com.didimstory.mangulmangul.fragment.videoId
+import com.didimstory.mangulmangul.youtube.YoutubeItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,8 +40,9 @@ private const val ARG_PARAM2 = "param2"
 class EditMyPPT : Fragment() {
     private lateinit var callback: OnBackPressedCallback
     private lateinit var mLayoutManager: LinearLayoutManager
-    private lateinit var boastRecycleAdapter: boastDetailAdapter
-    private var dataList = arrayListOf<boastDetailRecycleItem>()
+    private lateinit var fairyAdapter: fairyRecycleAdapter
+
+    private var dataList = arrayListOf<YoutubeItem>()
 
 
     val thumnail by lazy { requireArguments().getString("thumnail") }
@@ -74,71 +83,76 @@ class EditMyPPT : Fragment() {
 
 
 
-        var fragment: BoastDetailFragment? = BoastDetailFragment()
+/*        var fragment: BoastDetailFragment? = BoastDetailFragment()
         var bundle: Bundle = Bundle()
         bundle.putString("intentCheckurl", videoId)
         bundle.putString("nickname", "nickname")
         bundle.putString("content", "content")
         fragment!!.arguments = bundle
 
-        childFragmentManager.beginTransaction().replace(R.id.boastContainer, fragment).commit()
+        childFragmentManager.beginTransaction().replace(R.id.boastContainer, fragment).commit()*/
 
-
-
-
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "1", "1"
-            )
+        Client.retrofitService.pptGet(
+            PreferenceManager.getLong(context,"PrefIDIndex")
         )
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "2", "2"
-            )
-        )
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "3", "3"
-            )
-        )
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "4", "4"
-            )
-        )
-        mLayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        boastRecycleAdapter =
-            boastDetailAdapter(context, object : boastDetailAdapter.BoastDetailListener {
-                override fun detailListener(
-                    thumnail: String?,
-                    nickname: String?,
-                    content: String?
-                ) {
-                    var transaction = childFragmentManager.beginTransaction()
-                    var fragment: BoastDetailFragment? = BoastDetailFragment()
-                    var bundle: Bundle = Bundle()
-                    bundle.putString("thumnail", thumnail)
-                    bundle.putString("nickname", nickname)
-                    bundle.putString("content", content)
-                    fragment!!.arguments = bundle
-
-                    transaction.replace(R.id.boastContainer, fragment).commit()
-
+            .enqueue(object :
+                Callback<boastListResult> {
+                override fun onFailure(call: Call<boastListResult>, t: Throwable) {
 
                 }
 
+                override fun onResponse(
+                    call: Call<boastListResult>,
+                    response: Response<boastListResult>
+                ) {
 
+                    when (response!!.code()) {
+
+                        200 -> {
+                            var list = response.body()?.list
+                            for (i in 0 until (response.body()?.list!!.size)) {
+
+                                dataList.add(
+                                    YoutubeItem(
+                                        list?.get(i)!!.boastIdx.toLong(),
+                                        list?.get(i)!!.fileRealName,
+                                        list?.get(i)!!.title,
+                                        false
+                                    )
+                                )
+
+
+                            }
+
+
+                            mLayoutManager =
+                                LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            fairyAdapter =
+                                fairyRecycleAdapter(context, 3)
+
+                            binding!!.recyclerView.apply {
+                                this.layoutManager =
+                                    mLayoutManager
+                                this.adapter = fairyAdapter
+
+
+                            }
+
+                            fairyAdapter.dataList =
+                                dataList
+
+
+                        }
+
+                    }
+
+                }
             })
-        binding!!.boastRecycler.apply {
-            this.layoutManager =
-                mLayoutManager
-            this.adapter = boastRecycleAdapter
-
-
-        }
-
-        boastRecycleAdapter.dataList = dataList
+     /*   dataList.add(
+            boastDetailRecycleItem(
+                url, "1", "1"
+            )
+        )*/
 
 
         return view

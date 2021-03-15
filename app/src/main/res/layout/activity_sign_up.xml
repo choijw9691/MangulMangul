@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/backgroundimg"
+    android:orientation="vertical"
     tools:ignore="ButtonStyle,HardcodedText, ContentDescription, SmallSp">
 
     <RelativeLayout
@@ -13,14 +13,15 @@
         android:layout_height="@dimen/dp_50"
         android:layout_marginTop="@dimen/dp_18"
         android:orientation="horizontal">
+
         <Button
+            android:id="@+id/backbtn"
             android:layout_width="@dimen/dp_35"
             android:layout_height="@dimen/dp_30"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:background="@drawable/ic_icon_left_gray_8"
             android:layout_centerVertical="true"
-            android:id="@+id/backbtn"
-            ></Button>
+            android:layout_marginLeft="@dimen/dp_40"
+            android:background="@drawable/ic_icon_left_gray_8"></Button>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,68 +37,65 @@
     </RelativeLayout>
 
 
-
     <LinearLayout
+        android:id="@+id/lin1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/lin1"
-        android:visibility="visible"
         android:layout_marginTop="@dimen/dp_10"
-android:paddingTop="@dimen/dp_20"
-        >
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_20"
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/userName"
             android:layout_width="600dp"
             android:layout_height="@dimen/dp_50"
-            android:background="@drawable/editradius"
-            android:hint="이름"
             android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+
+            android:background="@drawable/editradius"
+
+            android:fontFamily="@font/ham"
+            android:hint="이름"
+            android:imeOptions="flagNoExtractUi"
 
             android:paddingLeft="@dimen/dp_20"
-            android:fontFamily="@font/ham"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_gravity="center"
-            android:inputType="textPassword"
-            android:imeOptions="flagNoExtractUi"
-            android:enabled="false"
 
             />
+
         <LinearLayout
             android:layout_width="600dp"
             android:layout_height="@dimen/dp_50"
-            android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_10"
-            >
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/userRoleMno"
                 android:layout_width="@dimen/dp_400"
                 android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_40"
                 android:background="@drawable/editradius"
-                android:hint="아이디"
                 android:fontFamily="@font/ham"
 
-                android:paddingLeft="@dimen/dp_20"
+                android:hint="아이디"
                 android:imeOptions="flagNoExtractUi"
-                android:layout_marginRight="@dimen/dp_40"
-                />
+                android:paddingLeft="@dimen/dp_20" />
 
             <Button
                 android:id="@+id/check_id"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="중복확인"
-
-                android:background="@drawable/action_button"
-                android:textColor="#ff6b6b"
-                android:textStyle="bold"
-                android:fontFamily="@font/ham"
-                android:layout_marginLeft="@dimen/dp_10"
                 android:layout_alignParentRight="true"
+
+                android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginRight="@dimen/dp_40"
-                ></Button>
+                android:background="@drawable/action_button"
+                android:fontFamily="@font/ham"
+                android:text="중복확인"
+                android:textColor="#ff6b6b"
+                android:textStyle="bold"></Button>
         </LinearLayout>
 
 
@@ -105,17 +103,17 @@ android:paddingTop="@dimen/dp_20"
             android:id="@+id/password"
             android:layout_width="600dp"
             android:layout_height="@dimen/dp_50"
-            android:background="@drawable/editradius"
-            android:hint="비밀번호"
             android:layout_centerInParent="true"
-
-            android:paddingLeft="@dimen/dp_20"
-            android:fontFamily="@font/ham"
-            android:layout_marginTop="@dimen/dp_10"
             android:layout_gravity="center"
-            android:inputType="textPassword"
-            android:imeOptions="flagNoExtractUi"
+            android:layout_marginTop="@dimen/dp_10"
+
+            android:background="@drawable/editradius"
             android:enabled="false"
+            android:fontFamily="@font/ham"
+            android:hint="비밀번호"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/dp_20"
 
             />
 
@@ -128,73 +126,64 @@ android:paddingTop="@dimen/dp_20"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_10"
             android:background="@drawable/editradius"
+            android:enabled="false"
             android:fontFamily="@font/ham"
             android:hint="비밀번호 확인"
-            android:inputType="textPassword"
             android:imeOptions="flagNoExtractUi"
 
-            android:paddingLeft="@dimen/dp_20"
-            android:enabled="false"
-            />
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/dp_20" />
 
         <Button
+            android:id="@+id/next_btn"
             android:layout_width="@dimen/dp_400"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_25"
 
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_25"
+            android:background="@drawable/redbutton"
+            android:fontFamily="@font/ham"
             android:onClick="onclick"
             android:text="다음"
             android:textColor="@android:color/white"
-            android:layout_gravity="center"
-android:background="@drawable/redbutton"
-            android:id="@+id/next_btn"
-            android:textStyle="bold"
-            android:fontFamily="@font/ham"
-            >
+            android:textStyle="bold">
 
         </Button>
-
 
 
     </LinearLayout>
 
 
-
-
-
-
-
     <LinearLayout
+        android:id="@+id/lin2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         android:orientation="vertical"
-        android:id="@+id/lin2"
-        >
+        android:visibility="gone">
 
 
         <EditText
             android:id="@+id/nickname"
             android:layout_width="600dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/editradius"
-            android:hint="닉네임"
             android:layout_centerInParent="true"
-
-            android:paddingLeft="@dimen/dp_20"
-            android:fontFamily="@font/ham"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+
+            android:background="@drawable/editradius"
+            android:fontFamily="@font/ham"
+            android:hint="닉네임"
             android:imeOptions="flagNoExtractUi"
-            />
+            android:paddingLeft="@dimen/dp_20" />
+
         <LinearLayout
             android:layout_width="600dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            android:orientation="horizontal"
 
             >
 
@@ -202,32 +191,31 @@ android:background="@drawable/redbutton"
                 android:id="@+id/address1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:imeOptions="flagNoExtractUi"
+                android:layout_weight="7"
                 android:background="@drawable/editradius"
                 android:fontFamily="@font/ham"
                 android:hint="주소"
-android:layout_weight="7"
+                android:imeOptions="flagNoExtractUi"
 
                 android:paddingLeft="@dimen/dp_20" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                ></View>
+                android:layout_weight="1"></View>
+
             <Button
+                android:id="@+id/check_adr"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="주소검색"
                 android:layout_weight="1.5"
                 android:background="@drawable/radiusbutton"
-                android:textColor="#ff6b6b"
-                android:textStyle="bold"
                 android:fontFamily="@font/ham"
+                android:text="주소검색"
+                android:textColor="#ff6b6b"
 
 
-
-                android:id="@+id/check_adr"
-                ></Button>
+                android:textStyle="bold"></Button>
         </LinearLayout>
 
 
@@ -235,66 +223,61 @@ android:layout_weight="7"
             android:id="@+id/address2"
             android:layout_width="600dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/editradius"
-            android:hint="상세주소"
             android:layout_centerInParent="true"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="1sp"
-            android:autoSizeMaxTextSize="100sp"
-            android:autoSizeStepGranularity="2sp"
-            android:paddingLeft="@dimen/dp_20"
-            android:fontFamily="@font/ham"
-            android:layout_marginTop="@dimen/dp_10"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="1sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/editradius"
+            android:fontFamily="@font/ham"
+            android:hint="상세주소"
             android:imeOptions="flagNoExtractUi"
-            />
+            android:paddingLeft="@dimen/dp_20" />
+
         <EditText
             android:id="@+id/email"
             android:layout_width="600dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/editradius"
-            android:hint="이메일"
             android:layout_centerInParent="true"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMinTextSize="1sp"
-            android:autoSizeMaxTextSize="100sp"
-            android:autoSizeStepGranularity="2sp"
-            android:paddingLeft="@dimen/dp_20"
-            android:fontFamily="@font/ham"
-            android:layout_marginTop="@dimen/dp_10"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="100sp"
+            android:autoSizeMinTextSize="1sp"
+            android:autoSizeStepGranularity="2sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/editradius"
+            android:fontFamily="@font/ham"
+            android:hint="이메일"
             android:imeOptions="flagNoExtractUi"
-            />
+            android:paddingLeft="@dimen/dp_20" />
 
 
         <Button
             android:id="@+id/sign_btn"
             android:layout_width="@dimen/dp_400"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_25"
+            android:layout_weight="1"
+            android:background="@drawable/redbutton"
+            android:backgroundTint="#ff6b6b"
             android:elevation="2dp"
+            android:fontFamily="@font/ham"
             android:onClick="onclick"
             android:text="다음"
             android:textColor="@android:color/white"
-            android:layout_gravity="center"
-            android:background="@drawable/redbutton"
-            android:backgroundTint="#ff6b6b"
-            android:textStyle="bold"
-            android:fontFamily="@font/ham"/>
-<View
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/dp_0"
-    android:layout_weight="0.3"
-    ></View>
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_0"
+            android:layout_weight="0.3"></View>
 
     </LinearLayout>
-
-
-
-
 
 
 </LinearLayout>
