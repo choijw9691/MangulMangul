@@ -28,7 +28,7 @@ class LoginActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if(PreferenceManager.getLong(applicationContext,"PrefIDIndex") != (-1).toLong()){
+       if(PreferenceManager.getLong(applicationContext,"PrefIDIndex") != (-1).toLong()){
 Log.d("로그인?",PreferenceManager.getLong(applicationContext,"PrefIDIndex").toString())
             startActivity(Intent(applicationContext,MainActivity::class.java))
             finish()

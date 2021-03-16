@@ -6,7 +6,7 @@
     xmlns:src="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainActivity"
-
+android:background="@drawable/ic_group_12_copy_2"
     >
 
     <RelativeLayout
@@ -15,26 +15,90 @@
         android:layout_weight="1.9"
 
         >
+<ImageButton
+    android:layout_width="@dimen/dp_40"
+    android:layout_height="@dimen/dp_40"
+    android:background="@drawable/ic_icon_left_gray_8"
+    android:layout_marginTop="@dimen/dp_20"
+    android:layout_marginLeft="@dimen/dp_30"
+    ></ImageButton>
 
         <com.google.android.youtube.player.YouTubePlayerView
             android:id="@+id/youtubeView"
             android:layout_width="@dimen/dp_300"
             android:layout_height="@dimen/dp_200"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:background="@drawable/radiusrecycle"
+            />
+
+
+
 
 <Button
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/dp_120"
     android:layout_height="wrap_content"
     android:layout_toRightOf="@+id/youtubeView"
     android:layout_alignTop="@+id/youtubeView"
     android:id="@+id/gotoBtn"
+    android:layout_marginLeft="@dimen/dp_30"
+    android:background="@drawable/redbutton"
+    android:text="학습도구"
+    android:textColor="@color/white"
+    android:fontFamily="@font/ham"
+    android:textStyle="bold"
+    android:textSize="@dimen/dp_18"
     >
 
 
 </Button>
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+android:orientation="horizontal"
 
+        >
+
+        <TextView
+            android:id="@+id/fairyText"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+android:text="옥토넛과 노래해요 - 시즌송"
+android:layout_gravity="center"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_toLeftOf="@+id/heart"
+            android:fontFamily="@font/ham"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+
+            ></TextView>
+        <LinearLayout
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+
+            ></LinearLayout>
+
+        //       mButton1.setPressed(false);
+
+
+        <ImageButton
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/like_selector"
+            android:adjustViewBounds="true"
+            android:id="@+id/heart"
+            android:layout_marginRight="@dimen/dp_10"
+            ></ImageButton>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -45,7 +109,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_20"
+            ></androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>

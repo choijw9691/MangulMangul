@@ -4,9 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".Purchase.purchaseActivity">
+    android:orientation="vertical"
+    tools:context=".Purchase.purchaseActivity"
+    android:background="@drawable/ic_group_12_copy_2"
+    >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+  android:layout_marginTop="@dimen/dp_10"
+        >
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp_50"
+            ></ImageButton>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="구매하기"
+      android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_30"
+            android:fontFamily="@font/ham"
+         android:layout_centerInParent="true"
+            ></TextView>
+
+    </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="9"
+    android:orientation="horizontal"
+    android:layout_marginTop="@dimen/dp_10"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,84 +47,119 @@
         android:orientation="vertical"
         android:visibility="visible"
         android:id="@+id/purchaseLinear1"
+
+        android:layout_marginLeft="@dimen/dp_50"
         >
 
         <RelativeLayout
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="horizontal"
+            android:layout_weight="0.5"
             >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="받는사람 정보"
                 android:layout_alignParentLeft="true"
-
+android:textStyle="bold"
                 ></TextView>
 
             <CheckedTextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="구매자와 동일합니다"
-                android:layout_alignParentRight="true"
+          android:layout_alignParentRight="true"
+                android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+             android:gravity="center"
                 ></CheckedTextView>
         </RelativeLayout>
 
-        <EditText
+        <LinearLayout
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:hint="이름"
-            android:id="@+id/name"
-            ></EditText>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <EditText
+                android:layout_width="500dp"
+                android:layout_height="@dimen/dp_60"
+                android:hint="  이름"
+                android:id="@+id/name"
+                android:background="@drawable/whitetext"
+                ></EditText>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            >
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/dp_60"
                 android:layout_weight="3"
-                android:hint="주소"
+                android:hint="  주소"
                 android:id="@+id/addressText"
+                android:background="@drawable/whitetext"
                 ></EditText>
 
       <Button
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
+          android:layout_height="@dimen/dp_60"
           android:text="주소검색"
-          android:layout_weight="5"
+          android:layout_weight="9"
           android:id="@+id/address"
-
-
+android:background="@drawable/radiusbutton"
+android:textColor="#ff6b6b"
+          android:textStyle="bold"
+          android:fontFamily="@font/ham"
+          android:layout_marginLeft="@dimen/dp_20"
           ></Button>
         </LinearLayout>
+<LinearLayout
+    android:layout_width="500dp"
+    android:layout_height="0dp"
+    android:layout_weight="1"
 
-        <EditText
-            android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:hint="상세주소"
-            android:id="@+id/addr2"
-            ></EditText>
+    >
+    <EditText
+        android:layout_width="500dp"
+        android:layout_height="@dimen/dp_60"
+        android:hint="  상세주소"
+        android:id="@+id/addr2"
+        android:background="@drawable/whitetext"
+        ></EditText>
+
+</LinearLayout>
+
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
     android:orientation="horizontal"
+    android:layout_weight="1"
     >
 
     <EditText
         android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:hint="이메일"
+        android:layout_height="@dimen/dp_60"
+        android:hint="  이메일"
         android:id="@+id/email"
         android:inputType="textEmailAddress"
+        android:background="@drawable/whitetext"
+        android:layout_marginRight="@dimen/dp_20"
         ></EditText>
     <Button
         android:layout_width="@dimen/dp_150"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_60"
         android:text="다음"
         android:id="@+id/next"
+        android:background="@drawable/redbutton"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         ></Button>
 </LinearLayout>
 
@@ -181,7 +249,11 @@
             android:layout_height="wrap_content"
         android:text="결제하기"
             android:id="@+id/payment"
+            android:background="@drawable/redbutton"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/ham"
             ></Button>
     </LinearLayout>
-
+</LinearLayout>
 </LinearLayout>

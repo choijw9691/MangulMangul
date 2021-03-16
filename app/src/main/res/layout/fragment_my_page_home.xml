@@ -25,31 +25,58 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         >
-        <Button
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="@dimen/dp_150"
-            android:id="@+id/MyInfo"
-            android:text="내정보 수정"
+<RelativeLayout
+    android:layout_width="@dimen/dp_150"
+    android:layout_height="180dp">
 
-            ></Button>
+
+    <Button
+
+        android:layout_width="@dimen/dp_150"
+        android:layout_height="180dp"
+        android:id="@+id/MyInfo"
+        android:text="내정보 수정"
+
+        android:textStyle="bold"
+        android:textColor="@color/white"
+
+        android:fontFamily="@font/ham"
+
+        android:paddingBottom="@dimen/dp_20"
+
+        ></Button>
+    <ImageButton
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_80"
+
+        android:background="@drawable/ic_icon_user_primary"
+        >
+
+
+    </ImageButton>
+</RelativeLayout>
+
 
         <Button
             android:layout_width="@dimen/dp_150"
             android:layout_height="@dimen/dp_150"
             android:text="비밀번호 변경"
             android:id="@+id/MyPassword"
+            android:background="@drawable/radiusbutton"
             ></Button>
         <Button
             android:layout_width="@dimen/dp_150"
             android:layout_height="@dimen/dp_150"
             android:text="구매내역"
             android:id="@+id/MyBuy"
+            android:background="@drawable/radiusbutton"
             ></Button>
         <Button
             android:layout_width="@dimen/dp_150"
             android:layout_height="@dimen/dp_150"
             android:text="포트폴리오"
             android:id="@+id/MyPPT"
+            android:background="@drawable/radiusbutton"
             ></Button>
 
     </LinearLayout>

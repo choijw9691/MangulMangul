@@ -34,15 +34,23 @@ var imageUrlList: ArrayList<boastDetailItem>? = ArrayList<boastDetailItem>()
 
 
 
+
+
+
+
+
+
+
+
         var extra = this.arguments
         if (extra != null) {
             extra = arguments
             if (extra?.getString("intentCheckurl") != null) {
                 val intentCheckurl = extra?.getString("intentCheckurl")
-
-                imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))
-                imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))
-                imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))
+                Log.d("intentCheckurl",intentCheckurl.toString())
+                imageUrlList?.add(boastDetailItem(intentCheckurl.toString()))
+/*                imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))
+                imageUrlList?.add(boastDetailItem("https://img.youtube.com/vi/$intentCheckurl/maxresdefault.jpg"))*/
 
 
 
@@ -68,7 +76,7 @@ var imageUrlList: ArrayList<boastDetailItem>? = ArrayList<boastDetailItem>()
                 var thumnail = extra?.getString("thumnail")
                 var nickname = extra?.getString("nickname")
                 var content = extra?.getString("content")
-
+                Log.d("intentCheckurl",thumnail.toString())
                 imageUrlList?.add(boastDetailItem(thumnail.toString()))
                 imageUrlList?.add(boastDetailItem(thumnail.toString()))
                 imageUrlList?.add(boastDetailItem(thumnail.toString()))

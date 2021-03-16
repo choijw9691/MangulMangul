@@ -228,3 +228,56 @@ data class inquiryListResult(
     var list : List<inquiryList>
 
 )
+data class boastrList(
+
+    @SerializedName("fileRealName")
+    var fileRealName: String
+    ,
+    @SerializedName("likeStatus")
+    var likeStatus: Boolean
+    ,
+    @SerializedName("title")
+    var title: String
+    ,
+    @SerializedName("contents")
+    var contents: String
+,
+    @SerializedName("deleted")
+    var deleted: Boolean,    @SerializedName("boastIdx")
+    var boastIdx: Int
+
+)
+
+data class boastrListResult(
+
+    @SerializedName("boastList")
+    var list : List<boastrList>
+
+)
+
+data class boastDetail(
+
+    @SerializedName("boastIdx")
+    var boastIdx: Int
+    ,
+    @SerializedName("fileRealName")
+    var fileRealName: String
+    ,
+    @SerializedName("likeStatus")
+    var likeStatus: Boolean
+    ,
+    @SerializedName("nickname")
+    var nickname: String
+    ,
+    @SerializedName("title")
+    var title: String
+    ,
+    @SerializedName("contents")
+var contents : String
+
+)data class boastDetailResult(
+
+    @SerializedName("boastList")
+    var list : List<boastDetail>
+
+)

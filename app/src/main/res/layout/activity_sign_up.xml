@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
-        android:layout_marginTop="@dimen/dp_18"
+
         android:orientation="horizontal">
 
         <Button
@@ -138,12 +138,11 @@
             android:id="@+id/next_btn"
             android:layout_width="@dimen/dp_400"
             android:layout_height="wrap_content"
-
+android:enabled="false"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dp_25"
             android:background="@drawable/redbutton"
             android:fontFamily="@font/ham"
-            android:onClick="onclick"
             android:text="다음"
             android:textColor="@android:color/white"
             android:textStyle="bold">

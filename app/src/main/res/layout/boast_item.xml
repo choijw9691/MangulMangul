@@ -13,7 +13,7 @@ android:orientation="vertical"
     <com.google.android.youtube.player.YouTubeThumbnailView
         android:id="@+id/item_image"
         android:background="#FFFFFFFF"
-        android:backgroundTint="#88FFFCC9"
+
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:layout_gravity="center"

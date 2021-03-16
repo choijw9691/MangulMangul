@@ -151,7 +151,6 @@ class QuestionFragment : Fragment() {
 
 
 
-
        binding?.questionBtn?.setOnClickListener(View.OnClickListener {
 
 

@@ -6,8 +6,7 @@
     android:layout_height="@dimen/dp_100"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:background="#FFFFFFFF"
-    android:backgroundTint="#88FFFCC9"
+
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
@@ -16,6 +15,7 @@
     >
 
     <ImageView
+        android:background="@drawable/radiusrecycle"
         android:id="@+id/thumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center"
+        android:visibility="gone"
         ></TextView>
 </LinearLayout>
 

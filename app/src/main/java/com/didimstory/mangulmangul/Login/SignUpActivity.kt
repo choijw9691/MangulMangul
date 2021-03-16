@@ -30,8 +30,8 @@ class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-        next_btn.isClickable = false
-        next_btn.setBackgroundColor(Color.WHITE)
+
+
 
 
 
@@ -97,7 +97,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (password.text.toString() != null){
 
                     if (password.text.toString().equals(pw_check.text.toString())) {
-next_btn.setBackgroundResource(R.drawable.redbutton)
+next_btn.isEnabled=true
                         next_btn.visibility=View.VISIBLE
                         next_btn.setOnClickListener(View.OnClickListener {
                             lin1.visibility = View.GONE

@@ -1,3 +1,3 @@
 package com.didimstory.mangulmangul.Entity
 
-data class boastRecycleItemData(val imageview : String,val nickname:String, val content:String)
+data class boastRecycleItemData(val fileRealName : String,val likeStatus:Boolean ,val title:String, val content:String,val deleted:Boolean,val boastIdx : Int)

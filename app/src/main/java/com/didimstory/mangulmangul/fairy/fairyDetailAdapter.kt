@@ -57,7 +57,7 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
 
         fun bind(data: YoutubeItem) {
 
-
+            binding.thumbnail.clipToOutline=true
 
             mContext?.let {
                 dataurl=data.ytUrl

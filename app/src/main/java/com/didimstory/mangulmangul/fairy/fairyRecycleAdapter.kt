@@ -61,7 +61,14 @@ class fairyRecycleAdapter(var context: Context?, var test: Int) :
     inner class MainMusicHolder(val binding: ActivityYoutubThumbNaiLBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+
+
+
+
         fun bind(data: YoutubeItem) {
+
+            binding.thumbnail.clipToOutline=true
+
             if (test != 3) {
                 mContext?.let {
                     dataurl = data.ytUrl

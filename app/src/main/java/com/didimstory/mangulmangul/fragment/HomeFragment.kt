@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.famous.FamousFragment
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 
@@ -31,7 +33,18 @@ class HomeFragment : Fragment() ,View.OnClickListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
 
+
+
+
+        val animation = AnimationUtils.loadAnimation(context,R.anim.leftright)
+      popfairyButton.startAnimation(animation)
+
+        val animation1 = AnimationUtils.loadAnimation(context,R.anim.leftrighttext)
+        text11.startAnimation(animation1)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

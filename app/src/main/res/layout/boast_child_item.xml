@@ -6,8 +6,7 @@
     android:layout_height="@dimen/dp_140"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:background="#FFFFFFFF"
-    android:backgroundTint="#88FFFCC9"
+
     android:orientation="vertical"
     android:paddingLeft="10dp"
     android:paddingTop="10dp"
@@ -23,10 +22,12 @@
         android:scaleType="fitXY"
         />
 <ImageButton
-    android:layout_width="@dimen/dp_60"
-    android:layout_height="@dimen/dp_60"
+    android:layout_width="@dimen/dp_30"
+    android:layout_height="@dimen/dp_30"
     android:layout_alignParentRight="true"
     android:id="@+id/child_remove"
+    android:background="@drawable/ic_icon_cancel_gray_5"
+
 ></ImageButton>
 </RelativeLayout>
 

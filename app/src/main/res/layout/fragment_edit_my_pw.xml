@@ -4,20 +4,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyPage.EditMyPw"
-
     android:orientation="vertical"
     >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="비밀번호변경"
-       ></TextView>
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_10"
+        >
 
-</LinearLayout>
+        <Button
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
 
+            android:id="@+id/backbtn"
+            android:background="@drawable/ic_icon_left_gray_8"
+            android:layout_marginLeft="@dimen/dp_30"
+            ></Button>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp_20"
+            android:text="비밀번호 변경"
+            ></TextView>
+    </RelativeLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/dp_40"
+    android:layout_marginRight="@dimen/dp_40"
+    android:layout_marginTop="@dimen/dp_30"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,8 +48,9 @@
         android:orientation="horizontal"
         >
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/whitetext"
+            android:layout_width="350dp"
+            android:layout_height="@dimen/dp_50"
             android:hint="현재 비밀번호"
             android:id="@+id/pw"
             ></EditText>
@@ -34,15 +58,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/checkpw"
+            android:text="비밀번호 확인"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@drawable/whitetext"
             ></Button>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        >
 
         <EditText
+            android:background="@drawable/whitetext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_50"
+
             android:enabled="false"
             android:hint="새로운 비밀번호"
             android:id="@+id/newpw"
@@ -51,29 +82,42 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_height="wrap_content"
+        >
 
 
         <EditText
             android:id="@+id/newpwcheck"
+            android:background="@drawable/whitetext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        android:enabled="false"
+            android:layout_height="@dimen/dp_50"
+            android:enabled="false"
             android:hint="비밀번호 확인"></EditText>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        >
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
             android:text="수정하기"
-        android:enabled="false"
+            android:enabled="false"
             android:id="@+id/change_pw"
+            android:background="@drawable/redbutton"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/ham"
+            android:layout_marginTop="@dimen/dp_20"
             ></Button>
 
     </LinearLayout>
+
+
+</LinearLayout>
 
 
 </LinearLayout>

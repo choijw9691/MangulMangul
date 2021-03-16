@@ -79,7 +79,7 @@ var aa:ArrayList<String>? =null
 
                 dataurl = data.url
                 Glide.with(it)
-                    .load("https://img.youtube.com/vi/$dataurl/maxresdefault.jpg")
+                    .load(dataurl)
                     .centerInside()
                     .override(1000, 1000)
                     .into(binding.purchaseImageview)

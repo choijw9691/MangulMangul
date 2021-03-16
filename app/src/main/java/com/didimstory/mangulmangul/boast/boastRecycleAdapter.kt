@@ -56,9 +56,9 @@ class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<Recycler
         fun bind(data: boastRecycleItemData) {
 
             mContext?.let {
-                dataurl = data.imageview
+                dataurl = data.fileRealName
                 Glide.with(it)
-                    .load("https://img.youtube.com/vi/$dataurl/maxresdefault.jpg")
+                    .load(dataurl)
                     .centerInside()
                     .override(1000, 1000)
                     .into(binding.itemImage)
@@ -67,10 +67,11 @@ class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<Recycler
                 binding.itemImage.setOnClickListener(View.OnClickListener {
 
                     val intent = Intent(mContext, boastActivity::class.java)
-                    intent.putExtra("data.url", data.imageview)
+                    intent.putExtra("data.url", data.fileRealName)
                     intent.putExtra("content", data.content)
-                    intent.putExtra("nickname", data.nickname)
-
+                    intent.putExtra("nickname", data.title)
+                    intent.putExtra("likeStatus", data.likeStatus)
+                    intent.putExtra("boastIdx", data.boastIdx)
                     mContext.startActivity(intent)
 
 

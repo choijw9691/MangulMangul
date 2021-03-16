@@ -70,12 +70,12 @@ class boastDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: boastDetailRecycleItem) {
-
+            binding.thumbnail.clipToOutline=true
 
             mContext?.let {
-                dataurl = data.imageview
+                dataurl = data.fileRealName
                 Glide.with(it)
-                    .load("https://img.youtube.com/vi/$dataurl/maxresdefault.jpg")
+                    .load(dataurl)
                     .centerInside()
                     .override(1000, 1000)
                     .into(binding.thumbnail)
@@ -84,9 +84,9 @@ class boastDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 binding.thumbnail.setOnClickListener(View.OnClickListener {
 
                     mBoastDetailListener?.detailListener(
-                        "https://img.youtube.com/vi/$dataurl/maxresdefault.jpg",
+                        dataurl,
                         data.nickname,
-                        data.content
+                        data.contents
                     )
 
 

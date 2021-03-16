@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_notice_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 
 class NoticeDetailActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ private var mWebSettings:WebSettings?=null
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notice_detail)
 
-
+var file = File("efefwef")
 
 
         webview.webViewClient = WebViewClient() // 클릭시 새창 안뜨게

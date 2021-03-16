@@ -20,29 +20,39 @@ class QuestionActivity : AppCompatActivity() {
         setContentView(R.layout.activity_question)
 
 
+        insert1.setOnClickListener(View.OnClickListener {
+            Log.d("asasd",
+                PreferenceManager.getLong(this, "PrefIDIndex")
+                    .toString() + title1.text.toString() + content.text.toString()
+            )
 
 
-       insert1.setOnClickListener(View.OnClickListener {
-           Client.retrofitService.insertInquiry(
-               PreferenceManager.getLong(this,"PrefIDIndex"),title1.text.toString(),content.text.toString()
-           ).enqueue(object :
-               Callback<Boolean> {
-               override fun onFailure(call: Call<Boolean>, t: Throwable) {
 
-               }
+            Client.retrofitService.insertInquiry(
+                PreferenceManager.getLong(this,"PrefIDIndex"),title1.text.toString(),content.text.toString()
+            ).enqueue(object :
+                Callback<Boolean> {
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
 
-               override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                   if (response.body()!!.equals(true)){
+                }
 
-                       Toast.makeText(applicationContext, "문의하기가 등록되었습니다.", Toast.LENGTH_SHORT).show()
-                       //   finish()
-                   }
-               }
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+
+                    Toast.makeText(applicationContext, "문의가 등록되었습니다.", Toast.LENGTH_SHORT).show()
+
+                    finish()
+                }
 
 
-           })
+            })
 
-       })
+
+
+
+
+        })
+          Log.d("asasd",PreferenceManager.getLong(this,"PrefIDIndex").toString()+title1.text.toString()+content.text.toString())
+
 
 
 

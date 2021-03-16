@@ -1,10 +1,12 @@
 package com.didimstory.mangul
 
 import com.didimstory.mangulmangul.Entity.*
-
+import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.util.ArrayList
+import java.util.*
+
 
 interface API {
     @POST("user/account/login")  //로그인
@@ -153,6 +155,7 @@ interface API {
         @Field("inquiryIdx") inquiryIdx: Int
     ): Call<inquiryDetail>
 
+
     @POST("user/cs/insertInquiry")//문의등록
     @FormUrlEncoded
     fun insertInquiry(
@@ -160,4 +163,31 @@ interface API {
         @Field("title") title: String,
         @Field("contents") contents: String
     ): Call<Boolean>
+
+
+
+    @POST("user/boast/boastList")//자랑하기
+    @FormUrlEncoded
+    fun boastList(
+        @Field("userIdx") userIdx: Long
+
+    ): Call<boastrListResult>
+
+
+    @POST("user/boast/boastDetail")//자랑하기상세
+   @FormUrlEncoded
+    fun boastDetail(
+        @Field("boastIdx") boastIdx : Int,
+        @Field("userIdx") userIdx: Long
+
+    ): Call<boastDetailResult>
+
+
+    //사용자가 프로필 이미지를 변경했을때 해당 이미지를 서버로 전송하는 통신
+
+
+    @Multipart
+    @POST("user/boast/insertBoast")
+    fun uploadImage(@Part file:MultipartBody.Part?):Call<Void>
+
 }

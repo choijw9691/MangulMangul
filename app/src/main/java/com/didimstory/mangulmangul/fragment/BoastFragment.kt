@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.boastRecycleItemData
+import com.didimstory.mangulmangul.Entity.boastrList
+import com.didimstory.mangulmangul.Entity.boastrListResult
 import com.didimstory.mangulmangul.Entity.listfairyHome
 import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.PreferenceManager
@@ -88,28 +90,28 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
             )
         )*/
 
-/*
-        Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
+
+        Client.retrofitService.boastList(PreferenceManager.getLong(context,"PrefIDIndex"))
             .enqueue(object :
-                Callback<listfairyHome> {
-                override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
+                Callback<boastrListResult> {
+                override fun onFailure(call: Call<boastrListResult>, t: Throwable) {
 
                 }
 
                 override fun onResponse(
-                    call: Call<listfairyHome>,
-                    response: Response<listfairyHome>
-                ) {
+                    call: Call<boastrListResult>,
+                    response: Response<boastrListResult>
+                ) {        Log.d("check123",response.body()?.list.toString())
                     when(response!!.code()){
 
                         200->
                         {
-                            var list = response.body()?.list
-                            for(i in 0 until (response.body()?.list!!.size)){
-                                Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                    var list = response.body()?.list
+                            for(i in 0 until (list!!.size)){
+                                //  Log.d("listresult",list?.get(i)!!.ytUrl.toString())
                                 dataList.add(
-                                    YoutubeItem(
-                                        list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
+                                    boastRecycleItemData(
+                                        list?.get(i)?.fileRealName,  list?.get(i)?.likeStatus, list?.get(i)?.title, list?.get(i)?.contents,list?.get(i)?.deleted,list?.get(i)?.boastIdx
                                     )
                                 )
 
@@ -145,7 +147,7 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
 
             })
 
-*/
+
 
 
 

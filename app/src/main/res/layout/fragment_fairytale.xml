@@ -10,35 +10,44 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_20"></View>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_20"></View>
+
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fairyTitle"
-        android:text="영어동화"
-
-        >
 
 
-    </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fairyTitle"
+            android:text="영어동화"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp_25"
+            android:layout_marginLeft="@dimen/dp_25"
+android:layout_centerVertical="true"
+            >
+
+
+        </TextView>
+
+
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         android:background="@drawable/ic_icon_search_gray_8"
 android:id="@+id/serch_btn"
 android:layout_alignParentRight="true"
+android:layout_marginRight="@dimen/dp_10"
         ></ImageButton>
 
 </RelativeLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_20"></View>
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="300dp"

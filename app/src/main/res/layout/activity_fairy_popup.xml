@@ -4,46 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:orientation="vertical"
->
+    android:orientation="vertical"
+    android:background="#f0f0f0"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.3"
+    android:layout_marginTop="@dimen/dp_15"
+    android:orientation="horizontal"
+    android:layout_marginBottom="@dimen/dp_5"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="학습도구"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:fontFamily="@font/ham"
+        android:textSize="20dp"
+        android:layout_marginLeft="@dimen/dp_20"
+        ></TextView>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/buyrecycler"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"></androidx.recyclerview.widget.RecyclerView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/buyrecycler"
+        android:layout_width="@dimen/dp_400"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_gravity="center"
+android:layout_marginTop="@dimen/dp_5"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            ></TextView>
 
-            <TextView
+        <Button
+            android:id="@+id/buyBtn"
+            android:layout_width="@dimen/dp_400"
+            android:layout_height="match_parent"
 
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                ></TextView>
+            android:elevation="2dp"
+            android:onClick="onclick"
+            android:text="구매하기"
+            android:textColor="@android:color/white"
+android:layout_gravity="bottom"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radiusbutton"
+            android:backgroundTint="#ff6b6b"
+            android:textStyle="bold"
+            android:fontFamily="@font/ham"
+            ></Button>
 
-            <Button
-                android:id="@+id/buyBtn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:text="구매하기"
-                android:textColor="@color/black"
 
-                ></Button>
+        <TextView
 
-            <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            ></TextView>
 
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                ></TextView>
-
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

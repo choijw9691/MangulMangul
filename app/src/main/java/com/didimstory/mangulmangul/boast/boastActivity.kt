@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.boastDetailResult
 import com.didimstory.mangulmangul.Entity.boastRecycleItemData
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.databinding.ActivityBoastBinding
 import com.didimstory.mangulmangul.fairy.fairybuyAdapter
 import com.didimstory.mangulmangul.fragment.BoastFragment
 
 import com.didimstory.mangulmangul.fragment.videoId
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class boastActivity : AppCompatActivity() {
@@ -50,64 +56,96 @@ class boastActivity : AppCompatActivity() {
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "1", "1"
-            )
-        )
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "2", "2"
-            )
-        )
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "3", "3"
-            )
-        )
-        dataList.add(
-            boastDetailRecycleItem(
-                url, "4", "4"
-            )
-        )
-        mLayoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        boastRecycleAdapter =
-            boastDetailAdapter(this, object : boastDetailAdapter.BoastDetailListener {
-                override fun detailListener(
-                    thumnail: String?,
-                    nickname: String?,
-                    content: String?
-                ) {
-                    var transaction = fragmentManager.beginTransaction()
-                    var fragment: BoastDetailFragment? = BoastDetailFragment()
-                    var bundle: Bundle = Bundle()
-                    bundle.putString("thumnail", thumnail)
-                    bundle.putString("nickname", nickname)
-                    bundle.putString("content", content)
-                    fragment!!.arguments = bundle
 
-                    transaction.replace(R.id.boastContainer, fragment).commit()
 
+
+
+        Client.retrofitService.boastDetail(
+            intent.getIntExtra("boastIdx", 0),
+            PreferenceManager.getLong(applicationContext, "PrefIDIndex")
+        )
+            .enqueue(object :
+                Callback<boastDetailResult> {
+                override fun onFailure(call: Call<boastDetailResult>, t: Throwable) {
 
                 }
 
+                override fun onResponse(
+                    call: Call<boastDetailResult>,
+                    response: Response<boastDetailResult>
+                ) {
+                    var list = response.body()?.list
+                    for (i in 0 until (list!!.size)) {
+                        //  Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                        dataList.add(
+                            boastDetailRecycleItem(
+                                list?.get(i)?.boastIdx,
+                                list?.get(i)?.fileRealName,
+                                list?.get(i)?.likeStatus,
+                                list?.get(i)?.nickname,
+                                list?.get(i)?.title,
+                                list?.get(i)?.contents
+                            )
+                        )
 
-            })
-        binding!!.boastRecycler.apply {
-            this.layoutManager =
-                mLayoutManager
-            this.adapter = boastRecycleAdapter
+
+                        mLayoutManager =
+                            LinearLayoutManager(
+                                applicationContext,
+                                LinearLayoutManager.HORIZONTAL,
+                                false
+                            )
+                        boastRecycleAdapter =
+                            boastDetailAdapter(
+                                applicationContext,
+                                object : boastDetailAdapter.BoastDetailListener {
+                                    override fun detailListener(
+                                        thumnail: String?,
+                                        nickname: String?,
+                                        content: String?
+                                    ) {
+                                        var transaction = fragmentManager.beginTransaction()
+                                        var fragment: BoastDetailFragment? = BoastDetailFragment()
+                                        var bundle: Bundle = Bundle()
+                                        bundle.putString("thumnail", thumnail)
+                                        bundle.putString("nickname", nickname)
+                                        bundle.putString("content", content)
+                                        fragment!!.arguments = bundle
+
+                                        transaction.replace(R.id.boastContainer, fragment).commit()
 
 
-        }
-
-        boastRecycleAdapter.dataList = dataList
+                                    }
 
 
+                                })
+                        binding!!.boastRecycler.apply {
+                            this.layoutManager =
+                                mLayoutManager
+                            this.adapter = boastRecycleAdapter
 
-        setContentView(binding.root)
+
+                        }
+
+                        boastRecycleAdapter.dataList = dataList
+                    }
+                }
+
+                })
+
+
+/*        dataList.add(
+            boastDetailRecycleItem(
+                url, "1", "1"
+            )
+
+        )*/
+
+
+
+
+                setContentView(binding.root)
+            }
+
+
     }
-
-
-}

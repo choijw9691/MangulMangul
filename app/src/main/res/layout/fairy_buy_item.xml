@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_80"
     android:orientation="horizontal"
+    android:background="@drawable/radiusrecycle"
     >
-
-
-    <ImageView
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:id="@+id/imageview"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        ></ImageView>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="110dp"
-    android:orientation="vertical"
-    android:layout_toRightOf="@+id/imageview"
-    >
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:id="@+id/textview"
-        ></TextView>
-    <CheckedTextView
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="@dimen/dp_30"
+        >
 
-android:id="@+id/checkbox"
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageview"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:background="@drawable/radiusrecycle"
+            ></ImageView>
 
-        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-        ></CheckedTextView>
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/imageview"
+android:layout_marginLeft="@dimen/dp_8"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textview"
+                ></TextView>
+
+            <CheckedTextView
+                android:id="@+id/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+
+                android:textColor="#ff6b6b"></CheckedTextView>
+        </LinearLayout>
+    </LinearLayout>
+
+
 </RelativeLayout>

@@ -16,43 +16,65 @@
 
     <com.google.android.youtube.player.YouTubeThumbnailView
         android:id="@+id/thumbnail"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:scaleType="fitXY"
-        app:srcCompat="@mipmap/ic_launcher_round" />
-    <LinearLayout
+        android:background="@drawable/radiusrecycle"
+      />
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_5"
         >
 
 
         <TextView
             android:id="@+id/fairyText"
-
-            android:layout_width="wrap_content"
+android:layout_centerVertical="true"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+
             android:layout_weight="1"
             android:gravity="center"
-            android:singleLine="false"
-          ></TextView>
-<LinearLayout
-    android:layout_width="7dp"
-    android:layout_height="wrap_content"
-
-    ></LinearLayout>
-
-        <ImageButton
-            android:layout_width="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_toLeftOf="@+id/heart"
+            android:fontFamily="@font/ham"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            ></TextView>
+        <LinearLayout
+            android:layout_width="7dp"
             android:layout_height="wrap_content"
 
-            android:background="@drawable/ic_icon_heart_color"
-android:adjustViewBounds="true"
-android:id="@+id/heart"
+            ></LinearLayout>
+
+        //       mButton1.setPressed(false);
+
+
+        <ImageButton
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/like_selector"
+            android:adjustViewBounds="true"
+            android:id="@+id/heart"
+android:layout_marginRight="@dimen/dp_10"
             ></ImageButton>
-    </LinearLayout>
+
+        //lottie.playAnimation();
+        lottie.loop(true);
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:lottie_rawRes="@raw/ikebuttton"
+
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
 
 </LinearLayout>
-
