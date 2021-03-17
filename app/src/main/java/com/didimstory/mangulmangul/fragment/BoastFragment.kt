@@ -228,8 +228,8 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
 
     override fun onResume() {
         super.onResume()
-       boastAdapter.notifyDataSetChanged()
-        Log.d("onBackPressed","check15")
+
+        boastRecycleAdapter(context).notifyDataSetChanged()
 
     }
 

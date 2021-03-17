@@ -7,6 +7,9 @@
     <!-- selector가 눌리지 않았을때 @drawable/button01_normal 를 보여준다.-->
     <item android:state_pressed="false"  android:drawable="@drawable/myedit_click_default"
 
+
+
+
         />
 
 </selector>

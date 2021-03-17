@@ -190,4 +190,18 @@ interface API {
     @POST("user/boast/insertBoast")
     fun uploadImage(@Part("userIdx")userIdx:Long,@Part("contents")contents:String,@Part("title")title:String,@Part file:MultipartBody.Part?):Call<Void>
 
+
+
+
+
+
+    @POST("user/fairyTale/updateLike")
+    @FormUrlEncoded
+    fun updateLike(@Field("userIdx") userIdx: Long,@Field("engFairyTaleIdx") engFairyTaleIdx: Long):Call<Boolean>
+
+
+
+
+
+
 }

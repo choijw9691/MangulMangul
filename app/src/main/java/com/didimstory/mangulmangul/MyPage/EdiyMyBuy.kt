@@ -88,7 +88,8 @@ var binding:FragmentEdiyMyBuyBinding?=null
 
 
                //메인
-                Log.d("listresult1212", list?.get(0)!!.artKitList.toString())
+
+                //Log.d("listresult1212", list?.get(0)!!.artKitList.toString())
                     mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                     fairyAdapter =
                         purchaseListAdapter(context,0)
@@ -102,8 +103,10 @@ var binding:FragmentEdiyMyBuyBinding?=null
 
                     }
 
-                    fairyAdapter.dataList =
-                        list
+                    if (list != null) {
+                        fairyAdapter.dataList =
+                            list
+                    }
 
                 }
 

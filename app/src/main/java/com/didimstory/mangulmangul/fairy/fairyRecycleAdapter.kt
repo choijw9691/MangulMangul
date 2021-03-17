@@ -12,14 +12,20 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.PreferenceManager
+import com.didimstory.mangulmangul.`object`.likeobject
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
 import com.didimstory.mangulmangul.famous.youtubeFamous
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 import com.didimstory.mangulmangul.youtube.youtubeTest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class fairyRecycleAdapter(var context: Context?, var test: Int) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() , likeobject{
 
     val mContext = context
     var dataurl: String? = null
@@ -62,38 +68,85 @@ class fairyRecycleAdapter(var context: Context?, var test: Int) :
         RecyclerView.ViewHolder(binding.root) {
 
 
-
-
-
         fun bind(data: YoutubeItem) {
 
-            binding.heart.setOnClickListener(View.OnClickListener {
-     /*           binding.heart.playAnimation()
-                binding.heart.loop(false);*/
-//binding.heart.pauseAnimation()
-                binding.heart.frame= binding.heart.maxFrame.toInt()
-            })
 
-if (data.likeStatus==true){
+            if (data.likeStatus == true) {
+Log.d("ss1111111",data.likeStatus.toString())
+                binding.heart.progress=1f
 
-    binding.heart.frame= binding.heart.maxFrame.toInt()
-    binding.heart.setOnClickListener(View.OnClickListener {
-        binding.heart.frame= binding.heart.minFrame.toInt()
-    })
-}
-else{
+            } else {
+                Log.d("ss111112",data.likeStatus.toString())
+                binding.heart.progress=0f
+            }
+binding.heart.setOnClickListener(View.OnClickListener {
 
-    binding.heart.frame=binding.heart.minFrame.toInt()
-
-    binding.heart.setOnClickListener(View.OnClickListener {
-    binding.heart.playAnimation()
-                   binding.heart.loop(false);
-    })
-}
+    if (mContext != null) {
 
 
+        if(data.likeStatus==true){
+            Log.d("ss111113",data.likeStatus.toString())
+            // binding.heart.frame = binding.heart.minFrame.toInt()
+            binding.heart.pauseAnimation()
+            binding.heart.progress=0f
 
-            binding.thumbnail.clipToOutline=true
+        }else{
+            Log.d("ss111114",data.likeStatus.toString())
+            binding.heart.playAnimation()
+            binding.heart.loop(false);
+
+        }
+
+
+
+
+        Client.retrofitService.updateLike(
+            PreferenceManager.getLong(
+                mContext,
+                "PrefIDIndex"
+            ),data.engFairyTaleIdx.toLong()
+        ).enqueue(object :
+            Callback<Boolean> {
+
+
+            override fun onFailure(call: Call<Boolean>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>)  {
+
+                data.likeStatus=response.body()!!
+
+
+            }
+
+        })
+
+
+
+
+    }
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            binding.thumbnail.clipToOutline = true
 
             if (test != 3) {
                 mContext?.let {
@@ -110,29 +163,26 @@ else{
                         var intent: Intent? = null
 
 
-                            if (test == 0) {
-                                intent = Intent(mContext, youtubeTest::class.java)
-                                intent?.putExtra("engFairyTaleIdx", data.engFairyTaleIdx)
-                            } else if (test == 1) {
-
-                                intent = Intent(mContext, youtubeFamous::class.java)
-                            }
-
-                            intent?.putExtra("data.url", data.ytUrl)
+                        if (test == 0) {
+                            intent = Intent(mContext, youtubeTest::class.java)
                             intent?.putExtra("engFairyTaleIdx", data.engFairyTaleIdx)
-                            mContext.startActivity(intent)
+                        } else if (test == 1) {
 
+                            intent = Intent(mContext, youtubeFamous::class.java)
+                        }
 
+                        intent?.putExtra("data.url", data.ytUrl)
+                        intent?.putExtra("engFairyTaleIdx", data.engFairyTaleIdx)
+                        intent?.putExtra("likeStatus", data.likeStatus)
+                        mContext.startActivity(intent)
 
 
                     })
 
                 }
 
-            }
-
-else{
-binding.heart.visibility=View.GONE
+            } else {
+                binding.heart.visibility = View.GONE
                 mContext?.let {
                     dataurl = data.ytUrl
                     Glide.with(it)
@@ -162,4 +212,9 @@ binding.heart.visibility=View.GONE
     }
 
 
-}
+
+
+
+    }
+
+
