@@ -64,6 +64,9 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
         Log.d("check123","check6")
 
 
+
+
+
     }
 
     override fun onCreateView(
@@ -111,7 +114,7 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
                                 //  Log.d("listresult",list?.get(i)!!.ytUrl.toString())
                                 dataList.add(
                                     boastRecycleItemData(
-                                        list?.get(i)?.fileRealName,  list?.get(i)?.likeStatus, list?.get(i)?.title, list?.get(i)?.contents,list?.get(i)?.deleted,list?.get(i)?.boastIdx
+                                        list?.get(i)?.fileRealName,  list?.get(i)?.likeStatus, list?.get(i)?.title, list?.get(i)?.contents,list?.get(i)?.deleted,list?.get(i)?.boastIdx,list?.get(i)?.nickname.toString()
                                     )
                                 )
 
@@ -157,6 +160,12 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
+
+
+
+
         binding?.boastButton?.setOnClickListener(View.OnClickListener {
 
             Log.d("onCreateView1111","check5")
@@ -219,6 +228,8 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
 
     override fun onResume() {
         super.onResume()
+       boastAdapter.notifyDataSetChanged()
+        Log.d("onBackPressed","check15")
 
     }
 

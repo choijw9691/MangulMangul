@@ -55,6 +55,31 @@ class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<Recycler
 
         fun bind(data: boastRecycleItemData) {
 
+
+            if (data.likeStatus==true){
+
+                binding.heart.frame= binding.heart.maxFrame.toInt()
+                binding.heart.setOnClickListener(View.OnClickListener {
+                    binding.heart.frame= binding.heart.minFrame.toInt()
+                })
+            }
+            else{
+
+                binding.heart.frame=binding.heart.minFrame.toInt()
+
+                binding.heart.setOnClickListener(View.OnClickListener {
+                    binding.heart.playAnimation()
+                    binding.heart.loop(false);
+                })
+            }
+
+
+
+
+
+            binding.itemImage.clipToOutline=true
+
+
             mContext?.let {
                 dataurl = data.fileRealName
                 Glide.with(it)
@@ -63,13 +88,14 @@ class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<Recycler
                     .override(1000, 1000)
                     .into(binding.itemImage)
 
-                binding.imageText.setText(data.content)
+                binding.imageText.setText(data.title)
                 binding.itemImage.setOnClickListener(View.OnClickListener {
 
                     val intent = Intent(mContext, boastActivity::class.java)
                     intent.putExtra("data.url", data.fileRealName)
                     intent.putExtra("content", data.content)
-                    intent.putExtra("nickname", data.title)
+                    intent.putExtra("title", data.title)
+                    intent.putExtra("nickname", data.nickname)
                     intent.putExtra("likeStatus", data.likeStatus)
                     intent.putExtra("boastIdx", data.boastIdx)
                     mContext.startActivity(intent)

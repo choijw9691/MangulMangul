@@ -4,34 +4,81 @@
     android:id="@+id/item_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="30dp"
 
-android:orientation="vertical"
->
-
-
+    >
 
     <com.google.android.youtube.player.YouTubeThumbnailView
         android:id="@+id/item_image"
-        android:background="#FFFFFFFF"
-
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:scaleType="fitXY"
-        />
+        android:background="@drawable/radiusrecycle"
 
-    <TextView
-        android:id="@+id/image_text"
+        />
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:scaleType="fitXY"
-        />
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_5"
+        >
+
+
+        <TextView
+            android:id="@+id/image_text"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_weight="1"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_toLeftOf="@+id/h"
+            android:fontFamily="@font/ham"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            ></TextView>
+        <LinearLayout
+            android:layout_width="7dp"
+            android:layout_height="wrap_content"
+
+            ></LinearLayout>
+
+        //       mButton1.setPressed(false);
 
 
 
 
+        //lottie.playAnimation();
+        lottie.loop(true);
+        <LinearLayout
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_alignParentRight="true"
+            android:id="@+id/h"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+
+                android:id="@+id/heart"
+
+                app:lottie_rawRes="@raw/likebtn"
+
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
-
-

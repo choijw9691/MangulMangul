@@ -7,80 +7,110 @@
     android:orientation="vertical"
     android:id="@+id/homecontainer"
     >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
 
-    >
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        ></TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_gravity="center"
+android:layout_marginLeft="@dimen/dp_30"
+android:layout_marginBottom="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
         >
-<RelativeLayout
-    android:layout_width="@dimen/dp_150"
-    android:layout_height="180dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+
+            <Button
+
+                android:id="@+id/MyInfo"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="180dp"
+                android:background="@drawable/like_selector"
+                android:fontFamily="@font/ham"
+
+                android:gravity="center"
 
 
-    <Button
+                android:paddingTop="110dp"
+                android:text="내정보 수정"
+                android:textColor="@color/clickcolor"
+                android:textStyle="bold"
 
-        android:layout_width="@dimen/dp_150"
-        android:layout_height="180dp"
-        android:id="@+id/MyInfo"
-        android:text="내정보 수정"
+                ></Button>
 
-        android:textStyle="bold"
-        android:textColor="@color/white"
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
 
-        android:fontFamily="@font/ham"
-
-        android:paddingBottom="@dimen/dp_20"
-
-        ></Button>
-    <ImageButton
-        android:layout_width="@dimen/dp_80"
-        android:layout_height="@dimen/dp_80"
-
-        android:background="@drawable/ic_icon_user_primary"
+            <Button
+                android:id="@+id/MyPassword"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="180dp"
+                android:background="@drawable/like_selector"
+                android:text="비밀번호 변경"
+                android:textStyle="bold"
+                android:paddingTop="110dp"
+                android:gravity="center"
+                android:fontFamily="@font/ham"
+                android:textColor="@color/clickcolor"></Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
         >
+            <Button
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="180dp"
+                android:text="구매내역"
+                android:id="@+id/MyBuy"
+                android:background="@drawable/like_selector"
+                android:textColor="@color/clickcolor"
+                android:textStyle="bold"
+                android:paddingTop="110dp"
+                android:gravity="center"
+                android:fontFamily="@font/ham"
+                ></Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+
+            <Button
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="180dp"
+                android:text="포트폴리오"
+                android:id="@+id/MyPPT"
+                android:background="@drawable/like_selector"
+                android:textColor="@color/clickcolor"
+                android:textStyle="bold"
+             android:paddingTop="110dp"
+                android:gravity="center"
+                android:fontFamily="@font/ham"
+                ></Button>
+        </LinearLayout>
 
 
-    </ImageButton>
-</RelativeLayout>
 
 
-        <Button
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="@dimen/dp_150"
-            android:text="비밀번호 변경"
-            android:id="@+id/MyPassword"
-            android:background="@drawable/radiusbutton"
-            ></Button>
-        <Button
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="@dimen/dp_150"
-            android:text="구매내역"
-            android:id="@+id/MyBuy"
-            android:background="@drawable/radiusbutton"
-            ></Button>
-        <Button
-            android:layout_width="@dimen/dp_150"
-            android:layout_height="@dimen/dp_150"
-            android:text="포트폴리오"
-            android:id="@+id/MyPPT"
-            android:background="@drawable/radiusbutton"
-            ></Button>
+
+
 
     </LinearLayout>
-</LinearLayout>
+
 
 </FrameLayout>
 

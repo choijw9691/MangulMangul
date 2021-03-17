@@ -188,6 +188,6 @@ interface API {
 
     @Multipart
     @POST("user/boast/insertBoast")
-    fun uploadImage(@Part file:MultipartBody.Part?):Call<Void>
+    fun uploadImage(@Part("userIdx")userIdx:Long,@Part("contents")contents:String,@Part("title")title:String,@Part file:MultipartBody.Part?):Call<Void>
 
 }

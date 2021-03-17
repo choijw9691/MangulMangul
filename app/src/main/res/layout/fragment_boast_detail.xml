@@ -1,94 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    >
-
-
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
 
-    android:layout_weight="1"
-    >
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+android:layout_marginBottom="@dimen/dp_40"
+        android:orientation="vertical">
 
-
-        >
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/boast_detail_image"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:scaleType="fitXY"
-            />
-<!--        <me.relex.circleindicator.CircleIndicator3
+            android:layout_height="0dp"
+            android:layout_weight="5"
+
+
+            >
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/boast_detail_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+
+                />
+            <!--        <me.relex.circleindicator.CircleIndicator3
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"></me.relex.circleindicator.CircleIndicator3>-->
-    </FrameLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_0"
-        android:layout_weight="1"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-         android:layout_alignParentLeft="true"
-            android:text="제목 :"
-            android:id="@+id/a"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:fontFamily="@font/ham"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_70"
-
-            ></TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/a"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:fontFamily="@font/ham"
-            ></TextView>
-        <Button
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/ic_icon_heart_primary"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/dp_70"
-            ></Button>
-    </RelativeLayout>
+        </FrameLayout>
 
 
-</LinearLayout>
+     <!--   <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginRight="@dimen/dp_90"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+
+
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toLeftOf="@+id/h"
+                android:ellipsize="end"
+                android:fontFamily="@font/ham"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textStyle="bold"></TextView>
+
+            <LinearLayout
+                android:layout_width="7dp"
+                android:layout_height="wrap_content"
+
+                ></LinearLayout>
+
+            // mButton1.setPressed(false);
+
+
+            //lottie.playAnimation();
+            lottie.loop(true);
+
+            <LinearLayout
+                android:id="@+id/h"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_alignParentRight="true">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/heart"
+                    android:layout_width="match_parent"
+
+
+                    android:layout_height="match_parent"
+
+                    app:lottie_rawRes="@raw/likebtn"
+
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+-->
+
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="1"
         >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:id="@+id/nickname"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:fontFamily="@font/ham"
-            android:textSize="@dimen/dp_20"
-            ></TextView>
+
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="1.5"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:id="@+id/a"    android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:fontFamily="@font/ham"
+        android:textColor="@color/black"
+        android:textSize="@dimen/dp_20"
+   android:layout_centerVertical="true"
+        android:textStyle="bold"></TextView>
+
+
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/heart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            app:lottie_rawRes="@raw/likebtn"
+
+            />
+
+</RelativeLayout>
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_1"

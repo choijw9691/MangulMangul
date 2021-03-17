@@ -37,11 +37,6 @@ var imageUrlList: ArrayList<boastDetailItem>? = ArrayList<boastDetailItem>()
 
 
 
-
-
-
-
-
         var extra = this.arguments
         if (extra != null) {
             extra = arguments
@@ -63,30 +58,81 @@ var imageUrlList: ArrayList<boastDetailItem>? = ArrayList<boastDetailItem>()
 
 
 
-               binding?.nickname?.setText(extra?.getString("nickname"))
+           //    binding?.nickname?.setText(extra?.getString("nickname"))
+
+                binding?.a?.setText("제목 : "+extra?.getString("title"))
+
                 binding?.boastContent?.setText(extra?.getString("content"))
 
+                if (extra?.getBoolean("likeStatus")==true){
+
+                    binding?.heart?.frame= binding?.heart?.maxFrame!!.toInt()
+                    binding?.heart?.setOnClickListener(View.OnClickListener {
+                        binding?.heart?.frame= binding?.heart?.minFrame!!.toInt()
+                    })
+                }
+                else{
+
+                    binding?.heart?.frame= binding?.heart?.minFrame!!.toInt()
+                    binding?.heart?.setOnClickListener(View.OnClickListener {
+                        binding?.heart?.playAnimation()
+                        binding?.heart?.loop(false);
+                    })
+                }
 
 
-            } else if ((extra?.getString("thumnail") != null) && (extra?.getString("nickname") != null) && (extra?.getString(
-                    "content"
-                ) != null)
-            ) {
 
-                var thumnail = extra?.getString("thumnail")
+
+
+
+
+
+            } else if (extra?.getString("fileRealName") != null)
+            {
+
+                var boastIdx = extra?.getInt("boastIdx")
+                var fileRealName = extra?.getString("fileRealName")
+                var likeStatus = extra?.getBoolean("likeStatus")
                 var nickname = extra?.getString("nickname")
+                var title = extra?.getString("title")
                 var content = extra?.getString("content")
-                Log.d("intentCheckurl",thumnail.toString())
-                imageUrlList?.add(boastDetailItem(thumnail.toString()))
-                imageUrlList?.add(boastDetailItem(thumnail.toString()))
-                imageUrlList?.add(boastDetailItem(thumnail.toString()))
+
+
+
+
+                binding?.a?.setText("제목 : "+title)
+                binding?.boastContent?.setText(content)
+
+
+                if (likeStatus==true){
+
+                    binding?.heart?.frame= binding?.heart?.maxFrame!!.toInt()
+                    binding?.heart?.setOnClickListener(View.OnClickListener {
+                        binding?.heart?.frame= binding?.heart?.minFrame!!.toInt()
+                    })
+                }
+                else{
+
+                    binding?.heart?.frame= binding?.heart?.minFrame!!.toInt()
+                    binding?.heart?.setOnClickListener(View.OnClickListener {
+                        binding?.heart?.playAnimation()
+                        binding?.heart?.loop(false);
+                    })
+                }
+
+
+
+
+
+                imageUrlList?.add(boastDetailItem(fileRealName.toString()))
+                imageUrlList?.add(boastDetailItem(fileRealName.toString()))
+                imageUrlList?.add(boastDetailItem(fileRealName.toString()))
 
 
                 binding?.boastDetailImage?.adapter=ViewPagerAdapter(imageUrlList)
                 binding?.boastDetailImage?.orientation=ViewPager2.ORIENTATION_HORIZONTAL
 
-                binding?.nickname?.setText(nickname)
-                binding?.boastContent?.setText(content)
+
 
             }
 

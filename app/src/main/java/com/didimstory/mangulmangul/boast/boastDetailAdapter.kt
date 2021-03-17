@@ -70,7 +70,7 @@ class boastDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: boastDetailRecycleItem) {
-            binding.thumbnail.clipToOutline=true
+            binding.thumbnail.clipToOutline = true
 
             mContext?.let {
                 dataurl = data.fileRealName
@@ -81,11 +81,15 @@ class boastDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .into(binding.thumbnail)
 
 
+
                 binding.thumbnail.setOnClickListener(View.OnClickListener {
 
                     mBoastDetailListener?.detailListener(
-                        dataurl,
+                        data.boastIdx,
+                        data.fileRealName,
+                        data.likeStatus,
                         data.nickname,
+                        data.title,
                         data.contents
                     )
 
@@ -100,7 +104,14 @@ class boastDetailAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     interface BoastDetailListener {
-        fun detailListener(thumnail: String?, nickname: String?, content: String?)
+        fun detailListener(
+            boastIdx: Int,
+            fileRealName: String?,
+            likeStatus: Boolean,
+            nickname: String?,
+            title: String?,
+            content: String?
+        )
 
     }
 

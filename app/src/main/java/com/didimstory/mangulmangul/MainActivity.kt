@@ -42,7 +42,7 @@ var listener:OnBackPressedListener?=null
         setContentView(R.layout.activity_main)
         var pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         var users = pref.getString("username", "")
-
+Log.d("mainstart","mainstart")
         viewPager.setUserInputEnabled(false)
 
         initViewPager()
@@ -75,7 +75,7 @@ var listener:OnBackPressedListener?=null
 
         when(num){
 0->{
-    Log.d("fairyButton","fairyButton")
+
     viewPager.currentItem=0
 }
             5->{

@@ -37,16 +37,26 @@ class boastActivity : AppCompatActivity() {
              transaction.commit()*/
 
 
-
         if (intent.getStringExtra("data.url") != null) {
             var intentCheck = intent.getStringExtra("data.url").toString()
             var nickname = intent.getStringExtra("nickname").toString()
+            var likeStatus = intent.getBooleanExtra("likeStatus",false)
+            var boastIdx = intent.getIntExtra("boastIdx",0)
             var content = intent.getStringExtra("content").toString()
+            var title = intent.getStringExtra("title").toString()
+
+
             var fragment: BoastDetailFragment? = BoastDetailFragment()
             var bundle: Bundle = Bundle()
             bundle.putString("intentCheckurl", intentCheck)
             bundle.putString("nickname", nickname)
             bundle.putString("content", content)
+            bundle.putBoolean("likeStatus", likeStatus)
+            bundle.putInt("boastIdx", boastIdx)
+            bundle.putString("title", title)
+
+
+
             fragment!!.arguments = bundle
             Log.d("intentCheckurl", intentCheck)
             transaction.replace(R.id.boastContainer, fragment).commit()
@@ -100,21 +110,25 @@ class boastActivity : AppCompatActivity() {
                                 applicationContext,
                                 object : boastDetailAdapter.BoastDetailListener {
                                     override fun detailListener(
-                                        thumnail: String?,
+                                        boastIdx: Int,
+                                        fileRealName: String?,
+                                        likeStatus: Boolean,
                                         nickname: String?,
+                                        title: String?,
                                         content: String?
                                     ) {
                                         var transaction = fragmentManager.beginTransaction()
                                         var fragment: BoastDetailFragment? = BoastDetailFragment()
                                         var bundle: Bundle = Bundle()
-                                        bundle.putString("thumnail", thumnail)
+                                        bundle.putInt("boastIdx", boastIdx)
+                                        bundle.putString("fileRealName", fileRealName)
+                                        bundle.putBoolean("likeStatus", likeStatus)
                                         bundle.putString("nickname", nickname)
+                                        bundle.putString("title", title)
                                         bundle.putString("content", content)
                                         fragment!!.arguments = bundle
 
                                         transaction.replace(R.id.boastContainer, fragment).commit()
-
-
                                     }
 
 

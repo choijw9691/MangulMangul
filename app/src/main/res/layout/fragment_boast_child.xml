@@ -1,86 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/boast_child_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".boast.BoastChildFragment"
-    android:id="@+id/boast_child_layout"
     android:background="@drawable/ic_group_12_copy_2"
-    >
+    android:orientation="vertical"
+    tools:context=".boast.BoastChildFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/dp_10"
-        >
+        android:orientation="horizontal">
+
         <Button
+            android:id="@+id/boast_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-android:layout_marginLeft="@dimen/dp_20"
-android:id="@+id/boast_back"
-            android:background="@drawable/ic_icon_left_gray_8"
-            ></Button>
+            android:layout_marginLeft="@dimen/dp_20"
+            android:background="@drawable/ic_icon_left_gray_8"></Button>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-android:textSize="@dimen/dp_20"
-            android:textColor="@color/black"
-            android:fontFamily="@font/ham"
-            android:textStyle="bold"
-            android:text="글쓰기"
             android:layout_centerVertical="true"
-            ></TextView>
+            android:fontFamily="@font/ham"
+            android:text="글쓰기"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_20"
+            android:textStyle="bold"></TextView>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="7"
         android:layout_marginLeft="@dimen/dp_40"
-        >
+        android:layout_weight="7"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_weight="1"
-            >
+            android:orientation="vertical">
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_55"
-                android:background="@drawable/whitetext"
-                android:hint="  제목"
                 android:layout_marginRight="@dimen/dp_50"
-                ></EditText>
+                android:background="@drawable/whitetext"
+                android:id="@+id/title"
+                android:hint="  제목"></EditText>
+
             <EditText
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="@dimen/dp_90"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="@dimen/dp_50"
                 android:background="@drawable/whitetext"
                 android:hint="  내용을 입력해주세요"
+                android:id="@+id/contents"
                 ></EditText>
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            >
+            android:layout_weight="3">
+
             <Button
+                android:id="@+id/boast_insert"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="등록하기"
-                android:id="@+id/boast_insert"
+                android:layout_marginRight="@dimen/dp_20"
                 android:background="@drawable/redbutton"
+                android:fontFamily="@font/ham"
+                android:text="등록하기"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:fontFamily="@font/ham"
-                android:layout_marginRight="@dimen/dp_20"
 
                 ></Button>
         </LinearLayout>
@@ -90,46 +90,42 @@ android:textSize="@dimen/dp_20"
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="5"
         android:layout_marginLeft="@dimen/dp_40"
-        >
+        android:layout_weight="5"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이미지 업로드"
-            android:textStyle="bold"
-            ></TextView>
+            android:textStyle="bold"></TextView>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-android:layout_marginBottom="@dimen/dp_10"
-            >
+            android:layout_marginBottom="@dimen/dp_10"
+            android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dp_140"
                 android:id="@+id/write_recylcer"
-                ></androidx.recyclerview.widget.RecyclerView>
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_140"></androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
-            android:layout_width="@dimen/dp_140"
-            android:layout_height="@dimen/dp_140"
-            android:background="@drawable/whitetext"
+                android:layout_width="@dimen/dp_140"
+                android:layout_height="@dimen/dp_140"
                 android:layout_toRightOf="@+id/write_recylcer"
-            >
+                android:background="@drawable/whitetext">
 
                 <ImageButton
+                    android:id="@+id/child_image_btn"
                     android:layout_width="@dimen/dp_30"
                     android:layout_height="@dimen/dp_30"
+                    android:layout_centerInParent="true"
                     android:background="@drawable/ic_icon_add_gray_5"
-                    android:id="@+id/child_image_btn"
-android:layout_centerInParent="true"
 
                     ></ImageButton>
-        </RelativeLayout>
+            </RelativeLayout>
 
         </RelativeLayout>
 

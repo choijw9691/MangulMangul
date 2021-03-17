@@ -67,6 +67,32 @@ class fairyRecycleAdapter(var context: Context?, var test: Int) :
 
         fun bind(data: YoutubeItem) {
 
+            binding.heart.setOnClickListener(View.OnClickListener {
+     /*           binding.heart.playAnimation()
+                binding.heart.loop(false);*/
+//binding.heart.pauseAnimation()
+                binding.heart.frame= binding.heart.maxFrame.toInt()
+            })
+
+if (data.likeStatus==true){
+
+    binding.heart.frame= binding.heart.maxFrame.toInt()
+    binding.heart.setOnClickListener(View.OnClickListener {
+        binding.heart.frame= binding.heart.minFrame.toInt()
+    })
+}
+else{
+
+    binding.heart.frame=binding.heart.minFrame.toInt()
+
+    binding.heart.setOnClickListener(View.OnClickListener {
+    binding.heart.playAnimation()
+                   binding.heart.loop(false);
+    })
+}
+
+
+
             binding.thumbnail.clipToOutline=true
 
             if (test != 3) {

@@ -244,7 +244,9 @@ data class boastrList(
 ,
     @SerializedName("deleted")
     var deleted: Boolean,    @SerializedName("boastIdx")
-    var boastIdx: Int
+    var boastIdx: Int,
+    @SerializedName("nickname")
+    var nickname: String
 
 )
 
@@ -274,6 +276,7 @@ data class boastDetail(
     ,
     @SerializedName("contents")
 var contents : String
+
 
 )data class boastDetailResult(
 
