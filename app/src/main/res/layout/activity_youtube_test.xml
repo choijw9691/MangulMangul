@@ -21,14 +21,18 @@ android:background="@drawable/ic_group_12_copy_2"
     android:background="@drawable/ic_icon_left_gray_8"
     android:layout_marginTop="@dimen/dp_20"
     android:layout_marginLeft="@dimen/dp_30"
+    android:id="@+id/backbtn"
     ></ImageButton>
 
         <com.google.android.youtube.player.YouTubePlayerView
             android:id="@+id/youtubeView"
             android:layout_width="@dimen/dp_300"
             android:layout_height="@dimen/dp_200"
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="@dimen/dp_60"
             android:background="@drawable/radiusrecycle"
+
             />
 
 
@@ -67,7 +71,7 @@ android:orientation="horizontal"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-android:text="옥토넛과 노래해요 - 시즌송"
+android:hint="옥토넛과 노래해요 - 시즌송"
 android:layout_gravity="center"
             android:gravity="center"
             android:ellipsize="end"

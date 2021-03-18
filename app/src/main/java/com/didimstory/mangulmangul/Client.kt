@@ -1,5 +1,6 @@
 package com.didimstory.mangul
 
+import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -13,22 +14,19 @@ import java.util.concurrent.TimeUnit
 object Client {
     var retrofitService: API
 
+
     init {
-        val interceptor = HttpLoggingInterceptor()
+      /*  var interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val logger = OkHttpClient.Builder().addInterceptor(interceptor).readTimeout(20, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS).build()
+        var logger = OkHttpClient.Builder().addInterceptor(interceptor).readTimeout(20, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS).build()*/
 
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://192.168.10.69:8080/")
+                .baseUrl("http://ymedu88.cafe24.com/")
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(logger)
+          //      .client(logger)
                 .build()
 
         retrofitService = retrofit.create(API::class.java)
-
-    }
-    fun httpButtonSend(){
-
 
     }
 

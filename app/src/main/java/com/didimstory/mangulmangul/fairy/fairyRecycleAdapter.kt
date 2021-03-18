@@ -174,6 +174,7 @@ binding.heart.setOnClickListener(View.OnClickListener {
                         intent?.putExtra("data.url", data.ytUrl)
                         intent?.putExtra("engFairyTaleIdx", data.engFairyTaleIdx)
                         intent?.putExtra("likeStatus", data.likeStatus)
+                        intent?.putExtra("title", data.title)
                         mContext.startActivity(intent)
 
 

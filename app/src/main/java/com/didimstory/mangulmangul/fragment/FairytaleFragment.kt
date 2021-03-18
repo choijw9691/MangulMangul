@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.didimstory.mangul.Client
@@ -17,6 +18,7 @@ import com.didimstory.mangulmangul.Entity.listfairyHome
 import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
+import com.didimstory.mangulmangul.boast.boastRecycleAdapter
 import com.didimstory.mangulmangul.databinding.FragmentFairytaleBinding
 import com.didimstory.mangulmangul.fairy.PopUpActivity
 import com.didimstory.mangulmangul.fairy.SerchFragment
@@ -46,7 +48,7 @@ class FairytaleFragment : Fragment(){
     private var param2: String? = null
     private var binding: FragmentFairytaleBinding? = null
     private lateinit var mLayoutManager: LinearLayoutManager
-    private lateinit var fairyAdapter: fairyRecycleAdapter
+    private var fairyAdapter: fairyRecycleAdapter? =null
 
     var resultList:List<fairyHome>?=null
 
@@ -75,26 +77,28 @@ class FairytaleFragment : Fragment(){
         // Inflate the layout for this fragment
         binding = FragmentFairytaleBinding.inflate(inflater, container, false)
         val view = binding?.root
+        Log.d("ddddss1234","onCreateView")
 
 
         Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
                 .enqueue(object :
                     Callback<listfairyHome> {
                     override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
-
+                        Log.d("listresult",t.toString())
                     }
 
                     override fun onResponse(
                         call: Call<listfairyHome>,
                         response: Response<listfairyHome>
                     ) {
+                        dataList.clear()
                         when(response!!.code()){
 
                             200->
                             {
                                 var list = response.body()?.list
                                 for(i in 0 until (response.body()?.list!!.size)){
-Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+Log.d("listresult123",list?.get(i)!!.ytUrl.toString())
                                     dataList.add(
                                         YoutubeItem(
                                             list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
@@ -124,9 +128,9 @@ Log.d("listresult",list?.get(i)!!.ytUrl.toString())
 
                                 }
 
-                                fairyAdapter.dataList =
+                             fairyAdapter!!.dataList =
                                     dataList
-
+                                Log.d("췍",dataList.size.toString())
                             }
 
                         }
@@ -173,17 +177,32 @@ binding?.serchBtn?.setOnClickListener(View.OnClickListener {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
      if(requestCode==1){
          if(resultCode==-1){
+
+
              var result=data?.getStringExtra("result")
-var aa=ServiceFragment()
-             var bundle=Bundle()
-             bundle.putString("change","fairypop")
-             bundle.putString("result",result)
-             aa.arguments=bundle
-             parentFragmentManager.beginTransaction().replace(R.id.viewPager,aa)
-             SerchFragment.newInstance()?.let { (activity as MainActivity).replaceFragment(it) }
+             Log.d("왔다네",result.toString())
+            if(PreferenceManager.getString(context,"serchResult")!=null){
+                PreferenceManager.removeKey(activity?.applicationContext,"serchResult")
+                PreferenceManager.setString(activity?.applicationContext,"serchResult",result)
+
+            }
+             else {
+                PreferenceManager.setString(activity?.applicationContext, "serchResult", result)
+            }
+
+
+
+            SerchFragment.newInstance()?.let { (activity as MainActivity).replaceFragment(it) }
+
 
          }
 
      }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("왔다네11","왔다네11")
+        fairyRecycleAdapter(context,0).notifyDataSetChanged()
     }
 }

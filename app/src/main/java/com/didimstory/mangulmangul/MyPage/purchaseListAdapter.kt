@@ -63,7 +63,7 @@ class purchaseListAdapter(var context: Context?, var test:Int) : RecyclerView.Ad
             binding.num
                 .text=data.deliveryNumber
 
-
+binding.mm.text=data.totalPrice
 
             val s = itemView.findViewById<RecyclerView>(R.id.recycler)
             val mAdapter = mContext?.let { purchaseListSubAdapter(it,data.artKitList) }

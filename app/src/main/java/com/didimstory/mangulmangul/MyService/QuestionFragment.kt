@@ -15,6 +15,7 @@ import com.didimstory.mangulmangul.Entity.inquiryListResult
 import com.didimstory.mangulmangul.Entity.noticeDetailItem
 import com.didimstory.mangulmangul.Entity.noticeListResult
 import com.didimstory.mangulmangul.Entity.questionDetailItem
+import com.didimstory.mangulmangul.MyPage.MyPageHomeFragment
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.databinding.FragmentNoticeBinding
@@ -77,7 +78,12 @@ class QuestionFragment : Fragment() {
         val view=binding?.root
         val url = videoId//유튜브 썸네일 불러오는 방법
 
+        binding?.backbtn?.setOnClickListener(View.OnClickListener {
+            var fragmentManager=parentFragmentManager
+            fragmentManager.beginTransaction().replace(R.id.MyPageContainer, MyPageHomeFragment()).addToBackStack("21").commit()
 
+
+        })
 
 
         Client.retrofitService.noticeList(

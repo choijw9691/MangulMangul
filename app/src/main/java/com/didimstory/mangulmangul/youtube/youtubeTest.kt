@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.Entity.fairybuyItem
 import com.didimstory.mangulmangul.Entity.listfairyHome
+import com.didimstory.mangulmangul.MyPage.MyPageHomeFragment
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.Purchase.purchaseActivity
 import com.didimstory.mangulmangul.R
@@ -29,7 +31,7 @@ class youtubeTest : YouTubeBaseActivity() {
     var videoId: String? = null
     var likeStatus: Boolean? = null
     var engFairyTaleIdx: Long? = null
-
+    var title: String? = null
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var fairyAdapter: fairyDetailAdapter
 
@@ -44,32 +46,81 @@ class youtubeTest : YouTubeBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         videoId = intent.getStringExtra("data.url")
-        engFairyTaleIdx = intent.getLongExtra("engFairyTaleIdx", 0)
+        engFairyTaleIdx = intent.getLongExtra("engFairyTaleIdx", 0).toLong()
         likeStatus = intent.getBooleanExtra("likeStatus", false)
+        title = intent.getStringExtra("title")
         val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
         Log.d("youtuberesult", videoId.toString())
         setContentView(R.layout.activity_youtube_test)
 
+        fairyText.setText(title)
+
+
+
+    backbtn?.setOnClickListener(View.OnClickListener {
+onBackPressed()
+
+
+        })
 
 
         if (likeStatus == true) {
 
-            heart.frame = heart.maxFrame.toInt()
-            heart.setOnClickListener(View.OnClickListener {
-                heart.frame = heart.minFrame.toInt()
-                likeStatus = false
-            })
+          heart.progress=1f
+
         } else {
 
-            heart.frame = heart.minFrame.toInt()
-
-            heart.setOnClickListener(View.OnClickListener {
-                heart.playAnimation()
-                heart.loop(false);
-
-                likeStatus = true
-            })
+        heart.progress=0f
         }
+        heart.setOnClickListener(View.OnClickListener {
+
+            if (applicationContext != null) {
+
+
+                if(likeStatus==true){
+
+              heart.pauseAnimation()
+                heart.progress=0f
+
+                }else{
+
+                  heart.playAnimation()
+                   heart.loop(false);
+
+                }
+
+
+
+
+                Client.retrofitService.updateLike(
+                    PreferenceManager.getLong(
+                        applicationContext,
+                        "PrefIDIndex"
+                    ),engFairyTaleIdx!!.toLong()
+                ).enqueue(object :
+                    Callback<Boolean> {
+
+
+                    override fun onFailure(call: Call<Boolean>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(call: Call<Boolean>, response: Response<Boolean>)  {
+
+                        likeStatus=response.body()!!
+
+
+                    }
+
+                })
+
+
+
+
+            }
+
+
+        })
 
 
 
@@ -113,16 +164,16 @@ class youtubeTest : YouTubeBaseActivity() {
 
 
 
-        Client.retrofitService.fairyHome(
+        Client.retrofitService.fairyDetail(
             PreferenceManager.getLong(
                 applicationContext,
                 "PrefIDIndex"
-            )
+            ), engFairyTaleIdx!!
         )
             .enqueue(object :
                 Callback<listfairyHome> {
                 override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Log.d("listresult1234",t.toString())
                 }
 
                 override fun onResponse(
@@ -190,7 +241,11 @@ class youtubeTest : YouTubeBaseActivity() {
 
     }
 
+    override fun onBackPressed() {
 
+        super.onBackPressed()
+
+    }
 }
 //영상자동재생
 //youtubeView.initialize("develop", object : YouTubePlayer.OnInitializedListener { override fun onInitializationSuccess( provider: YouTubePlayer.Provider, player: YouTubePlayer, wasRestored: Boolean ) { if (!wasRestored) { player.cueVideo(videoId) } player.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener { override fun onAdStarted() {} override fun onLoading() {} override fun onVideoStarted() {} override fun onVideoEnded() {} override fun onError(p0: YouTubePlayer.ErrorReason) {} override fun onLoaded(videoId: String) { player.play() } }) } })

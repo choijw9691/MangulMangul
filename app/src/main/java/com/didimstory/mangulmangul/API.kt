@@ -46,9 +46,9 @@ interface API {
     fun fairyHome(@Field("userIdx") userIdx: Long): Call<listfairyHome>
 
 
-    /*@POST("user/fairyTale/fairyTaleDetail")//영어동화상세
+    @POST("user/fairyTale/fairyTaleDetail")//영어동화상세
     @FormUrlEncoded
-    fun fairyDetail(@Field("userIdx") userIdx: Long,@Field("engFairyTaleIdx") engFairyTaleIdx:Long): Call<listfairyDetailHome>*/
+    fun fairyDetail(@Field("userIdx") userIdx: Long,@Field("engFairyTaleIdx") engFairyTaleIdx:Long): Call<listfairyHome>
 
     @POST("user/artKit/fairyTaleArtKitList")//상품리스트
     @FormUrlEncoded
@@ -201,7 +201,9 @@ interface API {
 
 
 
-
+    @POST("user/fairyTale/fameFairyTaleList")
+    @FormUrlEncoded
+    fun fameFairyTaleList(@Field("userIdx") userIdx: Long,@Field("titleLike") titleLike: String):Call<listfairyHome>
 
 
 }

@@ -7,25 +7,40 @@
     android:orientation="vertical"
     >
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    >
-
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="공지사항"
-        ></TextView>
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_10"
+        >
 
-</LinearLayout>
+        <Button
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+
+            android:id="@+id/backbtn"
+            android:background="@drawable/ic_icon_left_gray_8"
+            android:layout_marginLeft="@dimen/dp_30"
+            ></Button>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/dp_20"
+            android:text="공지사항"
+            ></TextView>
+    </RelativeLayout>
 
 
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/notice_recycler"
+    android:layout_marginTop="@dimen/dp_30"
+    android:layout_marginRight="@dimen/dp_30"
+    android:layout_marginLeft="@dimen/dp_30"
     ></androidx.recyclerview.widget.RecyclerView>
 
 

@@ -74,7 +74,7 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
         savedInstanceState: Bundle?
     ): View? {
         Log.d("check123","check7")
-
+        Log.d("ddddss1234","onCreateViewboast")
         // Inflate the layout for this fragment
         binding = FragmentBoastBinding.inflate(inflater, container, false)
         val view = binding?.root
@@ -94,6 +94,7 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
         )*/
 
 
+
         Client.retrofitService.boastList(PreferenceManager.getLong(context,"PrefIDIndex"))
             .enqueue(object :
                 Callback<boastrListResult> {
@@ -104,7 +105,10 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
                 override fun onResponse(
                     call: Call<boastrListResult>,
                     response: Response<boastrListResult>
-                ) {        Log.d("check123",response.body()?.list.toString())
+                ) {
+
+                    dataList.clear()
+
                     when(response!!.code()){
 
                         200->

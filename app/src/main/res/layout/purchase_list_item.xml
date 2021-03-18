@@ -8,10 +8,12 @@
 
     <ImageView
         android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_height="90dp"
         android:id="@+id/purchaseImageview"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
+        android:layout_centerVertical="true"
+
         ></ImageView>
 
     <LinearLayout
@@ -19,12 +21,17 @@
         android:layout_height="110dp"
         android:orientation="vertical"
         android:layout_toRightOf="@+id/purchaseImageview"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_centerVertical="true"
+
         >
         <TextView
             android:layout_width="match_parent"
             android:layout_height="55dp"
 android:hint="교육용 키트"
             android:id="@+id/purchaseTitle"
+            android:ellipsize="end"
+            android:maxLines="1"
             ></TextView>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,6 +45,8 @@ android:hint="교육용 키트"
 android:layout_alignParentLeft="true"
         android:hint="1개"
                 android:id="@+id/count"
+                android:ellipsize="end"
+                android:maxLines="1"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"

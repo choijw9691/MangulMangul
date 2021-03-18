@@ -84,6 +84,8 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             mContext?.let {
 
+
+                Log.d("넹","넹")
                 if (num >= checkboxList.size) {
 
                     checkboxList.add(num, checkboxData(num, false))

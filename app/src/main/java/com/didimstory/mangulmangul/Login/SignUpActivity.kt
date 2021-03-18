@@ -128,14 +128,13 @@ next_btn.isEnabled=true
 
 
 
-
-        findViewById<Button>(R.id.check_id).setOnClickListener {
+        check_id.setOnClickListener {
 
             Log.d("signCheck", "버튼클릭")
             Client.retrofitService.emailCheck(userRoleMno.text.toString()).enqueue(object :
                 Callback<Boolean> {
                 override fun onFailure(call: Call<Boolean>, t: Throwable) {
-
+                    Log.d("signCheck1", t.toString())
                 }
 
                 override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
@@ -144,6 +143,8 @@ next_btn.isEnabled=true
                     when (response.body()) {
 
                         true -> {
+
+                            Log.d("signCheck1", response.body().toString())
                             Toast.makeText(applicationContext, "사용가능한 아이디 입니다.", Toast.LENGTH_SHORT).show()
                             password.isEnabled=true
                             pw_check.isEnabled=true

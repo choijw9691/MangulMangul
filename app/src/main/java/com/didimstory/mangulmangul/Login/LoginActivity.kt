@@ -28,11 +28,11 @@ class LoginActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-       if(PreferenceManager.getLong(applicationContext,"PrefIDIndex") != (-1).toLong()){
+/*       if(PreferenceManager.getLong(applicationContext,"PrefIDIndex") != (-1).toLong()){
 Log.d("로그인?",PreferenceManager.getLong(applicationContext,"PrefIDIndex").toString())
             startActivity(Intent(applicationContext,MainActivity::class.java))
             finish()
-        }
+        }*/
         val login_btn: Button = findViewById(R.id.login_btn)
         var id_tv: TextView = findViewById(R.id.id_tv)
         var pw_tv: TextView = findViewById(R.id.pw_tv)
@@ -150,4 +150,6 @@ Log.d("로그인?",PreferenceManager.getLong(applicationContext,"PrefIDIndex").t
         }
 
     }
+
+
 }

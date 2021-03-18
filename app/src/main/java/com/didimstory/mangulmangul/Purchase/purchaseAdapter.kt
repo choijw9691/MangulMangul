@@ -98,7 +98,7 @@ var aa:ArrayList<String>? =null
                         id: Long
                     ) {
 
-if((data.price*position)==0){
+if((data.price.toInt()*position)==0){
 
 
 
@@ -107,7 +107,7 @@ data.count=1
 }else{
 
 
-    binding.purchaseText.text = (data.price*(position+1)).toString()
+    binding.purchaseText.text = (data.price.toInt()*(position+1)).toString()
     binding.purchaseText.text.toString()
     data.count=(position+1)
 

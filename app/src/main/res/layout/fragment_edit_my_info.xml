@@ -66,8 +66,9 @@ android:text="내 정보 수정"
                 android:text="탈퇴하기"
                 android:id="@+id/exit"
                 android:layout_marginLeft="170dp"
-                android:visibility="gone"
-                android:background="@drawable/white_radius"
+       android:background="#00ff0000"
+android:textColor="
+#868e96"
                 ></Button>
         </LinearLayout>
         <LinearLayout

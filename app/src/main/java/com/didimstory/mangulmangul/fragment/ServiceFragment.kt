@@ -50,6 +50,8 @@ class ServiceFragment : Fragment() {
 
 val view =binding?.root
 
+
+
         parentFragmentManager.beginTransaction().add(R.id.Servicecontainer,ServiceHomeFragment()).commit()
 
 

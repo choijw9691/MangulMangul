@@ -56,8 +56,6 @@ window.setGravity(Gravity.TOP)
         setResult(RESULT_OK, intent)
         finish()
 
-
-
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {

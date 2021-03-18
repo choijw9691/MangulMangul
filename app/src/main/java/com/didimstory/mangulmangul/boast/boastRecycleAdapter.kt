@@ -2,14 +2,20 @@ package com.didimstory.mangulmangul.boast
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.boastRecycleItemData
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
 import com.didimstory.mangulmangul.databinding.BoastItemBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -56,28 +62,60 @@ class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<Recycler
         fun bind(data: boastRecycleItemData) {
 
 
-            if (data.likeStatus==true){
+            if (data.likeStatus == true) {
+                Log.d("ss1111111",data.likeStatus.toString())
+                binding.heart.progress=1f
 
-                binding.heart.frame= binding.heart.maxFrame.toInt()
-                binding.heart.setOnClickListener(View.OnClickListener {
-                    binding.heart.frame= binding.heart.minFrame.toInt()
-                })
+            } else {
+                Log.d("ss111112",data.likeStatus.toString())
+                binding.heart.progress=0f
             }
-            else{
+            binding.heart.setOnClickListener(View.OnClickListener {
 
-                binding.heart.frame=binding.heart.minFrame.toInt()
-
-                binding.heart.setOnClickListener(View.OnClickListener {
-                    binding.heart.playAnimation()
-                    binding.heart.loop(false);
-                })
-            }
+                if (mContext != null) {
 
 
+                    if (data.likeStatus == true) {
+                        Log.d("ss111113", data.likeStatus.toString())
+                        // binding.heart.frame = binding.heart.minFrame.toInt()
+                        binding.heart.pauseAnimation()
+                        binding.heart.progress = 0f
+
+                    } else {
+                        Log.d("ss111114", data.likeStatus.toString())
+                        binding.heart.playAnimation()
+                        binding.heart.loop(false);
+
+                    }
 
 
 
-            binding.itemImage.clipToOutline=true
+
+                    Client.retrofitService.updateLike(
+                        PreferenceManager.getLong(
+                            mContext,
+                            "PrefIDIndex"
+                        ), data.boastIdx.toLong()
+                    ).enqueue(object :
+                        Callback<Boolean> {
+
+
+                        override fun onFailure(call: Call<Boolean>, t: Throwable) {
+
+                        }
+
+                        override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+
+                            data.likeStatus = response.body()!!
+
+
+                        }
+
+                    })
+                }})
+
+
+                    binding.itemImage.clipToOutline=true
 
 
             mContext?.let {

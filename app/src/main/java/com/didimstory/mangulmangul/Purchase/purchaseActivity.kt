@@ -89,7 +89,7 @@ var priceresult=0
             var titleresult="상품명이없음"
             var check:Int=0
             for(i in 0 until dataList.size){
-                priceresult+= ((dataList[i].price)*(dataList[i].count))
+                priceresult+= ((dataList[i].price).toInt()*(dataList[i].count))
                 check++
                 artKitList?.add(dataList[i].artKitIdx)
                 countList?.add(dataList[i].count)

@@ -135,7 +135,7 @@ android:layout_marginTop="@dimen/dp_80"
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="자랑하기"
+                android:text="영어동화"
                 android:textStyle="bold"
                 android:fontFamily="@font/ham"
                 android:layout_alignBottom="@+id/fairyButton"

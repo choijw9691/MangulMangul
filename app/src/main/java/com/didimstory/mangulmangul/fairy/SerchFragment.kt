@@ -46,7 +46,9 @@ class SerchFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
-        Log.d("ddddss","ddddss")
+
+
+        Log.d("ddddss","ddddss33")
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +67,12 @@ class SerchFragment : Fragment() {
 
 
         binding?.fairyTitle?.setText(arguments?.getString("result"))
-        var resultName=arguments?.getString("change")
 
-        when(resultName){
-            "fairypop" -> {
-                Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
+
+
+        var resultName=arguments?.getString("change")
+        Log.d("ddwou",PreferenceManager.getString(context,"serchResult"))
+                Client.retrofitService.fameFairyTaleList(PreferenceManager.getLong(context,"PrefIDIndex"),PreferenceManager.getString(context,"serchResult"))
                     .enqueue(object :
                         Callback<listfairyHome> {
                         override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
@@ -95,9 +98,6 @@ class SerchFragment : Fragment() {
 
 
                                     }
-
-
-
 
                                     mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
                                     fairyAdapter =
@@ -126,14 +126,13 @@ class SerchFragment : Fragment() {
 
                     })
 
-            }
-
-        }
 
 
 
 
-        binding?.serchBtn?.setOnClickListener(View.OnClickListener {
+
+
+/*        binding?.serchBtn?.setOnClickListener(View.OnClickListener {
 
             var intent= Intent(context,PopUpActivity::class.java)
 
@@ -141,12 +140,13 @@ class SerchFragment : Fragment() {
             intent.putExtra("data","fairypop")
             startActivityForResult(intent,1)
 
-        })
+        })*/
 
 
 
         return binding?.root
     }
+/*
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode==1){
@@ -155,22 +155,23 @@ class SerchFragment : Fragment() {
                 var aa= ServiceFragment()
                 var bundle=Bundle()
                 bundle.putString("change","fairypop")
-                bundle.putString("change","result")
+                bundle.putString("change",result)
                 aa.arguments=bundle
-                parentFragmentManager.beginTransaction().replace(R.id.viewPager,aa)
+                parentFragmentManager.beginTransaction().replace(R.id.viewPager,aa).commit()
 
 
             }
 
         }
     }
+*/
 
 
     companion object {
         fun newInstance(): Int? {
             var fragment: SerchFragment = SerchFragment()
             return 6
-
         }
+
     }
 }

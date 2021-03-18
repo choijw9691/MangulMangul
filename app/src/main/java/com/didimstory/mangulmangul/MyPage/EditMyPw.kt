@@ -48,10 +48,17 @@ var binding:FragmentEditMyPwBinding?=null
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
        binding= FragmentEditMyPwBinding.inflate(inflater, container, false)
         binding?.newpw?.isEnabled=false
         binding?.newpwcheck?.isEnabled=false
+
+        binding?.backbtn?.setOnClickListener(View.OnClickListener {
+            var fragmentManager=parentFragmentManager
+            fragmentManager.beginTransaction().replace(R.id.MyPageContainer,MyPageHomeFragment()).addToBackStack("21").commit()
+
+        })
 
         binding?.checkpw?.setOnClickListener(View.OnClickListener {
 

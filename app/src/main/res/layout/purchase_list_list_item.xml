@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="@dimen/dp_280"
+    android:layout_height="@dimen/dp_300"
     android:orientation="vertical"
+    android:background="@drawable/whitetext"
+
+    android:layout_marginLeft="@dimen/dp_10"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_30"
         android:orientation="horizontal"
+        android:gravity="left"
+        android:layout_marginRight="@dimen/dp_7"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="[접수완료]"
+            android:hint="  [접수완료]"
             android:id="@+id/deliveryStatus"
+            android:layout_centerVertical="true"
+            android:textColor="#ff6b6b"
+            android:fontFamily="@font/ham"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/dp_20"
             ></TextView>
 
         <TextView
@@ -21,82 +31,117 @@
             android:layout_height="wrap_content"
             android:hint="날짜"
             android:id="@+id/createdAt"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/deliveryStatus"
+            android:layout_marginLeft="@dimen/dp_6"
             android:layout_gravity="center"
+        android:textColor="#868e96"
+            android:fontFamily="@font/ham"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textStyle="bold"
             ></TextView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:layout_marginRight="@dimen/dp_7"
+    >
+
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/recycler"
-    ></androidx.recyclerview.widget.RecyclerView>
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e9ecef"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_marginBottom="@dimen/dp_8"
+        ></View>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_10"
         >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="@dimen/dp_7"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="총결제 금액"
                 android:id="@+id/total"
+                android:textColor="#868e96"
+                android:fontFamily="@font/ham"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="가격"
                 android:id="@+id/mm"
+                android:layout_marginRight="@dimen/dp_3"
+                android:layout_alignParentRight="true"
                 ></TextView>
-        </LinearLayout>
-        <LinearLayout
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="@dimen/dp_7"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="배송사"
-
+android:textColor="#868e96"
+                android:fontFamily="@font/ham"
                 ></TextView>
+
             <TextView
+                android:id="@+id/company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="대한통운"
-                android:id="@+id/company"
-                ></TextView>
-        </LinearLayout>
-        <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="3dp"
+                android:hint="대한통운"></TextView>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="@dimen/dp_7"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="운송장번호"
+                android:textColor="#868e96"
+                android:fontFamily="@font/ham"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="123123"
                 android:id="@+id/num"
+                android:layout_marginRight="@dimen/dp_3"
+                android:layout_alignParentRight="true"
+
                 ></TextView>
 
 
 
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

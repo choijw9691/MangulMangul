@@ -72,7 +72,7 @@ class fairyPopup  : Activity() {
             .enqueue(object :
                 Callback<listfairyBuy> {
                 override fun onFailure(call: Call<listfairyBuy>, t: Throwable) {
-                    Log.d("listresult11",t.toString())
+                    Log.d("listresult114",t.toString())
                 }
 
                 override fun onResponse(
@@ -85,13 +85,13 @@ class fairyPopup  : Activity() {
                             var list = response.body()?.list
 
                             for (i in 0 until (response.body()?.list!!.size)) {
-                                Log.d("listresult11",list?.get(i)!!.imageUri.toString())
+                                Log.d("listresult113",list?.get(i)!!.imageUri.toString())
                                 buydataList.add(
                                     fairybuyItem(
                                         list?.get(i)!!.artKitIdx,
                                         list?.get(i)!!.imageUri,
                                         list?.get(i)!!.name,
-                                        list?.get(i)!!.price
+                                        list?.get(i)!!.price.toString()
                                     )
                                 )
 

@@ -113,7 +113,9 @@ var deliveryCompany: String
 ,
     @SerializedName("deliveryNumber")
     var deliveryNumber: String
-
+,
+    @SerializedName("totalPrice")
+    var totalPrice: String
 
 )
 
@@ -132,7 +134,7 @@ data class ArtKit(
     var  count: Int,
 
     @SerializedName("price")
-    var  price: Int
+    var  price: String
 )
 
 
@@ -282,5 +284,33 @@ var contents : String
 
     @SerializedName("boastList")
     var list : List<boastDetail>
+
+)
+
+data class fameFairyTaleList(
+
+    @SerializedName("boastIdx")
+    var boastIdx: Int
+    ,
+    @SerializedName("fileRealName")
+    var fileRealName: String
+    ,
+    @SerializedName("likeStatus")
+    var likeStatus: Boolean
+    ,
+    @SerializedName("nickname")
+    var nickname: String
+    ,
+    @SerializedName("title")
+    var title: String
+    ,
+    @SerializedName("contents")
+    var contents : String
+
+
+)data class fameFairyTaleListResult(
+
+    @SerializedName("boastList")
+    var list : List<fameFairyTaleList>
 
 )

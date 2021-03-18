@@ -53,6 +53,7 @@
             android:layout_height="@dimen/dp_50"
             android:hint="현재 비밀번호"
             android:id="@+id/pw"
+            android:paddingLeft="@dimen/dp_20"
             ></EditText>
         <Button
             android:layout_width="wrap_content"
@@ -73,7 +74,7 @@
             android:background="@drawable/whitetext"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
-
+            android:paddingLeft="@dimen/dp_20"
             android:enabled="false"
             android:hint="새로운 비밀번호"
             android:id="@+id/newpw"
@@ -93,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_50"
             android:enabled="false"
+            android:paddingLeft="@dimen/dp_20"
             android:hint="비밀번호 확인"></EditText>
     </LinearLayout>
     <LinearLayout

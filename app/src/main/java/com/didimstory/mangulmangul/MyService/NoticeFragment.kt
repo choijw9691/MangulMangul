@@ -85,7 +85,12 @@ class NoticeFragment : Fragment() {
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
+        binding?.backbtn?.setOnClickListener(View.OnClickListener {
+            var fragmentManager=parentFragmentManager
+            fragmentManager.beginTransaction().replace(R.id.MyPageContainer,MyPageHomeFragment()).addToBackStack("21").commit()
 
+
+        })
         Client.retrofitService.noticeList(
 true
         )

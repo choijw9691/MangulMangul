@@ -3,10 +3,12 @@ package com.didimstory.mangulmangul.boast
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.boastDetailResult
 import com.didimstory.mangulmangul.Entity.boastRecycleItemData
+import com.didimstory.mangulmangul.MyPage.MyPageHomeFragment
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.databinding.ActivityBoastBinding
@@ -31,6 +33,12 @@ class boastActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityBoastBinding.inflate(layoutInflater)
 
+
+
+        binding?.backbtn?.setOnClickListener(View.OnClickListener {
+onBackPressed()
+
+        })
         var fragmentManager = supportFragmentManager
         var transaction = fragmentManager.beginTransaction()
         /*     transaction.replace(R.id.boastContainer, BoastDetailFragment())
