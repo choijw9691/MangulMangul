@@ -212,7 +212,7 @@ android:enabled="false"
                 android:fontFamily="@font/ham"
                 android:text="주소검색"
                 android:textColor="#ff6b6b"
-
+android:visibility="gone"
 
                 android:textStyle="bold"></Button>
         </LinearLayout>

@@ -1,6 +1,7 @@
 package com.didimstory.mangulmangul.fairy
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Point
@@ -18,6 +19,7 @@ import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.Entity.fairybuyItem
 import com.didimstory.mangulmangul.Entity.listfairyBuy
 import com.didimstory.mangulmangul.Entity.listfairyHome
+import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.Purchase.purchaseActivity
 import com.didimstory.mangulmangul.R
@@ -55,7 +57,7 @@ class fairyPopup  : Activity() {
 
         setContentView(R.layout.activity_fairy_popup)
 
-        val display=applicationContext.display
+        val display=this.baseContext.display
         val size= Point()
         display?.getRealSize(size)
         val width=size.x

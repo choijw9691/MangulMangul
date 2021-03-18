@@ -12,13 +12,18 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
 
+    <queries>
+        <intent>
+            <action android:name="com.google.android.youtube.api.service.START" />
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logologo11"
+        android:icon="@mipmap/logologo33"
         android:label="똑똑똑"
 
-        android:roundIcon="@mipmap/logologo11_round"
+        android:roundIcon="@mipmap/logologo33_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MangulMangul"
         android:usesCleartextTraffic="true">
@@ -35,24 +40,27 @@
 
             ></activity>
 
-
-
         <activity
             android:name=".MyService.QuestionActivity"
             android:screenOrientation="landscape" />
+
         <activity
             android:name=".Login.FindActivity"
             android:screenOrientation="landscape" />
+
         <activity
             android:name=".MyService.NoticeDetailActivity"
             android:label="@string/title_activity_notice_detail"
             android:screenOrientation="landscape" />
+
         <activity
             android:name=".MyService.QuestionDetailActivity"
             android:screenOrientation="landscape" />
+
         <activity
             android:name=".famous.youtubeFamous"
             android:screenOrientation="landscape" />
+
         <activity
             android:name=".webviewAPI"
             android:screenOrientation="landscape" />

@@ -142,6 +142,10 @@ onBackPressed()
         val youtubeView =
             findViewById<YouTubePlayerView>(R.id.youtubeView)
         youtubeView.initialize("develop", object : YouTubePlayer.OnInitializedListener {
+
+
+
+
             override fun onInitializationSuccess(
                 provider: YouTubePlayer.Provider,
                 player: YouTubePlayer,
@@ -149,8 +153,9 @@ onBackPressed()
             ) {
                 if (!wasRestored) {
                     player.cueVideo(videoId)
-
+                    Log.d("result456","wefwefwefwef")
                 }
+
             }
 
             override fun onInitializationFailure(
