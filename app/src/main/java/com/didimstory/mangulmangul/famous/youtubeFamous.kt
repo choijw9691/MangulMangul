@@ -116,7 +116,10 @@ class youtubeFamous : YouTubeBaseActivity(){
                                                 }
 
                                                 mLayoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
-                                                fairyAdapter = fairyDetailAdapter(applicationContext,1)
+
+                                           //여기 고쳐!!!!!!!!!!!!!!!!!!
+
+                                            //    fairyAdapter = fairyDetailAdapter(applicationContext,1)
 
                                                 recyclerView1.layoutManager = mLayoutManager
 

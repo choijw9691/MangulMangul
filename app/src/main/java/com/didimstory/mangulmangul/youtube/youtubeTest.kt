@@ -45,10 +45,10 @@ class youtubeTest : YouTubeBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        videoId = intent.getStringExtra("data.url")
+     //   videoId = intent.getStringExtra("data.url")
         engFairyTaleIdx = intent.getLongExtra("engFairyTaleIdx", 0).toLong()
-        likeStatus = intent.getBooleanExtra("likeStatus", false)
-        title = intent.getStringExtra("title")
+      //  likeStatus = intent.getBooleanExtra("likeStatus", false)
+      //  title = intent.getStringExtra("title")
         val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
         Log.d("youtuberesult", videoId.toString())
         setContentView(R.layout.activity_youtube_test)
@@ -64,14 +64,6 @@ onBackPressed()
         })
 
 
-        if (likeStatus == true) {
-
-          heart.progress=1f
-
-        } else {
-
-        heart.progress=0f
-        }
         heart.setOnClickListener(View.OnClickListener {
 
             if (applicationContext != null) {
@@ -122,10 +114,14 @@ onBackPressed()
 
         })
 
+        if (likeStatus == true) {
 
+            heart.progress=1f
 
+        } else {
 
-
+            heart.progress=0f
+        }
 
         gotoBtn.setOnClickListener(View.OnClickListener {
 
@@ -168,6 +164,7 @@ onBackPressed()
         })
 
 
+        Log.d("listresult1234",engFairyTaleIdx.toString())
 
         Client.retrofitService.fairyDetail(
             PreferenceManager.getLong(
@@ -188,18 +185,24 @@ onBackPressed()
                     when (response!!.code()) {
 
                         200 -> {
-                            var list = response.body()?.list
-                            for (i in 0 until (response.body()?.list!!.size)) {
-                                Log.d("listresult", list?.get(i)!!.ytUrl.toString())
-                                dataList.add(
-                                    YoutubeItem(
-                                        list?.get(i)!!.engFairyTaleIdx,
-                                        list?.get(i)!!.ytUrl,
-                                        list?.get(i)!!.title,
-                                        list?.get(i)!!.likestatus
-                                    )
-                                )
 
+                            var list = response.body()?.list
+                            Log.d("listresult", list.toString())
+                            for (i in 0 until (response.body()?.list!!.size)) {
+
+
+    dataList.add(
+        YoutubeItem(
+            list?.get(i)!!.engFairyTaleIdx,
+            list?.get(i)!!.ytUrl,
+            list?.get(i)!!.title,
+            list?.get(i)!!.likestatus
+        )
+    )
+                                engFairyTaleIdx =  response.body()?.engFairyTaleIdx
+                                videoId=response.body()?.ytUrl
+                                title= response.body()?.title
+                                likeStatus=  response.body()?.likestatus
 
                             }
 

@@ -8,18 +8,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.didimstory.mangul.Client
+import com.didimstory.mangulmangul.Entity.listfairyHome
+import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
 import com.didimstory.mangulmangul.databinding.FaityDetailItemBinding
 import com.didimstory.mangulmangul.famous.youtubeFamous
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 import com.didimstory.mangulmangul.youtube.youtubeTest
+import kotlinx.android.synthetic.main.activity_youtube_test.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+class fairyDetailAdapter(var context: Context?,var test: Int,var updateFairyListenerR:updateFairyListener?) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
 
     val mContext=context
+    var mupdateFairyListener=updateFairyListenerR
     var dataurl:String?=null
     var dataList = listOf<YoutubeItem>()
         set(value) {
@@ -71,7 +80,7 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
                 binding.thumbnail.setOnClickListener(View.OnClickListener {
                     var intent:Intent?=null
 
-
+                    mupdateFairyListener
                     if(test==0){
 
                         intent= Intent(mContext, youtubeTest::class.java)
@@ -117,6 +126,11 @@ class fairyDetailAdapter(var context: Context?,var test: Int) : RecyclerView.Ada
 
     }
 
+    interface updateFairyListener {
+        fun add(engFairyTaleIdx: Long){
 
+        }
+
+    }
 
 }

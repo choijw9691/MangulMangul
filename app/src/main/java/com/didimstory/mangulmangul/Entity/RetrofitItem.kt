@@ -18,7 +18,20 @@ data class listfairyBuy(
 
 data class listfairyHome(
     @SerializedName("fairyTaleList")
-    var list : List<fairyHome>
+    var list : List<fairyHome>,
+
+    @SerializedName("engFairyTaleIdx")
+var engFairyTaleIdx: Long
+,
+@SerializedName("ytUrl")
+var ytUrl: String
+,
+@SerializedName("title")
+var title: String
+
+,
+@SerializedName("likeStatus")
+var  likestatus: Boolean
 )
 data class listfameDetailHome(
     @SerializedName("fairyTaleList")
@@ -37,6 +50,8 @@ data class fairyHome(
     ,
     @SerializedName("likeStatus")
     var  likestatus: Boolean
+
+
 
 )
 

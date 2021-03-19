@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.didimstory.mangul.Client
 
 import com.didimstory.mangulmangul.Entity.BoastChildItem
+import com.didimstory.mangulmangul.Entity.boastRecycleItemData
 import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
@@ -54,9 +55,9 @@ class BoastChildFragment : Fragment() {
     private lateinit var boastAdapter: BoastChildAdapter
     private var dataList = arrayListOf<BoastChildItem>()
 var file1:File?=null
-
+var listMultipart=arrayListOf<File>() //파일리스트
     private var cacheFilePath:String? = null
-
+  var listMulti: List<MultipartBody.Part?>? = null //멀티파트리스트
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,33 +126,35 @@ var file1:File?=null
         binding?.boastInsert?.setOnClickListener(View.OnClickListener {
 
 
-
-
-
-            var requestFile = file1
-
         //    Long.toString(requestFile.length+"바이트")
+for ( i in 0 until listMultipart.size){
+    var requestFile:File = listMultipart[i]
+    val requestBody=requestFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
 
-            val requestBody=requestFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
+    val multipart=
+        requestBody?.let { it1 -> MultipartBody.Part.createFormData("image",requestFile?.name, it1) }
 
-            val multipart=
-                requestBody?.let { it1 -> MultipartBody.Part.createFormData("image",requestFile?.name, it1) }
+    listMulti = listMulti?.plus(multipart)
+
+}
 
 
 
-            if (multipart != null) {
-                Client.retrofitService.uploadImage(PreferenceManager.getLong(context,"PrefIDIndex"),binding?.contents?.text.toString(),binding?.title?.text.toString(),multipart)
+
+            if (listMulti != null) {
+                Client.retrofitService.uploadImage(PreferenceManager.getLong(context,"PrefIDIndex"),binding?.contents?.text.toString(),binding?.title?.text.toString(),
+                    listMulti!!
+                )
                     .enqueue(object :
                         Callback<Void> {
                         override fun onFailure(call: Call<Void>, t: Throwable) {
                             Log.d("에러네",t.toString())
-                            Log.d("에러네", Uri.fromFile(requestFile).toString()
-                            )
+
                         }
 
                         override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
-
+                            Log.d("에러네","등록성공")
                             Toast.makeText(activity, "등록되었습니다.", Toast.LENGTH_SHORT).show()
 
                             (activity as MainActivity).setOnBackPressedListener(null)
@@ -189,6 +192,31 @@ var file1:File?=null
         else if (requestCode == REQUEST_ALBUM && resultCode == RESULT_OK)
         {
             val albumUri = data?.getData()
+            dataList.add(BoastChildItem(albumUri))
+            mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            boastAdapter =
+                BoastChildAdapter(context, object : BoastChildAdapter.removeListener {
+                    override fun childRemove(position: Int) {
+                        Log.d("remove", listMultipart.size.toString())
+                        dataList.removeAt(position)
+                        listMultipart.removeAt(position)
+                    }
+                })
+
+            binding!!.writeRecylcer.apply {
+                this.layoutManager =
+                    mLayoutManager
+                this.adapter = boastAdapter
+
+            }
+
+            boastAdapter.dataList =
+                dataList
+
+
+
+
+
             val fileName = getFileName(albumUri!!)
             try
             {
@@ -201,6 +229,8 @@ var file1:File?=null
                 IOUtils.copy(inputStream, outputStream)
                 cacheFilePath = cacheFile.getAbsolutePath()
                 file1=cacheFile
+
+                listMultipart.add(file1!!)
                 //    imageView.setImageBitmap(getBitmapAlbum(imageView, albumUri))
 
 

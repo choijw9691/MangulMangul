@@ -183,12 +183,10 @@ interface API {
     ): Call<boastDetailResult>
 
 
-    //사용자가 프로필 이미지를 변경했을때 해당 이미지를 서버로 전송하는 통신
-
 
     @Multipart
-    @POST("user/boast/insertBoast")
-    fun uploadImage(@Part("userIdx")userIdx:Long,@Part("contents")contents:String,@Part("title")title:String,@Part file:MultipartBody.Part?):Call<Void>
+    @POST("user/boast/insertBoast") //자랑하기 등록
+    fun uploadImage(@Part("userIdx")userIdx:Long,@Part("contents")contents:String,@Part("title")title:String,@Part file:List<MultipartBody.Part?>):Call<Void>
 
 
 
