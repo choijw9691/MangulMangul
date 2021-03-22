@@ -184,9 +184,9 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
     }
 
     companion object {
-        fun newInstance(): BoastFragment? {
+        fun newInstance(): Int? {
             var fragment:BoastFragment= BoastFragment()
-            return fragment
+            return 1
         }
     }
 

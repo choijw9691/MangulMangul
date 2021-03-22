@@ -57,7 +57,7 @@ class BoastChildFragment : Fragment() {
 var file1:File?=null
 var listMultipart=arrayListOf<File>() //파일리스트
     private var cacheFilePath:String? = null
-  var listMulti: List<MultipartBody.Part?>? = null //멀티파트리스트
+    var listMulti= ArrayList<MultipartBody.Part>()//멀티파트리스트
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,16 +125,17 @@ var listMultipart=arrayListOf<File>() //파일리스트
 
         binding?.boastInsert?.setOnClickListener(View.OnClickListener {
 
-
         //    Long.toString(requestFile.length+"바이트")
 for ( i in 0 until listMultipart.size){
     var requestFile:File = listMultipart[i]
-    val requestBody=requestFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
+    var requestBody=requestFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
 
-    val multipart=
+    var multipart=
         requestBody?.let { it1 -> MultipartBody.Part.createFormData("image",requestFile?.name, it1) }
 
-    listMulti = listMulti?.plus(multipart)
+
+
+    listMulti?.add(multipart)
 
 }
 
@@ -143,7 +144,7 @@ for ( i in 0 until listMultipart.size){
 
             if (listMulti != null) {
                 Client.retrofitService.uploadImage(PreferenceManager.getLong(context,"PrefIDIndex"),binding?.contents?.text.toString(),binding?.title?.text.toString(),
-                    listMulti!!
+                    listMulti
                 )
                     .enqueue(object :
                         Callback<Void> {
@@ -154,7 +155,8 @@ for ( i in 0 until listMultipart.size){
 
                         override fun onResponse(call: Call<Void>, response: Response<Void>) {
 
-                            Log.d("에러네","등록성공")
+                            Log.d("에러네1",response.code().toString())
+                            Log.d("에러네1",response.message().toString())
                             Toast.makeText(activity, "등록되었습니다.", Toast.LENGTH_SHORT).show()
 
                             (activity as MainActivity).setOnBackPressedListener(null)

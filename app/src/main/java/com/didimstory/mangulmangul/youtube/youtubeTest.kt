@@ -30,7 +30,7 @@ import retrofit2.Response
 class youtubeTest : YouTubeBaseActivity() {
     var videoId: String? = null
     var likeStatus: Boolean? = null
-    var engFairyTaleIdx: Long? = null
+    var engFairyTaleIdx1: Long? = null
     var title: String? = null
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var fairyAdapter: fairyDetailAdapter
@@ -40,20 +40,45 @@ class youtubeTest : YouTubeBaseActivity() {
 
     override fun onStart() {
         super.onStart()
+overridePendingTransition(0, 0);
 
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-     //   videoId = intent.getStringExtra("data.url")
-        engFairyTaleIdx = intent.getLongExtra("engFairyTaleIdx", 0).toLong()
-      //  likeStatus = intent.getBooleanExtra("likeStatus", false)
-      //  title = intent.getStringExtra("title")
+        videoId = intent.getStringExtra("data.url")
+        engFairyTaleIdx1 = intent.getLongExtra("engFairyTaleIdx", 0).toLong()
+        likeStatus = intent.getBooleanExtra("likeStatus", false)
+        title = intent.getStringExtra("title")
         val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
         Log.d("youtuberesult", videoId.toString())
         setContentView(R.layout.activity_youtube_test)
 
-        fairyText.setText(title)
+
+
+
+        fairyAdapter = fairyDetailAdapter(applicationContext, 0,object : fairyDetailAdapter.updateFairyListener{
+            override fun add(engFairyTaleIdx: Long) {
+                super.add(engFairyTaleIdx)
+
+finish()
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       fairyText.setText(title)
 
 
 
@@ -88,7 +113,7 @@ onBackPressed()
                     PreferenceManager.getLong(
                         applicationContext,
                         "PrefIDIndex"
-                    ),engFairyTaleIdx!!.toLong()
+                    ),engFairyTaleIdx1!!.toLong()
                 ).enqueue(object :
                     Callback<Boolean> {
 
@@ -129,7 +154,7 @@ onBackPressed()
 
 //ActivityOptions.makeSceneTransitionAnimation(PopUpActivity()).toBundle()
             intent.putExtra("videoId", videoId)
-            intent.putExtra("engFairyTaleIdx", engFairyTaleIdx!!)
+            intent.putExtra("engFairyTaleIdx", engFairyTaleIdx1!!)
             startActivity(intent)
 
         })
@@ -164,13 +189,14 @@ onBackPressed()
         })
 
 
-        Log.d("listresult1234",engFairyTaleIdx.toString())
+        Log.d("listresult1234",engFairyTaleIdx1.toString())
+
 
         Client.retrofitService.fairyDetail(
             PreferenceManager.getLong(
                 applicationContext,
                 "PrefIDIndex"
-            ), engFairyTaleIdx!!
+            ), engFairyTaleIdx1!!
         )
             .enqueue(object :
                 Callback<listfairyHome> {
@@ -187,32 +213,34 @@ onBackPressed()
                         200 -> {
 
                             var list = response.body()?.list
-                            Log.d("listresult", list.toString())
+                            Log.d("listresult", response.body()?.title.toString())
                             for (i in 0 until (response.body()?.list!!.size)) {
 
 
-    dataList.add(
-        YoutubeItem(
-            list?.get(i)!!.engFairyTaleIdx,
-            list?.get(i)!!.ytUrl,
-            list?.get(i)!!.title,
-            list?.get(i)!!.likestatus
-        )
-    )
-                                engFairyTaleIdx =  response.body()?.engFairyTaleIdx
-                                videoId=response.body()?.ytUrl
-                                title= response.body()?.title
-                                likeStatus=  response.body()?.likestatus
+                                dataList.add(
+                                    YoutubeItem(
+                                        list?.get(i)!!.engFairyTaleIdx,
+                                        list?.get(i)!!.ytUrl,
+                                        list?.get(i)!!.title,
+                                        list?.get(i)!!.likestatus
+                                    )
+                                )
+
 
                             }
+                            /*     engFairyTaleIdx1 =  response.body()?.engFairyTaleIdx
+                                 videoId=response.body()?.ytUrl
 
-
+                                 title= response.body()?.title
+                                 fairyText.setText(title)
+                                 likeStatus=  response.body()?.likestatus
+                                 Log.d("리스폰첵11",title.toString())*/
                             mLayoutManager = LinearLayoutManager(
                                 applicationContext,
                                 LinearLayoutManager.HORIZONTAL,
                                 false
                             )
-                            fairyAdapter = fairyDetailAdapter(applicationContext, 0)
+
 
                             recyclerView1.layoutManager = mLayoutManager
 
@@ -228,7 +256,6 @@ onBackPressed()
 
 
             })
-
 
 //임시 하드코딩
         /*     dataList.add(

@@ -48,7 +48,12 @@ class purchaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_purchase)
         var purchaseList= intent.getSerializableExtra("purchaseList") as ArrayList<Buy>?
 
+purchase_back.setOnClickListener(View.OnClickListener {
 
+
+    finish()
+
+})
 
         if (purchaseList != null) {
             dataList=purchaseList

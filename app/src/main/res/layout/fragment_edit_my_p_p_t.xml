@@ -3,32 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.BoastFragment"
+    android:orientation="vertical"
+
+
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/boastContainer"
 
     >
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
-        >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/boast_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:background="@drawable/ic_icon_left_gray_8"></Button>
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/ham"
             android:text="포트폴리오"
             android:textColor="@color/black"
-            >
-
-        </TextView>
-
-
+            android:textSize="@dimen/dp_20"
+            android:textStyle="bold"></TextView>
     </RelativeLayout>
 
 
@@ -54,6 +64,10 @@
 
 
     </LinearLayout>
+
+
+</RelativeLayout>
+
 
 
 </LinearLayout>

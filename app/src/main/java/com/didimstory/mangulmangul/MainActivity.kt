@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.didimstory.mangulmangul.fairy.SerchFragment
 import com.didimstory.mangulmangul.fragment.*
@@ -76,16 +77,20 @@ Log.d("mainstart","mainstart")
         when(num){
 0->{
 
-    viewPager.currentItem=0
+    viewPager.setCurrentItem(0,false)
 }
             5->{
-                viewPager.currentItem=5
 
+viewPager.setCurrentItem(5,false)
             }
 
             6->{
-                viewPager.currentItem=6
 
+                viewPager.setCurrentItem(6,false)
+            }
+            1->{
+
+                viewPager.setCurrentItem(1,false)
             }
         }
 
@@ -141,7 +146,8 @@ var fragmentManager:FragmentManager=supportFragmentManager
                     else -> 5
                 }
                 if (page != viewPager.currentItem) {
-                    viewPager.currentItem = page
+
+                    viewPager.setCurrentItem(page,false)
             }
                 true
             }
@@ -152,6 +158,7 @@ var fragmentManager:FragmentManager=supportFragmentManager
     private fun initViewPager() {
         viewPager.run {
             adapter = pagerAdapter
+
             registerOnPageChangeCallback (object :
                 ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {

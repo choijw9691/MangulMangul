@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.transaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.didimstory.mangul.Client
@@ -20,6 +21,8 @@ import com.didimstory.mangulmangul.boast.boastDetailRecycleItem
 import com.didimstory.mangulmangul.databinding.ActivityBoastBinding
 import com.didimstory.mangulmangul.databinding.FragmentEditMyPPTBinding
 import com.didimstory.mangulmangul.fairy.fairyRecycleAdapter
+import com.didimstory.mangulmangul.fragment.BoastFragment
+import com.didimstory.mangulmangul.fragment.MypageFragment
 import com.didimstory.mangulmangul.fragment.videoId
 import com.didimstory.mangulmangul.youtube.YoutubeItem
 import retrofit2.Call
@@ -82,6 +85,17 @@ class EditMyPPT : Fragment() {
         val url = videoId//유튜브 썸네일 불러오는 방법
 
 
+        binding?.boastBack?.setOnClickListener(View.OnClickListener {
+
+            //  (activity as MainActivity).setOnBackPressedListener(null)
+
+            childFragmentManager.popBackStackImmediate()
+            var parentFragment: FragmentManager =parentFragmentManager
+            parentFragment.beginTransaction()
+                .replace(R.id.MyPageContainer, MyPageHomeFragment())
+                .commit()
+        })
+
 
 /*        var fragment: BoastDetailFragment? = BoastDetailFragment()
         var bundle: Bundle = Bundle()
@@ -98,14 +112,15 @@ class EditMyPPT : Fragment() {
             .enqueue(object :
                 Callback<boastListResult> {
                 override fun onFailure(call: Call<boastListResult>, t: Throwable) {
-
+ Log.d("getPPT",t.toString())
                 }
 
                 override fun onResponse(
                     call: Call<boastListResult>,
                     response: Response<boastListResult>
                 ) {
-
+                    Log.d("getPPT",response.code().toString())
+                    Log.d("getPPT",response.message().toString())
                     when (response!!.code()) {
 
                         200 -> {

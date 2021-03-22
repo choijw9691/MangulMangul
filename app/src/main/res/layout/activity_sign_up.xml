@@ -144,6 +144,7 @@ android:enabled="false"
             android:background="@drawable/redbutton"
             android:fontFamily="@font/ham"
             android:text="다음"
+            android:textSize="@dimen/dp_20"
             android:textColor="@android:color/white"
             android:textStyle="bold">
 

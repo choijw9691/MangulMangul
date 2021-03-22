@@ -1,10 +1,12 @@
 package com.didimstory.mangulmangul.Login
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -22,13 +24,20 @@ import retrofit2.Response
 class LoginActivity() : AppCompatActivity() {
 
 
+    fun hideKeyboard() {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(id_tv.windowToken, 0)
 
+        imm.hideSoftInputFromWindow(pw_tv.windowToken, 0)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-       if(PreferenceManager.getLong(applicationContext,"PrefIDIndex") != (-1).toLong()){
+loginlayout.setOnClickListener(View.OnClickListener {
+        hideKeyboard()
+})
+      if(PreferenceManager.getLong(applicationContext,"PrefIDIndex") != (-1).toLong()){
 Log.d("로그인?",PreferenceManager.getLong(applicationContext,"PrefIDIndex").toString())
             startActivity(Intent(applicationContext,MainActivity::class.java))
             finish()

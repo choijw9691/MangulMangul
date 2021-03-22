@@ -1,5 +1,6 @@
 package com.didimstory.mangulmangul.Login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.Entity.EmailCheck
@@ -14,6 +16,7 @@ import com.didimstory.mangulmangul.MainActivity
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.R
 import com.didimstory.mangulmangul.databinding.FragmentFindIdBinding
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_find_id.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,6 +47,8 @@ var binding:FragmentFindIdBinding?=null
 
         binding=FragmentFindIdBinding.inflate(inflater, container, false)
 val view=binding?.root
+
+
 
         binding?.backbtn?.setOnClickListener(View.OnClickListener {
 

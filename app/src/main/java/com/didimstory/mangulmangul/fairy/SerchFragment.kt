@@ -66,66 +66,10 @@ class SerchFragment : Fragment() {
         binding=FragmentSerchBinding.inflate(inflater, container, false)
 
 
-        binding?.fairyTitle?.setText(arguments?.getString("result"))
 
 
 
         var resultName=arguments?.getString("change")
-        Log.d("ddwou",PreferenceManager.getString(context,"serchResult"))
-                Client.retrofitService.fameFairyTaleList(PreferenceManager.getLong(context,"PrefIDIndex"),PreferenceManager.getString(context,"serchResult"))
-                    .enqueue(object :
-                        Callback<listfairyHome> {
-                        override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
-
-                        }
-
-                        override fun onResponse(
-                            call: Call<listfairyHome>,
-                            response: Response<listfairyHome>
-                        ) {
-                            when(response!!.code()){
-
-                                200->
-                                {
-                                    var list = response.body()?.list
-                                    for(i in 0 until (response.body()?.list!!.size)){
-                                        Log.d("listresult",list?.get(i)!!.ytUrl.toString())
-                                        dataList.add(
-                                            YoutubeItem(
-                                                list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
-                                            )
-                                        )
-
-
-                                    }
-
-                                    mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                                    fairyAdapter =
-                                        fairyRecycleAdapter(context,0)
-                                    binding!!.recyclerView.apply {
-                                        this.layoutManager =
-                                            mLayoutManager
-                                        this.adapter = fairyAdapter
-                                        this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-
-
-                                        })
-
-
-                                    }
-
-                                    fairyAdapter.dataList =
-                                        dataList
-
-                                }
-
-                            }
-                        }
-
-
-                    })
-
 
 
 
@@ -146,7 +90,8 @@ class SerchFragment : Fragment() {
 
         return binding?.root
     }
-/*
+
+    /*
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode==1){
@@ -165,7 +110,85 @@ class SerchFragment : Fragment() {
         }
     }
 */
+    override fun onResume() {
+        super.onResume()
+        Log.d("ddwou",PreferenceManager.getString(context,"serchResult"))
+        binding?.fairyTitle?.setText("'"+PreferenceManager.getString(context,"serchResult")+"'")
 
+        Log.d("ddwou",PreferenceManager.getString(context,"serchResult"))
+        Client.retrofitService.fameFairyTaleList(PreferenceManager.getLong(context,"PrefIDIndex"),PreferenceManager.getString(context,"serchResult"))
+            .enqueue(object :
+                Callback<listfairyHome> {
+                override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<listfairyHome>,
+                    response: Response<listfairyHome>
+                ) {
+                    dataList.clear()
+                    when(response!!.code()){
+
+                        200->
+                        {
+                            var list = response.body()?.list
+                            if (response.body()?.list!!.size>0){
+
+                                binding?.recyclerView?.visibility=View.VISIBLE
+                                binding?.nullimage?.visibility=View.GONE
+                            }
+                            else{
+
+                                binding?.recyclerView?.visibility=View.GONE
+                                binding?.nullimage?.visibility=View.VISIBLE
+                            }
+                            for(i in 0 until (response.body()?.list!!.size)){
+                                Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                                dataList.add(
+                                    YoutubeItem(
+                                        list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
+                                    )
+                                )
+
+
+                            }
+
+                            mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            fairyAdapter =
+                                fairyRecycleAdapter(context,0)
+                            binding!!.recyclerView.apply {
+                                this.layoutManager =
+                                    mLayoutManager
+                                this.adapter = fairyAdapter
+                                this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+
+
+                                })
+
+
+                            }
+
+                            fairyAdapter.dataList =
+                                dataList
+
+                        }
+
+                    }
+                }
+
+
+            })
+
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+    }
 
     companion object {
         fun newInstance(): Int? {

@@ -16,14 +16,17 @@ object Client {
 
 
     init {
-      /*  var interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        var logger = OkHttpClient.Builder().addInterceptor(interceptor).readTimeout(20, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS).build()*/
+  /*     var interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY*/
+        var logger = OkHttpClient.Builder() .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
+            .build();
 
         val retrofit = Retrofit.Builder()
                 .baseUrl("http://ymedu88.cafe24.com/")
                 .addConverterFactory(GsonConverterFactory.create())
-          //      .client(logger)
+            .client(logger)
                 .build()
 
         retrofitService = retrofit.create(API::class.java)

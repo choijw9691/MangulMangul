@@ -11,28 +11,29 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-  android:layout_marginTop="@dimen/dp_10"
-        >
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/dp_50"
-            ></ImageButton>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/purchase_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:background="@drawable/ic_icon_left_gray_8"></Button>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="구매하기"
-      android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="@dimen/dp_30"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:fontFamily="@font/ham"
-         android:layout_centerInParent="true"
-            ></TextView>
-
+            android:text="구매하기"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dp_20"
+            android:textStyle="bold"></TextView>
     </RelativeLayout>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
@@ -58,11 +59,14 @@
             android:layout_weight="0.5"
             >
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="받는사람 정보"
                 android:layout_alignParentLeft="true"
 android:textStyle="bold"
+           android:layout_centerVertical="true"
+                android:textSize="17dp"
+                android:fontFamily="@font/ham"
                 ></TextView>
 
             <CheckedTextView
@@ -70,6 +74,8 @@ android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:text="구매자와 동일합니다"
           android:layout_alignParentRight="true"
+                android:fontFamily="@font/ham"
+                android:textSize="19dp"
                 android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
              android:gravity="center"
                 ></CheckedTextView>
@@ -87,6 +93,9 @@ android:textStyle="bold"
                 android:hint="  이름"
                 android:id="@+id/name"
                 android:background="@drawable/whitetext"
+                android:inputType="textAutoComplete"
+                android:paddingLeft="@dimen/dp_10"
+                android:imeOptions="flagNoExtractUi"
                 ></EditText>
         </LinearLayout>
 
@@ -105,6 +114,9 @@ android:textStyle="bold"
                 android:hint="  주소"
                 android:id="@+id/addressText"
                 android:background="@drawable/whitetext"
+                android:inputType="textAutoComplete"
+                android:paddingLeft="@dimen/dp_10"
+                android:imeOptions="flagNoExtractUi"
                 ></EditText>
 
       <Button
@@ -132,6 +144,9 @@ android:textColor="#ff6b6b"
         android:hint="  상세주소"
         android:id="@+id/addr2"
         android:background="@drawable/whitetext"
+        android:inputType="textAutoComplete"
+        android:paddingLeft="@dimen/dp_10"
+        android:imeOptions="flagNoExtractUi"
         ></EditText>
 
 </LinearLayout>
@@ -151,13 +166,15 @@ android:textColor="#ff6b6b"
         android:inputType="textEmailAddress"
         android:background="@drawable/whitetext"
         android:layout_marginRight="@dimen/dp_20"
+        android:imeOptions="flagNoExtractUi"
+        android:paddingLeft="@dimen/dp_10"
         ></EditText>
     <Button
         android:layout_width="@dimen/dp_150"
         android:layout_height="@dimen/dp_60"
         android:text="다음"
         android:id="@+id/next"
-        android:background="@drawable/redbutton"
+        android:background="@drawable/buttonselector"
         android:textColor="@color/white"
         android:textStyle="bold"
         ></Button>
@@ -187,6 +204,7 @@ android:textColor="#ff6b6b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="결제 정보"
+            android:fontFamily="@font/ham"
             ></TextView>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -197,11 +215,15 @@ android:textColor="#ff6b6b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:fontFamily="@font/ham"
+                android:textColor="@color/black"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:fontFamily="@font/ham"
+                android:textColor="@color/black"
                 ></TextView>
 
 
@@ -217,11 +239,15 @@ android:textColor="#ff6b6b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:fontFamily="@font/ham"
+                android:textColor="@color/black"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:fontFamily="@font/ham"
+                android:textColor="@color/black"
                 ></TextView>
         </RelativeLayout>
 
@@ -236,11 +262,15 @@ android:textColor="#ff6b6b"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:fontFamily="@font/hambold"
+                android:textColor="@color/black"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:fontFamily="@font/hambold"
+                android:textColor="@color/black"
                 ></TextView>
         </RelativeLayout>
 
@@ -249,7 +279,7 @@ android:textColor="#ff6b6b"
             android:layout_height="wrap_content"
         android:text="결제하기"
             android:id="@+id/payment"
-            android:background="@drawable/redbutton"
+            android:background="@drawable/buttonselector"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:fontFamily="@font/ham"

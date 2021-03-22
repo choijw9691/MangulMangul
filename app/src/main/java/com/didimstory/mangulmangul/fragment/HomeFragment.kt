@@ -76,7 +76,7 @@ view.boastButton.setOnClickListener(this)
 
             R.id.boastButton->{
 
-                FamousFragment.newInstance()?.let { (activity as MainActivity).replaceFragment(it) }
+                BoastFragment.newInstance()?.let { (activity as MainActivity).replaceFragment(it) }
 
             }
         }

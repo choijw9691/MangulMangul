@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.transition.Slide
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -118,15 +119,23 @@ class fairyPopup  : Activity() {
                             }
 
                             override fun buyList(purchase: ArrayList<Buy>) {
+if(purchase.size>0){
 
-                                val intent = Intent(
-                                    applicationContext,
-                                    purchaseActivity::class.java
-                                )
-                                finish()
-                                Log.d("fffffffffffffff11",purchase.get(0).title.toString())
-                                intent.putExtra("purchaseList", purchase)
-                                startActivity(intent)
+    val intent = Intent(
+        applicationContext,
+        purchaseActivity::class.java
+    )
+    finish()
+    Log.d("fffffffffffffff11",purchase.get(0).title.toString())
+    intent.putExtra("purchaseList", purchase)
+    startActivity(intent)
+
+}
+              else{
+
+    Toast.makeText(applicationContext, "도구를 선택해주세요", Toast.LENGTH_SHORT).show()
+
+}
 
                             }
 

@@ -80,64 +80,7 @@ class FairytaleFragment : Fragment(){
         Log.d("ddddss1234","onCreateView")
 
 
-        Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
-                .enqueue(object :
-                    Callback<listfairyHome> {
-                    override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
-                        Log.d("listresult",t.toString())
-                    }
 
-                    override fun onResponse(
-                        call: Call<listfairyHome>,
-                        response: Response<listfairyHome>
-                    ) {
-                        dataList.clear()
-                        when(response!!.code()){
-
-                            200->
-                            {
-                                var list = response.body()?.list
-                                for(i in 0 until (response.body()?.list!!.size)){
-Log.d("listresult123",list?.get(i)!!.ytUrl.toString())
-                                    dataList.add(
-                                        YoutubeItem(
-                                            list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
-                                        )
-                                    )
-
-
-                                }
-
-
-
-
-                                mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                                fairyAdapter =
-                                    fairyRecycleAdapter(context,0)
-
-                                binding!!.recyclerView.apply {
-                                    this.layoutManager =
-                                        mLayoutManager
-                                    this.adapter = fairyAdapter
-                                    this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-
-
-                                    })
-
-
-                                }
-
-                             fairyAdapter!!.dataList =
-                                    dataList
-                                Log.d("췍",dataList.size.toString())
-                            }
-
-                        }
-                    }
-
-
-                })
 
 
 
@@ -182,6 +125,7 @@ binding?.serchBtn?.setOnClickListener(View.OnClickListener {
              var result=data?.getStringExtra("result")
              Log.d("왔다네",result.toString())
             if(PreferenceManager.getString(context,"serchResult")!=null){
+                Log.d("왔다네Z",result.toString())
                 PreferenceManager.removeKey(activity?.applicationContext,"serchResult")
                 PreferenceManager.setString(activity?.applicationContext,"serchResult",result)
 
@@ -203,6 +147,73 @@ binding?.serchBtn?.setOnClickListener(View.OnClickListener {
     override fun onResume() {
         super.onResume()
         Log.d("왔다네11","왔다네11")
-        fairyRecycleAdapter(context,0).notifyDataSetChanged()
+
+
+       // fairyRecycleAdapter(context,0).notifyDataSetChanged()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("췍123","췍123")
+
+
+        Client.retrofitService.fairyHome(PreferenceManager.getLong(context,"PrefIDIndex"))
+            .enqueue(object :
+                Callback<listfairyHome> {
+                override fun onFailure(call: Call<listfairyHome>, t: Throwable) {
+                    Log.d("listresult",t.toString())
+                }
+
+                override fun onResponse(
+                    call: Call<listfairyHome>,
+                    response: Response<listfairyHome>
+                ) {
+                    dataList.clear()
+                    when(response!!.code()){
+
+                        200->
+                        {
+                            var list = response.body()?.list
+                            for(i in 0 until (response.body()?.list!!.size)){
+                                Log.d("listresult123",list?.get(i)!!.ytUrl.toString())
+                                dataList.add(
+                                    YoutubeItem(
+                                        list?.get(i)!!.engFairyTaleIdx,  list?.get(i)!!.ytUrl, list?.get(i)!!.title, list?.get(i)!!.likestatus
+                                    )
+                                )
+
+
+                            }
+
+
+
+
+                            mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            fairyAdapter =
+                                fairyRecycleAdapter(context,0)
+
+                            binding!!.recyclerView.apply {
+                                this.layoutManager =
+                                    mLayoutManager
+                                this.adapter = fairyAdapter
+                                this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+
+
+                                })
+
+
+                            }
+
+                            fairyAdapter!!.dataList =
+                                dataList
+                            Log.d("췍",dataList.size.toString())
+                        }
+
+                    }
+                }
+
+
+            })
     }
 }

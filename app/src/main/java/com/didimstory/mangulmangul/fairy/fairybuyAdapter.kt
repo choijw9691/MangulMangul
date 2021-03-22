@@ -102,7 +102,7 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
                 binding.textview.setText(data.name)
-                binding.checkbox.setText(data.price.toString())
+                binding.checkbox.setText(formatter.format((data.price).toInt()) + "원")
 
 
 

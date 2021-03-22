@@ -186,7 +186,7 @@ interface API {
 
     @Multipart
     @POST("user/boast/insertBoast") //자랑하기 등록
-    fun uploadImage(@Part("userIdx")userIdx:Long,@Part("contents")contents:String,@Part("title")title:String,@Part file:List<MultipartBody.Part?>):Call<Void>
+    fun uploadImage(@Part("userIdx")userIdx:Long,@Part("contents")contents:String,@Part("title")title:String,@Part image:List<MultipartBody.Part>):Call<Void>
 
 
 

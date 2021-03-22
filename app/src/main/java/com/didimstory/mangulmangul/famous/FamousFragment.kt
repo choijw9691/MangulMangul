@@ -64,6 +64,9 @@ class FamousFragment : Fragment(){
                     call: Call<listfairyHome>,
                     response: Response<listfairyHome>
                 ) {
+
+
+                    dataList.clear()
                     when(response!!.code()){
 
                         200->

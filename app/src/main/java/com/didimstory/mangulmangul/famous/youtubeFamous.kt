@@ -119,7 +119,12 @@ class youtubeFamous : YouTubeBaseActivity(){
 
                                            //여기 고쳐!!!!!!!!!!!!!!!!!!
 
-                                            //    fairyAdapter = fairyDetailAdapter(applicationContext,1)
+                                               fairyAdapter = fairyDetailAdapter(applicationContext,1,object : fairyDetailAdapter.updateFairyListener{
+
+                                                   override fun add(engFairyTaleIdx: Long) {
+                                                       super.add(engFairyTaleIdx)
+                                                   }
+                                               })
 
                                                 recyclerView1.layoutManager = mLayoutManager
 
