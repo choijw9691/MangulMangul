@@ -1,55 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/dp_140"
     android:orientation="horizontal"
+    android:background="@drawable/whitetext"
+    android:backgroundTint="#ffffff"
+
     >
 
 
     <ImageView
-        android:layout_width="110dp"
-        android:layout_height="110dp"
         android:id="@+id/purchaseImageview"
+        android:layout_width="220dp"
+        android:layout_height="120dp"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_centerVertical="true"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
-        ></ImageView>
+android:layout_marginLeft="@dimen/dp_5"
+        android:scaleType="fitXY"></ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:orientation="vertical"
         android:layout_toRightOf="@+id/purchaseImageview"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp_10"
         >
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:id="@+id/purchaseTitle"
-            ></TextView>
-        <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:orientation="horizontal"
-        >
-
-        <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-android:spinnerMode="dropdown"
-   android:id="@+id/purcaseButton"
-            android:entries="@array/개"
-            ></Spinner>
-            <TextView
+            android:ellipsize="end"
+            android:fontFamily="@font/hambold"
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:textColor="@color/black"></TextView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            >
+
+            <Spinner
+                android:id="@+id/purcaseButton"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:text="3333"
-                android:layout_alignParentRight="true"
-                android:id="@+id/purchaseText"
-                ></TextView>
+                android:layout_height="wrap_content"
+                android:entries="@array/개"
+                android:spinnerMode="dropdown"
+android:theme="@style/SpinnerTheme"
+                ></Spinner>
 
-    </RelativeLayout>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/purchaseText"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
+
+            android:fontFamily="@font/ham"
+            android:gravity="left"
+            android:text="3333"
+            android:textColor="
+#ff6b6b"
+            android:textSize="@dimen/dp_25"
+            android:textStyle="bold"></TextView>
     </LinearLayout>
 </RelativeLayout>

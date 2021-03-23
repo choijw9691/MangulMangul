@@ -91,7 +91,7 @@ class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<Recycler
 
 
 
-                    Client.retrofitService.updateLike(
+                    Client.retrofitService.boastupdateLike(
                         PreferenceManager.getLong(
                             mContext,
                             "PrefIDIndex"
@@ -106,7 +106,8 @@ class boastRecycleAdapter(var context: Context?) : RecyclerView.Adapter<Recycler
 
                         override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
 
-                            data.likeStatus = response.body()!!
+                         //   Log.d("sslssl",response.body()!!.toString())
+                           data.likeStatus = response.body()!!
 
 
                         }

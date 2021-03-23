@@ -78,6 +78,8 @@ android:textStyle="bold"
                 android:textSize="19dp"
                 android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
              android:gravity="center"
+
+                android:id="@+id/checkbox"
                 ></CheckedTextView>
         </RelativeLayout>
 
@@ -90,7 +92,7 @@ android:textStyle="bold"
             <EditText
                 android:layout_width="500dp"
                 android:layout_height="@dimen/dp_60"
-                android:hint="  이름"
+                android:hint="이름"
                 android:id="@+id/name"
                 android:background="@drawable/whitetext"
                 android:inputType="textAutoComplete"
@@ -111,7 +113,7 @@ android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_60"
                 android:layout_weight="3"
-                android:hint="  주소"
+                android:hint="주소"
                 android:id="@+id/addressText"
                 android:background="@drawable/whitetext"
                 android:inputType="textAutoComplete"
@@ -141,7 +143,7 @@ android:textColor="#ff6b6b"
     <EditText
         android:layout_width="500dp"
         android:layout_height="@dimen/dp_60"
-        android:hint="  상세주소"
+        android:hint="상세주소"
         android:id="@+id/addr2"
         android:background="@drawable/whitetext"
         android:inputType="textAutoComplete"
@@ -161,7 +163,7 @@ android:textColor="#ff6b6b"
     <EditText
         android:layout_width="500dp"
         android:layout_height="@dimen/dp_60"
-        android:hint="  이메일"
+        android:hint="이메일"
         android:id="@+id/email"
         android:inputType="textEmailAddress"
         android:background="@drawable/whitetext"
@@ -181,29 +183,54 @@ android:textColor="#ff6b6b"
 </LinearLayout>
 
     </LinearLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:layout_marginRight="@dimen/dp_20"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:id="@+id/leaa"
+    android:layout_marginLeft="@dimen/dp_30"
+    >
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="상품 정보"
+    android:fontFamily="@font/ham"
+    ></TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/purchaseRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+android:layout_marginTop="@dimen/dp_10"
 
-        android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+        ></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
+
 
 
     <LinearLayout
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical"
         android:id="@+id/purchaseLinear2"
+        android:layout_marginRight="@dimen/dp_20"
         >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="결제 정보"
+            android:fontFamily="@font/ham"
+            ></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
             android:fontFamily="@font/ham"
             ></TextView>
         <RelativeLayout
@@ -217,6 +244,7 @@ android:textColor="#ff6b6b"
                 android:layout_alignParentLeft="true"
                 android:fontFamily="@font/ham"
                 android:textColor="@color/black"
+                android:text="총 상품 가격"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
@@ -224,11 +252,18 @@ android:textColor="#ff6b6b"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/ham"
                 android:textColor="@color/black"
+android:id="@+id/totalgoods"
                 ></TextView>
 
 
 
         </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/ham"
+            ></TextView>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -241,16 +276,18 @@ android:textColor="#ff6b6b"
                 android:layout_alignParentLeft="true"
                 android:fontFamily="@font/ham"
                 android:textColor="@color/black"
-                ></TextView>
+                android:text="배송비"
+               ></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/ham"
                 android:textColor="@color/black"
+                android:text="2,500원"
+                android:id="@+id/shippingfee"
                 ></TextView>
         </RelativeLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -264,6 +301,7 @@ android:textColor="#ff6b6b"
                 android:layout_alignParentLeft="true"
                 android:fontFamily="@font/hambold"
                 android:textColor="@color/black"
+
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
@@ -273,7 +311,42 @@ android:textColor="#ff6b6b"
                 android:textColor="@color/black"
                 ></TextView>
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:fontFamily="@font/hambold"
+                android:textColor="@color/black"
+                android:text="총 결제 금액"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/hambold"
+                android:textColor="@color/black"
+                android:id="@+id/totalprice"
+                ></TextView>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/ham"
+            ></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/ham"
+            ></TextView>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -283,6 +356,7 @@ android:textColor="#ff6b6b"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:fontFamily="@font/ham"
+
             ></Button>
     </LinearLayout>
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.didimstory.mangulmangul.Entity
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.util.ArrayList
 
 
 data class EmailCheck(
@@ -46,12 +47,9 @@ data class fairyHome(
     ,
     @SerializedName("title")
     var title: String
-
     ,
     @SerializedName("likeStatus")
     var  likestatus: Boolean
-
-
 
 )
 
@@ -157,6 +155,7 @@ data class ArtKit(
 data class boastListResult(
     @SerializedName("boastList")
     var list : List<boastList>
+
 )
 
 data class boastList(
@@ -164,7 +163,7 @@ data class boastList(
     var boastIdx: Int
     ,
     @SerializedName("fileRealName")
-    var fileRealName: String
+    var fileRealName: List<String>
     ,
     @SerializedName("title")
     var  title: String
@@ -191,7 +190,8 @@ data class noticeListResult(
 
 
 data class noticeDetail(
-
+    @SerializedName("title")
+    var title: String,
     @SerializedName("contents")
     var contents: String
 
@@ -248,7 +248,7 @@ data class inquiryListResult(
 data class boastrList(
 
     @SerializedName("fileRealName")
-    var fileRealName: String
+    var fileRealName: List<String>
     ,
     @SerializedName("likeStatus")
     var likeStatus: Boolean
@@ -280,7 +280,7 @@ data class boastDetail(
     var boastIdx: Int
     ,
     @SerializedName("fileRealName")
-    var fileRealName: String
+    var fileRealName: List<String>
     ,
     @SerializedName("likeStatus")
     var likeStatus: Boolean
@@ -298,8 +298,24 @@ var contents : String
 )data class boastDetailResult(
 
     @SerializedName("boastList")
-    var list : List<boastDetail>
-
+    var list : List<boastDetail>,
+    @SerializedName("boastIdx")
+var boastIdx: Int
+,
+@SerializedName("fileRealName")
+var fileRealName: ArrayList<String>
+,
+@SerializedName("likeStatus")
+var likeStatus: Boolean
+,
+@SerializedName("nickname")
+var nickname: String
+,
+@SerializedName("title")
+var title: String
+,
+@SerializedName("contents")
+var contents : String
 )
 
 data class fameFairyTaleList(
@@ -327,5 +343,23 @@ data class fameFairyTaleList(
 
     @SerializedName("boastList")
     var list : List<fameFairyTaleList>
+
+)
+
+data class loginUserInfo(
+
+    @SerializedName("userName")
+    var userName: String
+    ,
+    @SerializedName("email")
+    var email: String
+    ,
+    @SerializedName("addr1")
+    var addr1: String
+    ,
+    @SerializedName("addr2")
+    var addr2: String
+
+
 
 )

@@ -126,11 +126,11 @@ class youtubeFamous : YouTubeBaseActivity(){
                                                    }
                                                })
 
-                                                recyclerView1.layoutManager = mLayoutManager
+                                                recyclerView2.layoutManager = mLayoutManager
 
                                                 fairyAdapter.dataList = dataList
 
-                                                recyclerView1.adapter = fairyAdapter
+                                                recyclerView2.adapter = fairyAdapter
 
 
 

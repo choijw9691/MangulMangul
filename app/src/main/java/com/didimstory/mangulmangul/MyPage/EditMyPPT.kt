@@ -125,12 +125,13 @@ class EditMyPPT : Fragment() {
 
                         200 -> {
                             var list = response.body()?.list
+                            Log.d("getPPT",list.toString())
                             for (i in 0 until (response.body()?.list!!.size)) {
 
                                 dataList.add(
                                     YoutubeItem(
                                         list?.get(i)!!.boastIdx.toLong(),
-                                        list?.get(i)!!.fileRealName,
+                                        list?.get(i)!!.fileRealName.get(0),
                                         list?.get(i)!!.title,
                                         false
                                     )

@@ -39,37 +39,24 @@ class boastActivity : AppCompatActivity() {
 onBackPressed()
 
         })
-        var fragmentManager = supportFragmentManager
-        var transaction = fragmentManager.beginTransaction()
+
         /*     transaction.replace(R.id.boastContainer, BoastDetailFragment())
              transaction.commit()*/
 
 
-        if (intent.getStringExtra("data.url") != null) {
-            var intentCheck = intent.getStringExtra("data.url").toString()
-            var nickname = intent.getStringExtra("nickname").toString()
-            var likeStatus = intent.getBooleanExtra("likeStatus",false)
-            var boastIdx = intent.getIntExtra("boastIdx",0)
-            var content = intent.getStringExtra("content").toString()
-            var title = intent.getStringExtra("title").toString()
 
+
+        var fragmentManager = supportFragmentManager
+        var transaction = fragmentManager.beginTransaction()
 
             var fragment: BoastDetailFragment? = BoastDetailFragment()
             var bundle: Bundle = Bundle()
-            bundle.putString("intentCheckurl", intentCheck)
-            bundle.putString("nickname", nickname)
-            bundle.putString("content", content)
-            bundle.putBoolean("likeStatus", likeStatus)
-            bundle.putInt("boastIdx", boastIdx)
-            bundle.putString("title", title)
-
-
 
             fragment!!.arguments = bundle
-            Log.d("intentCheckurl", intentCheck)
+        bundle.putInt("boastIdx",intent.getIntExtra("boastIdx", 0))
             transaction.replace(R.id.boastContainer, fragment).commit()
 
-        }
+
 
         val url = videoId//유튜브 썸네일 불러오는 방법
 
@@ -92,13 +79,17 @@ onBackPressed()
                     call: Call<boastDetailResult>,
                     response: Response<boastDetailResult>
                 ) {
+
+
+
                     var list = response.body()?.list
                     for (i in 0 until (list!!.size)) {
                         //  Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+
                         dataList.add(
                             boastDetailRecycleItem(
                                 list?.get(i)?.boastIdx,
-                                list?.get(i)?.fileRealName,
+                                list?.get(i)?.fileRealName.get(0),
                                 list?.get(i)?.likeStatus,
                                 list?.get(i)?.nickname,
                                 list?.get(i)?.title,
@@ -128,14 +119,9 @@ onBackPressed()
                                         var transaction = fragmentManager.beginTransaction()
                                         var fragment: BoastDetailFragment? = BoastDetailFragment()
                                         var bundle: Bundle = Bundle()
-                                        bundle.putInt("boastIdx", boastIdx)
-                                        bundle.putString("fileRealName", fileRealName)
-                                        bundle.putBoolean("likeStatus", likeStatus)
-                                        bundle.putString("nickname", nickname)
-                                        bundle.putString("title", title)
-                                        bundle.putString("content", content)
-                                        fragment!!.arguments = bundle
+                                        bundle.putInt("boastIdx",boastIdx)
 
+                                        fragment!!.arguments = bundle
                                         transaction.replace(R.id.boastContainer, fragment).commit()
                                     }
 
@@ -151,6 +137,8 @@ onBackPressed()
 
                         boastRecycleAdapter.dataList = dataList
                     }
+
+
                 }
 
                 })

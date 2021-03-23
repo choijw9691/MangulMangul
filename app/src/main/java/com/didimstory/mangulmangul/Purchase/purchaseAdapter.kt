@@ -1,30 +1,37 @@
 package com.didimstory.mangulmangul.Purchase
 
+import android.R
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.databinding.PurchaseItemBinding
-
-
+import com.google.android.material.internal.ContextUtils.getActivity
+import java.text.DecimalFormat
 
 
 class purchaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>{
-
+    var formatter: DecimalFormat = DecimalFormat("###,###")
     var mContext: Context
+var mbuyTextListener:buyTextListener?
 
 var aa:ArrayList<String>? =null
+
     constructor(
-        context: Context
+        context: Context,
+        mbuyTextListener:buyTextListener?
     ) : super() {
 
         this.mContext = context
-
+this.mbuyTextListener=mbuyTextListener
     }
 
     var dataurl: String? = null
@@ -85,7 +92,8 @@ var aa:ArrayList<String>? =null
                     .into(binding.purchaseImageview)
 
                 binding.purchaseTitle.text = data.title
-                binding.purchaseText.text = data.price.toString()
+                binding.purchaseText.setText(formatter.format((data.price).toInt()) + "원")
+
                 binding.purcaseButton.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
                     override fun onNothingSelected(parent: AdapterView<*>?) {
                         TODO("Not yet implemented")
@@ -98,21 +106,25 @@ var aa:ArrayList<String>? =null
                         id: Long
                     ) {
 
-if((data.price.toInt()*position)==0){
 
 
 
-    binding.purchaseText.text = data.price.toString()
+
+
+
+                        if((data.price.toInt()*position)==0){
+
+    binding.purchaseText.setText(formatter.format((data.price).toInt()) + "원")
 data.count=1
 }else{
 
+    binding.purchaseText.setText(formatter.format(( (data.price.toInt()*(position+1)).toString()).toInt()) + "원")
 
-    binding.purchaseText.text = (data.price.toInt()*(position+1)).toString()
-    binding.purchaseText.text.toString()
+ //   binding.purchaseText.text.toString()
     data.count=(position+1)
 
 }
-
+                        mbuyTextListener?.buyTotal()
 
 
                     }
@@ -136,16 +148,9 @@ data.count=1
     }
 
     interface buyTextListener {
-        fun buyTotal(data: String?)
-        fun buyList(purchase: ArrayList<Buy>)
-    }
-
-    fun setpText(aa1:String){
-
+        fun buyTotal()
 
     }
 
-    fun getpText(): String {
-        return aa.toString()
-    }
+
 }

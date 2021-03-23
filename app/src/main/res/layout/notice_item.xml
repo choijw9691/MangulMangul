@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_50"
-    android:background="@drawable/whitetext"
+    android:layout_height="wrap_content"
+
+
 
     >
 
     <RelativeLayout
-        android:layout_width="600dp"
-        android:layout_height="match_parent"
         android:id="@+id/notice_ln"
-     android:layout_centerHorizontal="true"
+        android:layout_width="500dp"
+        android:layout_height="@dimen/dp_50"
+android:layout_centerHorizontal="true"
+        android:background="@drawable/whitetext"
         >
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="공지사항제목"
             android:id="@+id/notice_id"
-            android:layout_centerVertical="true"
-            android:textColor="#343a40"
-            android:textStyle="bold"
-            ></TextView>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="날짜"
-            android:id="@+id/notice_date"
             android:layout_centerVertical="true"
+            android:hint="공지사항제목"
+            android:paddingLeft="@dimen/dp_20"
+            android:textColor="#343a40"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/notice_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp_30"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_20"
             android:ellipsize="end"
+            android:hint="날짜"
             android:maxLines="1"
             android:textColor="#868e96
 "
-            android:textStyle="bold"
-            ></TextView>
+            android:textStyle="bold"></TextView>
     </RelativeLayout>
 
 </RelativeLayout>

@@ -137,7 +137,6 @@ interface API {
     @POST("user/cs/noticeDetail")//공지사항상세
     @FormUrlEncoded
     fun noticeDetail(
-
         @Field("noticeIdx") noticeIdx: Int
     ): Call<noticeDetail>
 
@@ -190,7 +189,9 @@ interface API {
 
 
 
-
+    @POST("user/boast/updateLike") //자랑하기 좋아요
+    @FormUrlEncoded
+    fun boastupdateLike(@Field("userIdx") userIdx: Long,@Field("boastIdx") boastId: Long):Call<Boolean>
 
 
     @POST("user/fairyTale/updateLike")
@@ -202,6 +203,12 @@ interface API {
     @POST("user/fairyTale/fameFairyTaleList")
     @FormUrlEncoded
     fun fameFairyTaleList(@Field("userIdx") userIdx: Long,@Field("titleLike") titleLike: String):Call<listfairyHome>
+
+
+
+    @POST("user/account/loginUserInfo") //구매자와 동일
+    @FormUrlEncoded
+    fun loginUserInfo(@Field("userIdx") userIdx: Long):Call<loginUserInfo>
 
 
 }

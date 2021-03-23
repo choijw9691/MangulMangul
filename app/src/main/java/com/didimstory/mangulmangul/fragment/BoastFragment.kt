@@ -95,66 +95,6 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
 
 
 
-        Client.retrofitService.boastList(PreferenceManager.getLong(context,"PrefIDIndex"))
-            .enqueue(object :
-                Callback<boastrListResult> {
-                override fun onFailure(call: Call<boastrListResult>, t: Throwable) {
-
-                }
-
-                override fun onResponse(
-                    call: Call<boastrListResult>,
-                    response: Response<boastrListResult>
-                ) {
-
-                    dataList.clear()
-
-                    when(response!!.code()){
-
-                        200->
-                        {
-                    var list = response.body()?.list
-                            for(i in 0 until (list!!.size)){
-                                //  Log.d("listresult",list?.get(i)!!.ytUrl.toString())
-                                dataList.add(
-                                    boastRecycleItemData(
-                                        list?.get(i)?.fileRealName,  list?.get(i)?.likeStatus, list?.get(i)?.title, list?.get(i)?.contents,list?.get(i)?.deleted,list?.get(i)?.boastIdx,list?.get(i)?.nickname.toString()
-                                    )
-                                )
-
-
-                            }
-
-
-                            mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                            boastAdapter =
-                                boastRecycleAdapter(context)
-
-                            binding!!.recyclerView.apply {
-                                this.layoutManager =
-                                    mLayoutManager
-                                this.adapter = boastAdapter
-
-
-
-                            }
-
-                            boastAdapter.dataList =
-                                dataList
-
-
-
-
-
-                        }
-
-                    }
-                }
-
-
-            })
-
-
 
 
 
@@ -213,9 +153,75 @@ class BoastFragment : Fragment(), MainActivity.OnBackPressedListener{
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d("check123","check5")
+
         (activity as MainActivity).setOnBackPressedListener(null)
    binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("check123","check578")
+
+        Client.retrofitService.boastList(PreferenceManager.getLong(context,"PrefIDIndex"))
+            .enqueue(object :
+                Callback<boastrListResult> {
+                override fun onFailure(call: Call<boastrListResult>, t: Throwable) {
+
+                }
+
+                override fun onResponse(
+                    call: Call<boastrListResult>,
+                    response: Response<boastrListResult>
+                ) {
+
+                    dataList.clear()
+
+                    when(response!!.code()){
+
+                        200->
+                        {
+                            var list = response.body()?.list
+                            for(i in 0 until (list!!.size)){
+                                //  Log.d("listresult",list?.get(i)!!.ytUrl.toString())
+                                dataList.add(
+                                    boastRecycleItemData(
+                                        list?.get(i)?.fileRealName[0],list?.get(i)?.likeStatus, list?.get(i)?.title, list?.get(i)?.contents,list?.get(i)?.deleted,list?.get(i)?.boastIdx,list?.get(i)?.nickname.toString()
+                                    )
+                                )
+
+
+                            }
+
+
+                            mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                            boastAdapter =
+                                boastRecycleAdapter(context)
+
+                            binding!!.recyclerView.apply {
+                                this.layoutManager =
+                                    mLayoutManager
+                                this.adapter = boastAdapter
+
+
+
+                            }
+
+                            boastAdapter.dataList =
+                                dataList
+
+
+
+
+
+                        }
+
+                    }
+                }
+
+
+            })
+
+
     }
 
     override fun onBackPressed() {

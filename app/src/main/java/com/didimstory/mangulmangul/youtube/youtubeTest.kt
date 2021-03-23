@@ -46,21 +46,20 @@ overridePendingTransition(0, 0);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setContentView(R.layout.activity_youtube_test)
+
+
         videoId = intent.getStringExtra("data.url")
         engFairyTaleIdx1 = intent.getLongExtra("engFairyTaleIdx", 0).toLong()
         likeStatus = intent.getBooleanExtra("likeStatus", false)
         title = intent.getStringExtra("title")
         val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
         Log.d("youtuberesult", videoId.toString())
-        setContentView(R.layout.activity_youtube_test)
-
-
-
 
         fairyAdapter = fairyDetailAdapter(applicationContext, 0,object : fairyDetailAdapter.updateFairyListener{
             override fun add(engFairyTaleIdx: Long) {
                 super.add(engFairyTaleIdx)
-
 finish()
             }
         })
@@ -213,7 +212,7 @@ onBackPressed()
                         200 -> {
 
                             var list = response.body()?.list
-                            Log.d("listresult", response.body()?.title.toString())
+                            Log.d("listresult9989", response.body().toString())
                             for (i in 0 until (response.body()?.list!!.size)) {
 
 
@@ -242,11 +241,11 @@ onBackPressed()
                             )
 
 
-                            recyclerView1.layoutManager = mLayoutManager
+                            recyclerView2.layoutManager = mLayoutManager
 
                             fairyAdapter.dataList = dataList
 
-                            recyclerView1.adapter = fairyAdapter
+                            recyclerView2.adapter = fairyAdapter
 
 
                         }

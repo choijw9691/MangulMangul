@@ -84,19 +84,28 @@ class fairyDetailAdapter(var context: Context?,var test: Int,var updateFairyList
                     if(test==0){
 
                         intent= Intent(mContext, youtubeTest::class.java)
+                        intent?.putExtra("engFairyTaleIdx",data.engFairyTaleIdx)
+                        intent?.putExtra("data.url",data.ytUrl)
+                        intent?.putExtra("likeStatus",data.likeStatus)
+                        intent?.putExtra("title",data.title)
+                        intent?.addFlags(FLAG_ACTIVITY_NEW_TASK)
+
+                        mContext.startActivity(intent)
+
                         Log.d("data.ytUrl",data.ytUrl)
                     }
                     else if(test==1){
 
                         intent=Intent(mContext, youtubeFamous::class.java)
-                    }
-                    intent?.putExtra("engFairyTaleIdx",data.engFairyTaleIdx)
-                    intent?.putExtra("data.url",data.ytUrl)
-intent?.putExtra("likeStatus",data.likeStatus)
-intent?.putExtra("title",data.title)
-                    intent?.addFlags(FLAG_ACTIVITY_NEW_TASK)
+                        intent?.putExtra("engFairyTaleIdx",data.engFairyTaleIdx)
+                        intent?.putExtra("data.url",data.ytUrl)
+                        intent?.putExtra("likeStatus",data.likeStatus)
+                        intent?.putExtra("title",data.title)
+                        intent?.addFlags(FLAG_ACTIVITY_NEW_TASK)
 
-                    mContext.startActivity(intent)
+                        mContext.startActivity(intent)
+
+                    }
 
 
 

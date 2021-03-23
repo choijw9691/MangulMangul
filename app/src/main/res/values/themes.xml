@@ -25,4 +25,13 @@
     <style name="Theme.MangulMangul.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.MangulMangul.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SpinnerTheme">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/ham</item>
+        <item name="android:textStyle"></item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+
 </resources>

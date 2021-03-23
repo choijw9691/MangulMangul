@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.didimstory.mangul.Client
 import com.didimstory.mangulmangul.PreferenceManager
 import com.didimstory.mangulmangul.`object`.likeobject
+import com.didimstory.mangulmangul.boast.boastActivity
 import com.didimstory.mangulmangul.databinding.ActivityYoutubThumbNaiLBinding
 import com.didimstory.mangulmangul.famous.youtubeFamous
 import com.didimstory.mangulmangul.youtube.YoutubeItem
@@ -91,7 +92,7 @@ binding.heart.setOnClickListener(View.OnClickListener {
             binding.heart.progress=0f
 
         }else{
-            Log.d("ss111114",data.likeStatus.toString())
+
             binding.heart.playAnimation()
             binding.heart.loop(false);
 
@@ -183,6 +184,8 @@ binding.heart.setOnClickListener(View.OnClickListener {
                 }
 
             } else {
+
+
                 binding.heart.visibility = View.GONE
                 mContext?.let {
                     dataurl = data.ytUrl
@@ -196,6 +199,15 @@ binding.heart.setOnClickListener(View.OnClickListener {
 
 
                 }
+
+                binding.thumbnail.setOnClickListener(View.OnClickListener {
+                    Log.d("ss11111478",data.engFairyTaleIdx.toString())
+                    val intent = Intent(mContext, boastActivity::class.java)
+                    intent.putExtra("boastIdx", data.engFairyTaleIdx.toInt())
+                    mContext?.startActivity(intent)
+
+                })
+
             }
 /*            if(adapterPosition==0 || adapterPosition == dataList.size-1){
                 binding.itemLayout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)

@@ -28,6 +28,19 @@
         android:theme="@style/Theme.MangulMangul"
         android:usesCleartextTraffic="true">
 
+        <activity android:name=".Splash"
+            android:screenOrientation="landscape"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+
 
         <activity android:name=".fairy.PopUpActivity"
             android:theme="@android:style/Theme.Dialog"
@@ -78,13 +91,11 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".Login.LoginActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            >
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".MainActivity"

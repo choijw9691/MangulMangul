@@ -80,7 +80,7 @@ class QuestionFragment : Fragment() {
 
         binding?.backbtn?.setOnClickListener(View.OnClickListener {
             var fragmentManager=parentFragmentManager
-            fragmentManager.beginTransaction().replace(R.id.MyPageContainer, MyPageHomeFragment()).addToBackStack("21").commit()
+            fragmentManager.beginTransaction().replace(R.id.Servicecontainer,ServiceHomeFragment()).addToBackStack("21").commit()
 
 
         })
