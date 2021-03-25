@@ -53,6 +53,29 @@ class FamousFragment : Fragment(){
 
 
 
+
+
+
+
+
+/*      binding!!.titleText.text = fairyAdapter.dataList[0].title
+        binding!!.descriptionText.text = String.format("%s ", fairyAdapter.dataList[0].description)*/
+
+        return view
+    }
+
+    companion object {
+        fun newInstance(): Int? {
+            var fragment: FairytaleFragment =
+                FairytaleFragment()
+            Log.d("fairyfragment", fragment.toString())
+            return 5
+        }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
         Client.retrofitService.fameHome(PreferenceManager.getLong(context,"PrefIDIndex"))
             .enqueue(object :
                 Callback<listfairyHome> {
@@ -115,27 +138,5 @@ class FamousFragment : Fragment(){
 
             })
 
-
-
-
-
-/*      binding!!.titleText.text = fairyAdapter.dataList[0].title
-        binding!!.descriptionText.text = String.format("%s ", fairyAdapter.dataList[0].description)*/
-
-        return view
     }
-
-    companion object {
-        fun newInstance(): Int? {
-            var fragment: FairytaleFragment =
-                FairytaleFragment()
-            Log.d("fairyfragment", fragment.toString())
-            return 5
-        }
-    }
-
-
-
-
-
 }

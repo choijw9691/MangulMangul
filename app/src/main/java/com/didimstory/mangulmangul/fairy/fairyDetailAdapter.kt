@@ -80,7 +80,7 @@ class fairyDetailAdapter(var context: Context?,var test: Int,var updateFairyList
                 binding.thumbnail.setOnClickListener(View.OnClickListener {
                     var intent:Intent?=null
 
-                    mupdateFairyListener?.add(data.engFairyTaleIdx)
+
                     if(test==0){
 
                         intent= Intent(mContext, youtubeTest::class.java)
@@ -92,7 +92,7 @@ class fairyDetailAdapter(var context: Context?,var test: Int,var updateFairyList
 
                         mContext.startActivity(intent)
 
-                        Log.d("data.ytUrl",data.ytUrl)
+                        Log.d("data.ytUrl123",data.ytUrl)
                     }
                     else if(test==1){
 
@@ -109,7 +109,7 @@ class fairyDetailAdapter(var context: Context?,var test: Int,var updateFairyList
 
 
 
-
+                    mupdateFairyListener?.add(data.engFairyTaleIdx)
 
 
 

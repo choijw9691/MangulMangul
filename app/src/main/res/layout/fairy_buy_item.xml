@@ -1,40 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="@dimen/dp_80"
+    android:layout_height="200dp"
     android:orientation="horizontal"
     android:background="@drawable/radiusrecycle"
+
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="@dimen/dp_30"
+        android:orientation="horizontal"
         >
 
-        <ImageView
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageview"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:background="@drawable/radiusrecycle"
-            ></ImageView>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+
+    >
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageview"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:background="@drawable/radiusrecycle"
+        ></androidx.viewpager2.widget.ViewPager2>
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:layout_gravity="bottom"
+        android:id="@+id/indicator"
+        ></me.relex.circleindicator.CircleIndicator3>
+
+</FrameLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_toRightOf="@+id/imageview"
+            android:layout_weight="1"
 android:layout_marginLeft="@dimen/dp_8"
             >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textview"
-                android:fontFamily="@font/hambold"
-
+                android:fontFamily="@font/ham"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="2"
                 ></TextView>
 
             <CheckedTextView
@@ -44,7 +66,13 @@ android:layout_marginLeft="@dimen/dp_8"
                 android:checkMark="?android:attr/listChoiceIndicatorMultiple"
 android:fontFamily="@font/ham"
 android:gravity="center"
+android:textSize="@dimen/dp_20"
+          android:layout_marginTop="@dimen/dp_10"
+                android:textStyle="bold"
+
                 android:textColor="#ff6b6b"></CheckedTextView>
+
+
         </LinearLayout>
     </LinearLayout>
 

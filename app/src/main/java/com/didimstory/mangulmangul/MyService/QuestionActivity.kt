@@ -1,5 +1,6 @@
 package com.didimstory.mangulmangul.MyService
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,10 +16,16 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class QuestionActivity : AppCompatActivity() {
+
+    var mediaPlayer : MediaPlayer = MediaPlayer()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_question)
 
+
+        mediaPlayer= MediaPlayer.create(applicationContext,R.raw.bogle)
+        mediaPlayer.isLooping=true
+        mediaPlayer.start()
 
         insert1.setOnClickListener(View.OnClickListener {
             Log.d("asasd",
@@ -55,12 +62,24 @@ class QuestionActivity : AppCompatActivity() {
 
 
 
+        backbtn.setOnClickListener(View.OnClickListener {
+
+            finish()
+
+        })
 
 
 
 
 
 
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if(mediaPlayer.isPlaying){
+
+            mediaPlayer.stop()
+        }
     }
 }

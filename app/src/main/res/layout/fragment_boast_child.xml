@@ -52,7 +52,8 @@
                 android:layout_marginRight="@dimen/dp_50"
                 android:background="@drawable/whitetext"
                 android:id="@+id/title"
-                android:hint="  제목"></EditText>
+                android:paddingLeft="@dimen/dp_10"
+                android:hint="제목"></EditText>
 
             <EditText
                 android:layout_width="match_parent"
@@ -60,7 +61,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="@dimen/dp_50"
                 android:background="@drawable/whitetext"
-                android:hint="  내용을 입력해주세요"
+                android:hint="내용을 입력해주세요"
+                android:paddingLeft="@dimen/dp_10"
                 android:id="@+id/contents"
                 ></EditText>
 

@@ -27,7 +27,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/dp_25"
             android:layout_marginLeft="@dimen/dp_25"
-            android:fontFamily="@font/hambold"
+            android:fontFamily="@font/ham"
             android:layout_centerVertical="true"
             >
 
@@ -87,7 +87,7 @@ android:layout_gravity="center"
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-android:fontFamily="@font/hambold"
+android:fontFamily="@font/ham"
             android:text="검색 결과가 없습니다."
             android:textStyle="bold"
             android:gravity="center"

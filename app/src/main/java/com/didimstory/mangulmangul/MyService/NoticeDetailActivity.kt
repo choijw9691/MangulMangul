@@ -1,5 +1,6 @@
 package com.didimstory.mangulmangul.MyService
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebSettings
@@ -17,6 +18,7 @@ import java.io.File
 
 class NoticeDetailActivity : AppCompatActivity() {
 private var mWebSettings:WebSettings?=null
+    var mediaPlayer : MediaPlayer = MediaPlayer()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notice_detail)
@@ -24,6 +26,9 @@ private var mWebSettings:WebSettings?=null
 var file = File("efefwef")
 
 
+        mediaPlayer= MediaPlayer.create(applicationContext,R.raw.bogle)
+        mediaPlayer.isLooping=true
+        mediaPlayer.start()
 
 
         purchase_back1.setOnClickListener(View.OnClickListener {
@@ -69,5 +74,14 @@ var file = File("efefwef")
             .into(notice_datail_image)
 */
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if(mediaPlayer.isPlaying){
+
+            mediaPlayer.stop()
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.didimstory.mangulmangul.boast
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +23,7 @@ import retrofit2.Response
 
 
 class boastActivity : AppCompatActivity() {
-
+    var mediaPlayer : MediaPlayer = MediaPlayer()
 
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var boastRecycleAdapter: boastDetailAdapter
@@ -33,6 +34,9 @@ class boastActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityBoastBinding.inflate(layoutInflater)
 
+        mediaPlayer= MediaPlayer.create(applicationContext,R.raw.bogle)
+        mediaPlayer.isLooping=true
+        mediaPlayer.start()
 
 
         binding?.backbtn?.setOnClickListener(View.OnClickListener {
@@ -157,5 +161,13 @@ onBackPressed()
                 setContentView(binding.root)
             }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if(mediaPlayer.isPlaying){
+
+            mediaPlayer.stop()
+        }
 
     }
+}

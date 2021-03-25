@@ -1,6 +1,7 @@
 package com.didimstory.mangulmangul.famous
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,29 +29,116 @@ import retrofit2.Response
 
 
 class youtubeFamous : YouTubeBaseActivity(){
-    var videoId: String? = null
 
+
+    var mediaPlayer : MediaPlayer = MediaPlayer()
 
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var fairyAdapter: fairyDetailAdapter
     private lateinit var buyAdapter: fairybuyAdapter
     private var dataList = arrayListOf<YoutubeItem>()
     private var buydataList = arrayListOf<fairybuyItem>()
-
+    var videoId: String? = null
+    var likeStatus: Boolean? = null
     var engFairyTaleIdx: Long? = null
-
+    var title: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         videoId = intent.getStringExtra("data.url")
 
-        engFairyTaleIdx = intent.getLongExtra("engFairyTaleIdx",0)
+        videoId = intent.getStringExtra("data.url")
+        engFairyTaleIdx = intent.getLongExtra("engFairyTaleIdx", 0).toLong()
+        likeStatus = intent.getBooleanExtra("likeStatus", false)
+        title = intent.getStringExtra("title")
         val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
-        Log.d("youtuberesult", videoId.toString())
+
         setContentView(R.layout.activity_youtube_test)
 
 
+        mediaPlayer= MediaPlayer.create(applicationContext,R.raw.bogle)
+        mediaPlayer.isLooping=true
+        mediaPlayer.start()
+        heart.setOnClickListener(View.OnClickListener {
+
+            if (applicationContext != null) {
+
+
+                if(likeStatus==true){
+
+                    heart.pauseAnimation()
+                    heart.progress=0f
+
+                }else{
+
+                    heart.playAnimation()
+                    heart.loop(false);
+
+                }
+
+                Client.retrofitService.updateLike(
+                    PreferenceManager.getLong(
+                        applicationContext,
+                        "PrefIDIndex"
+                    ),engFairyTaleIdx!!.toLong()
+                ).enqueue(object :
+                    Callback<Boolean> {
+
+
+                    override fun onFailure(call: Call<Boolean>, t: Throwable) {
+
+                    }
+
+                    override fun onResponse(call: Call<Boolean>, response: Response<Boolean>)  {
+                        Log.d("youtuberesult5", "videoId.toString()")
+                        likeStatus=response.body()!!
+
+
+                    }
+
+                })
+
+
+
+            }
+
+        })
+        if (likeStatus == true) {
+
+            heart.progress=1f
+
+        } else {
+
+            heart.progress=0f
+        }
+
+
+        backbtn?.setOnClickListener(View.OnClickListener {
+            onBackPressed()
+
+
+        })
+
+        mLayoutManager = LinearLayoutManager(
+
+            applicationContext,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        recyclerView2.layoutManager = mLayoutManager
+
+
+        fairyAdapter = fairyDetailAdapter(applicationContext, 0,object : fairyDetailAdapter.updateFairyListener{
+            override fun add(engFairyTaleIdx: Long) {
+                super.add(engFairyTaleIdx)
+
+                finish()
+                Log.d("data.ytUrl1234",engFairyTaleIdx.toString())
+            }
+        })
+
+        fairyText.setText(title)
 
         val youtubeView =
             findViewById<YouTubePlayerView>(R.id.youtubeView)
@@ -64,6 +152,46 @@ class youtubeFamous : YouTubeBaseActivity(){
                     player.cueVideo(videoId)
 
                 }
+
+                player.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener{
+                    override fun onAdStarted() {
+                        Log.d("result4561","11")
+                        if(mediaPlayer.isPlaying){
+
+                            mediaPlayer.stop()
+                        }
+                    }
+
+                    override fun onLoading() {
+                        Log.d("result4561","22")
+                    }
+
+                    override fun onVideoStarted() {
+                        Log.d("result4561","33")
+                        if(mediaPlayer.isPlaying){
+
+                            mediaPlayer.stop()
+                        }
+                    }
+
+                    override fun onLoaded(p0: String?) {
+                        Log.d("result4561","44")
+                    }
+
+                    override fun onVideoEnded() {
+                        Log.d("result4561","55")
+                    }
+
+                    override fun onError(p0: YouTubePlayer.ErrorReason?) {
+                        Log.d("result4561","66")
+                    }
+
+
+                })
+
+
+
+
             }
 
             override fun onInitializationFailure(
@@ -115,16 +243,10 @@ class youtubeFamous : YouTubeBaseActivity(){
 
                                                 }
 
-                                                mLayoutManager = LinearLayoutManager(applicationContext, LinearLayoutManager.HORIZONTAL, false)
+
 
                                            //여기 고쳐!!!!!!!!!!!!!!!!!!
 
-                                               fairyAdapter = fairyDetailAdapter(applicationContext,1,object : fairyDetailAdapter.updateFairyListener{
-
-                                                   override fun add(engFairyTaleIdx: Long) {
-                                                       super.add(engFairyTaleIdx)
-                                                   }
-                                               })
 
                                                 recyclerView2.layoutManager = mLayoutManager
 
@@ -202,7 +324,11 @@ class youtubeFamous : YouTubeBaseActivity(){
 
 
     }
-//영상자동재생
-//youtubeView.initialize("develop", object : YouTubePlayer.OnInitializedListener { override fun onInitializationSuccess( provider: YouTubePlayer.Provider, player: YouTubePlayer, wasRestored: Boolean ) { if (!wasRestored) { player.cueVideo(videoId) } player.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener { override fun onAdStarted() {} override fun onLoading() {} override fun onVideoStarted() {} override fun onVideoEnded() {} override fun onError(p0: YouTubePlayer.ErrorReason) {} override fun onLoaded(videoId: String) { player.play() } }) } })
 
+    //영상자동재생
+//youtubeView.initialize("develop", object : YouTubePlayer.OnInitializedListener { override fun onInitializationSuccess( provider: YouTubePlayer.Provider, player: YouTubePlayer, wasRestored: Boolean ) { if (!wasRestored) { player.cueVideo(videoId) } player.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener { override fun onAdStarted() {} override fun onLoading() {} override fun onVideoStarted() {} override fun onVideoEnded() {} override fun onError(p0: YouTubePlayer.ErrorReason) {} override fun onLoaded(videoId: String) { player.play() } }) } })
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.stop()
+    }
 }

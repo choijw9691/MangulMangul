@@ -8,21 +8,35 @@
 
     >
 
+<FrameLayout
+    android:layout_width="220dp"
+    android:layout_height="120dp"
+    android:layout_marginRight="@dimen/dp_10"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="@dimen/dp_5"
+    android:id="@+id/qqq"
+    >
 
-    <ImageView
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/purchaseImageview"
-        android:layout_width="220dp"
-        android:layout_height="120dp"
-        android:layout_marginRight="@dimen/dp_10"
-        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
-android:layout_marginLeft="@dimen/dp_5"
-        android:scaleType="fitXY"></ImageView>
+        android:scaleType="fitXY"></androidx.viewpager2.widget.ViewPager2>
+    <me.relex.circleindicator.CircleIndicator3
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:layout_gravity="bottom"
+        android:id="@+id/indicator"
+        ></me.relex.circleindicator.CircleIndicator3>
+
+</FrameLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:layout_toRightOf="@+id/purchaseImageview"
+        android:layout_toRightOf="@+id/qqq"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/dp_10"
         >
@@ -32,7 +46,8 @@ android:layout_marginLeft="@dimen/dp_5"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ellipsize="end"
-            android:fontFamily="@font/hambold"
+            android:fontFamily="@font/ham"
+            android:textStyle="bold"
             android:maxLines="1"
             android:layout_weight="1"
             android:textColor="@color/black"></TextView>

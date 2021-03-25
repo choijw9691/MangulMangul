@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.transition.Slide
@@ -28,6 +29,7 @@ import com.didimstory.mangulmangul.youtube.YoutubeItem
 import kotlinx.android.synthetic.main.activity_fairy_popup.*
 import kotlinx.android.synthetic.main.activity_pop_up.*
 import kotlinx.android.synthetic.main.activity_youtube_test.*
+import kotlinx.android.synthetic.main.fairy_buy_item.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -37,7 +39,9 @@ class fairyPopup  : Activity() {
     private lateinit var buyAdapter: fairybuyAdapter
     var data:String?=null
     var engFairyTaleIdx:Long?=null
+
     private lateinit var mLayoutManager: LinearLayoutManager
+    var mediaPlayer : MediaPlayer = MediaPlayer()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -57,6 +61,12 @@ class fairyPopup  : Activity() {
 
 
         setContentView(R.layout.activity_fairy_popup)
+
+
+        mediaPlayer= MediaPlayer.create(applicationContext,R.raw.bogle)
+        mediaPlayer.isLooping=true
+        mediaPlayer.start()
+
 
         val display=this.baseContext.display
         val size= Point()
@@ -88,7 +98,7 @@ class fairyPopup  : Activity() {
                             var list = response.body()?.list
 
                             for (i in 0 until (response.body()?.list!!.size)) {
-                                Log.d("listresult113",list?.get(i)!!.imageUri.toString())
+                                Log.d("listresult1136",list?.get(i)!!.imageUri.toString())
                                 buydataList.add(
                                     fairybuyItem(
                                         list?.get(i)!!.artKitIdx,
@@ -101,6 +111,9 @@ class fairyPopup  : Activity() {
 
 
                             }
+
+
+
 
 
                         }
@@ -177,6 +190,7 @@ if(purchase.size>0){
         val intent = Intent()
         intent.putExtra("result", txtText.text.toString())
         setResult(RESULT_OK, intent)
+        mediaPlayer.stop()
         finish()
 
 
@@ -193,5 +207,10 @@ if(purchase.size>0){
 
     override fun onBackPressed() {
         return
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.stop()
     }
 }

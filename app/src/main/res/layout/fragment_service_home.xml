@@ -22,6 +22,8 @@
             android:textStyle="bold"
             android:textSize="@dimen/dp_20"
             android:text="문의하기"
+            android:fontFamily="@font/ham"
+
             android:layout_marginLeft="@dimen/dp_50"
             ></TextView>
     </LinearLayout>

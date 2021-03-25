@@ -11,9 +11,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.databinding.PurchaseItemBinding
+import com.didimstory.mangulmangul.fairy.KitViewPagerAdapter
 import com.google.android.material.internal.ContextUtils.getActivity
 import java.text.DecimalFormat
 
@@ -83,16 +85,35 @@ this.mbuyTextListener=mbuyTextListener
 
             mContext?.let {
 
+                binding.purchaseImageview.adapter= KitViewPagerAdapter(mContext,data.url)
+                binding.indicator.setViewPager(binding.purchaseImageview)
+                binding.indicator.createIndicators(data.url.size,0)
 
-                dataurl = data.url
-                Glide.with(it)
-                    .load(dataurl)
-                    .centerInside()
-                    .override(1000, 1000)
-                    .into(binding.purchaseImageview)
 
                 binding.purchaseTitle.text = data.title
                 binding.purchaseText.setText(formatter.format((data.price).toInt()) + "원")
+
+                binding.purchaseImageview.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                    override fun onPageScrollStateChanged(state: Int) {
+                        super.onPageScrollStateChanged(state)
+                    }
+
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                    ) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    }
+
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+
+                        binding.indicator.animatePageSelected(position%data.url.size)
+
+                    }
+                })
+
 
                 binding.purcaseButton.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
                     override fun onNothingSelected(parent: AdapterView<*>?) {

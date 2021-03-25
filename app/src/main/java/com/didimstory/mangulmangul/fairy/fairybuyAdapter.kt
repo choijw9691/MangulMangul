@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.didimstory.mangulmangul.Entity.Buy
 import com.didimstory.mangulmangul.Entity.fairybuyItem
@@ -16,6 +17,7 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
     var checkboxtext: String? = null
 
     var max: Int = 0
+    val imageList = ArrayList<String>()
 
     var checkboxSelectedList = ArrayList<Buy>()
     var titleSelectedList = ArrayList<String>()
@@ -85,19 +87,13 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mContext?.let {
 
 
-                Log.d("넹","넹")
+
                 if (num >= checkboxList.size) {
 
                     checkboxList.add(num, checkboxData(num, false))
 
                 }
 
-                dataurl = data.fileRealName
-                Glide.with(it)
-                    .load(dataurl)
-                    .centerInside()
-                    .override(1000, 1000)
-                    .into(binding.imageview)
 
 
 
@@ -106,6 +102,34 @@ class fairybuyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
 
+
+
+                Log.d("넹",data.fileRealName.toString())
+
+                binding.imageview.adapter=KitViewPagerAdapter(mContext,data.fileRealName)
+                binding.indicator.setViewPager(binding.imageview)
+                binding.indicator.createIndicators(data.fileRealName.size,0)
+
+                binding.imageview.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+
+                    override fun onPageScrollStateChanged(state: Int) {
+                        super.onPageScrollStateChanged(state)
+                    }
+
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                    ) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    }
+
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+
+                        binding.indicator.animatePageSelected(position%data.fileRealName.size)
+                    }
+                })
 
 
 

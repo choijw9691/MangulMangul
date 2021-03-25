@@ -80,7 +80,7 @@ data class fairyBuy(
     var  price: Int,
 
     @SerializedName("imageUri")
-    var  imageUri: String
+    var  imageUri: ArrayList<String>
 
 )
 
@@ -294,7 +294,6 @@ data class boastDetail(
     @SerializedName("contents")
 var contents : String
 
-
 )data class boastDetailResult(
 
     @SerializedName("boastList")
@@ -316,6 +315,10 @@ var title: String
 ,
 @SerializedName("contents")
 var contents : String
+    ,
+    @SerializedName("userIdx")
+    var userIdx : String
+
 )
 
 data class fameFairyTaleList(

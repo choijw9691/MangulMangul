@@ -23,7 +23,7 @@ android:orientation="vertical"
             android:textColor="@color/black"
             android:textSize="@dimen/dp_25"
             android:textStyle="bold"
-            android:fontFamily="@font/hambold"
+            android:fontFamily="@font/ham"
             >
 
         </TextView>

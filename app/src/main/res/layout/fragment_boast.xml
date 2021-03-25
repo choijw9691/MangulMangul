@@ -25,6 +25,8 @@ android:id="@+id/boastContainer"
         android:text="자랑하기"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/ham"
+
         android:textSize="@dimen/dp_25"
         android:layout_marginLeft="@dimen/dp_25"
         android:layout_centerVertical="true"

@@ -1,6 +1,7 @@
 package com.didimstory.mangulmangul.youtube
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -34,7 +35,7 @@ class youtubeTest : YouTubeBaseActivity() {
     var title: String? = null
     private lateinit var mLayoutManager: LinearLayoutManager
     private lateinit var fairyAdapter: fairyDetailAdapter
-
+    var mediaPlayer : MediaPlayer = MediaPlayer()
     private var dataList = arrayListOf<YoutubeItem>()
 
 
@@ -49,6 +50,9 @@ overridePendingTransition(0, 0);
 
         setContentView(R.layout.activity_youtube_test)
 
+        mediaPlayer= MediaPlayer.create(applicationContext,R.raw.bogle)
+        mediaPlayer.isLooping=true
+        mediaPlayer.start()
 
         videoId = intent.getStringExtra("data.url")
         engFairyTaleIdx1 = intent.getLongExtra("engFairyTaleIdx", 0).toLong()
@@ -57,22 +61,22 @@ overridePendingTransition(0, 0);
         val url = com.didimstory.mangulmangul.fragment.videoId//유튜브 썸네일 불러오는 방법
         Log.d("youtuberesult", videoId.toString())
 
+        mLayoutManager = LinearLayoutManager(
+
+            applicationContext,
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        recyclerView2.layoutManager = mLayoutManager
+
         fairyAdapter = fairyDetailAdapter(applicationContext, 0,object : fairyDetailAdapter.updateFairyListener{
             override fun add(engFairyTaleIdx: Long) {
                 super.add(engFairyTaleIdx)
+
 finish()
+                Log.d("data.ytUrl1234",engFairyTaleIdx.toString())
             }
         })
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -105,9 +109,6 @@ onBackPressed()
 
                 }
 
-
-
-
                 Client.retrofitService.updateLike(
                     PreferenceManager.getLong(
                         applicationContext,
@@ -132,9 +133,7 @@ onBackPressed()
 
 
 
-
             }
-
 
         })
 
@@ -173,8 +172,46 @@ onBackPressed()
             ) {
                 if (!wasRestored) {
                     player.cueVideo(videoId)
-                    Log.d("result456","wefwefwefwef")
+
                 }
+
+
+        player.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener{
+            override fun onAdStarted() {
+                Log.d("result4561","11")
+                if(mediaPlayer.isPlaying){
+
+                    mediaPlayer.stop()
+                }
+            }
+
+            override fun onLoading() {
+                Log.d("result4561","22")
+            }
+
+            override fun onVideoStarted() {
+                Log.d("result4561","33")
+                if(mediaPlayer.isPlaying){
+
+                    mediaPlayer.stop()
+                }
+            }
+
+            override fun onLoaded(p0: String?) {
+                Log.d("result4561","44")
+            }
+
+            override fun onVideoEnded() {
+                Log.d("result4561","55")
+            }
+
+            override fun onError(p0: YouTubePlayer.ErrorReason?) {
+                Log.e("result4561","66")
+            }
+
+
+        })
+
 
             }
 
@@ -234,17 +271,8 @@ onBackPressed()
                                  fairyText.setText(title)
                                  likeStatus=  response.body()?.likestatus
                                  Log.d("리스폰첵11",title.toString())*/
-                            mLayoutManager = LinearLayoutManager(
-                                applicationContext,
-                                LinearLayoutManager.HORIZONTAL,
-                                false
-                            )
-
-
-                            recyclerView2.layoutManager = mLayoutManager
 
                             fairyAdapter.dataList = dataList
-
                             recyclerView2.adapter = fairyAdapter
 
 
@@ -279,6 +307,11 @@ onBackPressed()
 
         super.onBackPressed()
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.stop()
     }
 }
 //영상자동재생

@@ -3,6 +3,7 @@ package com.didimstory.mangulmangul
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     val PREFERENCE = "template.android.hyogeuns"
 
-
+    var mediaPlayer : MediaPlayer = MediaPlayer()
 
     private val FairytaleFragment by lazy { FairytaleFragment() }
     private val SerchFragment by lazy { SerchFragment() }
@@ -41,6 +42,11 @@ var listener:OnBackPressedListener?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mediaPlayer= MediaPlayer.create(applicationContext,R.raw.bogle)
+        mediaPlayer.isLooping=true
+        mediaPlayer.start()
+
         var pref = getSharedPreferences(PREFERENCE, MODE_PRIVATE)
         var users = pref.getString("username", "")
 Log.d("mainstart","mainstart")
@@ -204,6 +210,23 @@ interface OnBackPressedListener{
 
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED ) {
 
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if(mediaPlayer.isPlaying){
+
+            mediaPlayer.pause()
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(!mediaPlayer.isPlaying){
+
+            mediaPlayer.start()
         }
     }
 }

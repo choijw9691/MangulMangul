@@ -27,7 +27,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/dp_25"
             android:layout_marginLeft="@dimen/dp_25"
-            android:fontFamily="@font/hambold"
+            android:fontFamily="@font/ham"
 android:layout_centerVertical="true"
             >
 
